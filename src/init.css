@@ -1,0 +1,7 @@
+.init_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    width: 100vw; height: 100vh;
+}
