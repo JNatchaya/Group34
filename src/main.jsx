@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HashRouter } from "react-router-dom";
+
 import Init from './init'
 
 
@@ -10,6 +12,9 @@ import "./assets/universal-style/uni-style.css"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Init />
+    <HashRouter>
+      <Init />
+    </HashRouter>
+
   </StrictMode>,
 )
