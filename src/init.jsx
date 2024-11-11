@@ -7,11 +7,27 @@ import Admin_pages from "./Permisstion/Admin/layouts/A-layout";
 import Super_user_pages from "./Permisstion/Super-user/layout/Su-layout";
 import Sup_user_pages from "./Permisstion/Sup-user/layout/Sup-layout";
 
+import { fetchCmData } from "./DATA/Cm_data";
+import { fetchFireExtinguisherData } from "./DATA/fire_extinguisher_data";
+
 import "./init.css";
 
 function Init() {
   const [token, setToken] = useState('');
+  const [cmData, setCmData] = useState([]); // Declare state for cmData
+  const [fireExtinguisherData, setFireExtinguisherData] = useState([]); // Declare state for fireExtinguisherData
   const navigate = useNavigate();  // Hook to navigate programmatically
+
+  useEffect(() => {
+    // Fetch data and set it to the respective state variables
+    setCmData(fetchCmData());
+    setFireExtinguisherData(fetchFireExtinguisherData());
+  }, []);
+
+  useEffect(() => {
+    console.log("CM Data:", cmData);
+    console.log("Fire Extinguisher Data:", fireExtinguisherData);
+  }, [cmData, fireExtinguisherData]);
 
   useEffect(() => {
     console.log(token);
