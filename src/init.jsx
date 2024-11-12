@@ -12,7 +12,7 @@ import { getCombinedData } from './DATA/dataCombiner';
 import "./init.css";
 
 function Init() {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState('SuperAdmin');
   const [combinedData, setCombinedData] = useState([]); // State for combined data
   const navigate = useNavigate();  // Hook to navigate programmatically
 

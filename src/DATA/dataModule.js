@@ -39,14 +39,16 @@ export const fire_extinguisher_data = [
                 "type": "CO2",
                 "location": "Floor 1 - Aisle 5",
                 "lastMaintenance": "2024-10-01",
-                "nextMaintenance": "2025-01-01"
+                "nextMaintenance": "2025-01-01",
+                "serialNumber": "SN123456"
             },
             {
                 "fireID": "002",
                 "type": "Dry Chemical",
                 "location": "Floor 2 - Room 205",
                 "lastMaintenance": "2024-09-15",
-                "nextMaintenance": "2024-12-15"
+                "nextMaintenance": "2024-12-15",
+                "serialNumber": "SN789012"
             }
         ]
     },
@@ -58,14 +60,16 @@ export const fire_extinguisher_data = [
                 "type": "Foam",
                 "location": "Floor 3 - Near Elevator",
                 "lastMaintenance": "2024-10-10",
-                "nextMaintenance": "2025-01-10"
+                "nextMaintenance": "2025-01-10",
+                "serialNumber": "SN345678"
             },
             {
                 "fireID": "004",
                 "type": "Water",
                 "location": "Floor 1 - Lobby",
                 "lastMaintenance": "2024-09-20",
-                "nextMaintenance": "2024-12-20"
+                "nextMaintenance": "2024-12-20",
+                "serialNumber": "SN901234"
             }
         ]
     },
@@ -77,7 +81,8 @@ export const fire_extinguisher_data = [
                 "type": "CO2",
                 "location": "Floor 1 - Aisle 5",
                 "lastMaintenance": "2024-10-01",
-                "nextMaintenance": "2025-01-01"
+                "nextMaintenance": "2025-01-01",
+                "serialNumber": "SN567890"
             }
         ]
     },
@@ -89,12 +94,14 @@ export const fire_extinguisher_data = [
                 "type": "Dry Chemical",
                 "location": "Floor 2 - Room 205",
                 "lastMaintenance": "2024-09-15",
-                "nextMaintenance": "2024-12-15"
+                "nextMaintenance": "2024-12-15",
+                "serialNumber": "SN012345"
             }
         ]
-    },
-    // ข้อมูลถังดับเพลิงอื่นๆ
+    }
 ];
+// ข้อมูลถังดับเพลิงอื่นๆ
+
 
 export function fetchCmData() {
     return CM;
