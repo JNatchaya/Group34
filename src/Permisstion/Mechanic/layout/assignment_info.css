@@ -1,0 +1,245 @@
+.info-container {
+  display: grid;
+  grid-template-rows: auto 1.5fr auto;
+  gap: 10px;
+  padding: 10px;
+  /* border: 2px solid black; */
+  height: 800px;
+  width: 400px;
+  justify-content: center;
+}
+
+.info-header {
+  padding: 10px;
+  color: white;
+  position: relative;
+  height: 100%; 
+}
+
+.info-header h3 {
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+
+.info-main-content {
+  display: grid;
+  grid-template-rows: 0.8fr 1.2fr auto;
+  border-radius: 10px;
+  border: none;
+  gap: 10px;
+  padding: 10px;
+  background-color: #F2F2E6;
+  width: 400px;
+  height: 780px;
+  justify-content: center;
+}
+
+.info-section-top{
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  /* gap: 5px; */
+  padding: 10px;
+}
+.info-section-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  /* gap: 5px; */
+  padding: 10px;
+}
+
+.place {
+  padding: 10px;
+  position: relative; 
+  height: 10%; 
+}
+
+.place h4 {
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+
+.place-image{
+  /* border: 2px solid yellow; */
+  padding: 10px;
+  gap: 0px;
+  color: black;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+  background-color: #9c88b3;
+}
+
+.info-report{
+  padding: 10px;
+  position: relative; 
+  height: 31%; 
+  width: 100%;
+}
+.info-report h4 {
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+
+.report-image{
+  /* border: solid 2px red; */
+  padding: 10px;
+  gap: 0px;
+  color: black;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 200px;
+  height: 170px;
+  border-radius: 10px;
+  background-color: #9c88b3;
+}
+
+.check-list{
+  padding: 10px;
+  position: relative; 
+  height: 10%;
+  width: 100%;
+}
+.check-list h4{
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+
+.Checklist-details{
+  padding: 10px;
+  gap: 0px;
+  color: black;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 200px;
+  height: 335px;
+  border-radius: 10px;
+  background-color: #9c88b3;
+}
+
+.Location{
+  padding: 10px;
+  position: relative; 
+  height: 25%;
+  width: 100%;
+}
+.Location h4{
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+.location-details{
+  padding: 10px;
+  gap: 0px;
+  color: black;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 140px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #9c88b3;
+}
+
+
+.Evidence{
+  padding: 10px;
+  position: relative; 
+  height: 10%;
+  width: 100%;
+}
+.Evidence h4{
+  position: absolute;
+  bottom: 0; 
+  left: 0; 
+  margin: 0; 
+}
+.evidence-preview {
+  padding: 10px;
+  gap: 0px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 220px;
+  border-radius: 10px;
+  background-color: #9c88b3;
+  position: relative; /* ให้ .evidence-preview เป็นกรอบอ้างอิงตำแหน่ง */
+}
+.add-button {
+  background-color: #FD6E2B;
+  color: white;
+  width: 50px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  position: absolute; 
+  bottom: 10px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.add-button h5 {
+  margin: 0; 
+}
+
+
+
+
+.info-section-item {
+  /* border: 2px solid purple; */
+  padding: 10px;
+}
+
+.info-section-item2{
+  display: grid;
+  grid-template-rows: 0.6fr 1.4fr;
+  /* border: 2px solid purple; */
+  padding: 10px 10px 10px 0px;
+}
+
+.info-footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  width: 300px;
+  margin-left: auto; 
+}
+
+.return-button2{
+  background-color: #FD6E2B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+.submit-button{
+  background-color: #FD6E2B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  margin-bottom: 30px;
+  margin-right: 15px;
+}
