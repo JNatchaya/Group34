@@ -1,16 +1,21 @@
 
-
+import { Link, Outlet } from "react-router-dom";
 import "./Sa-layout.css"
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
+import MailPopup from "../../../mail-popup/mail";
+import { useState } from "react";
 function SuperAdmin_pages() {
     const combinedData = useCombinedData(); // ดึงข้อมูล combinedData จาก context
-
+    const [buttonMailPopup, setButtonMailPopup] = useState(false);
     return ( 
         <div className="Sa-pages-container starter">
             <header className="header">
                 <div className="logo"></div>
                 <div className="user-sec">
-                    <span className="bi bi-envelope-fill"></span>
+                <button onClick={() => setButtonMailPopup(true)}><span className="bi bi-envelope-fill"></span></button>
+          <MailPopup trigger={buttonMailPopup} setTrigger={setButtonMailPopup}>
+            <h3>hi</h3>
+          </MailPopup>
                     <div className="user-container">
                         <label className="username">Superadmin</label>
                         <div className="pofile-picture"></div>
@@ -20,7 +25,9 @@ function SuperAdmin_pages() {
             <main className="body">
                 <div className="sidebar">
                     <div className="Child active">C.account management <span className="bi bi-caret-right-fill"></span>  </div>
-                    <div className="Child">Staff Management <span  className="bi bi-caret-right-fill"></span></div>
+                    <Link to="StaffManagement" className="Child"> 
+            Staff Management <span className="bi bi-caret-right-fill"></span>
+          </Link>
                     <div className="Child">Stock <span className="bi bi-caret-right-fill"></span></div>
                     <div className="Child">Key Generator <span className="bi bi-caret-right-fill"></span></div>
                     <div className="Child">MAP<span className="bi bi-caret-right-fill"></span></div>
