@@ -1,8 +1,8 @@
 
 
-import "./Sa-layout.css"
+import "./some_cliant.css"
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
-function SuperAdmin_pages() {
+function some_cliant_pages() {
     const combinedData = useCombinedData(); // ดึงข้อมูล combinedData จาก context
 
     return ( 
@@ -26,16 +26,16 @@ function SuperAdmin_pages() {
                     <div className="Child">MAP<span className="bi bi-caret-right-fill"></span></div>
                 </div>
                     <div className="container">
-                    <p className="location">C.account management/ </p>
+                    <p className="location">C.account management/ Some Client </p>
                     <div className="account-list">
                         {/* ตัวอย่างรายการบัญชี */}
-                        <AccountItem companyName="Client Company name" departmentCount={5} />
-                        <AccountItem companyName="Client Company name" departmentCount={2} />
-                        <AccountItem companyName="Client Company name" departmentCount={3} />
-                        <AccountItem companyName="Client Company name" departmentCount={5} />
-                        <AccountItem companyName="Client Company name" departmentCount={7} />
+                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={12} />
+                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={14} />
+                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={10} />
+                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={14} />
+                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={16} />
                     </div>
-                    <button className="add-company-button">Add Company</button>
+                    <button className="add-company-button">Add Department</button>
                 </div>
                 
             </main>
@@ -43,17 +43,17 @@ function SuperAdmin_pages() {
     );
 }
 // ส่วน Component สำหรับรายการบัญชี
-function AccountItem({ companyName, departmentCount }) {
+function AccountItem({ DepartmentName, Number_of_fire_extinguishers }) {
     return (
         <div className="account-item">
             <div className="company-details">
                 <div className="company-logo"></div>
-                <div className="company-name">{companyName}</div>
+                <div className="department-name">{DepartmentName}</div>
             </div>
-            <div className="department-count">Number of Department ({departmentCount})</div>
+            <div className="number-of-fire-extinguishers">Number of fire extinguishers ({Number_of_fire_extinguishers})</div>
             <div className="more-info">click for more</div>
         </div>
     );
 }
 
-export default SuperAdmin_pages;
+export default some_cliant_pages;

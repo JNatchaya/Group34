@@ -1,4 +1,5 @@
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
+import "./A-layout.css"
 function Admin_pages() {
     const combinedData = useCombinedData();
     
@@ -9,7 +10,7 @@ function Admin_pages() {
                 <div className="user-sec">
                     <span className="bi bi-envelope-fill"></span>
                     <div className="user-container">
-                        <label className="username">SuperAdmin_pages</label>
+                        <label className="username">Admin_pages</label>
                         <div className="pofile-picture"></div>
                     </div>
                 </div>
@@ -20,37 +21,34 @@ function Admin_pages() {
                 <div className="Child">User<span  className="bi bi-caret-right-fill"></span></div>
             </nev>
             <main className="box">
+            <div className="container">
+                    <p className="location">C.account management/ Some Client </p>
+                    <div className="account-list">
+                        {/* ตัวอย่างรายการบัญชี */}
+                        <AccountItem companyName="Client Company Department" due/>
+                        <AccountItem companyName="Client Company Department" due/>
+                        <AccountItem companyName="Client Company Department" due/>
 
-                {/* ***--- vvvv ทดสอบ ลบได้ๆ vvvv ---*** */}
-
-                {/* <main className="box">
-                    {combinedData.map((company, index) => (
-                        <div key={index}>
-                            <h3>{company.CMname}</h3>
-                            {company.DPCH.map((department) => (
-                                <div key={department.id}>
-                                    <p>Department: {department.DPName}</p>
-                                    <ul>
-                                        {department.fire.map((extinguisher) => (
-                                            <li key={extinguisher.fireID}>
-                                                ID: {extinguisher.fireID},
-                                                Type: {extinguisher.type},
-                                                Location: {extinguisher.location},
-                                                Last Maintenance: {extinguisher.lastMaintenance},
-                                                Next Maintenance: {extinguisher.nextMaintenance},
-                                                Serial Number: {extinguisher.serialNumber}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </main> */}
+                    </div>
+                </div>        
             </main>
+
             </main>
         </div>
     </div> );
 }
-
+function AccountItem({ companyName, due , status}) {
+    return (
+        <div className="account-item">
+            <div className="company-details">
+                <div className="company-logo"></div>
+                <div className="company-name">{companyName}</div>
+            </div>
+            {/* เดะกลับมาแก้ทีหลัง VVV */}
+            <div className="department-count"><span className="due" >&nbsp;&nbsp;Due</span> <br />01.01.2000 </div>
+            <div className="status"><span className="sts">status</span><br />onsite <span className="O">O</span></div>
+            <div className="more-info">click for more</div>
+        </div>
+    );
+}
 export default Admin_pages;
