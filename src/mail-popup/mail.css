@@ -39,27 +39,18 @@ nav.mail-nav {
   padding-top: 1%;
   padding-bottom: 1%;
   gap: 10%;
-  color: #fff;
   display: flex;
   justify-content: flex-start;
 }
 
-a.all-mail{
-  text-decoration: none;
-  color: #ffffff;
-}
-
-a.recent-mail{
-  text-decoration: none;
-  color: #ffffff;
-}
-
 .all-mail {
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .recent-mail { 
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .mail-container {
@@ -126,4 +117,19 @@ a.recent-mail{
 
 .card:hover {
   outline: 2px solid #007bff; /* Blue outline on hover */
+}
+
+.show-more-button {
+  background-color: var(--primary-org);
+  width: 200vw;
+  height: 100%;
+  border-radius: 5px;
+  margin-bottom: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-more {
+  color: black;
 }

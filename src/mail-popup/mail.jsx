@@ -33,13 +33,16 @@ function MailPopup(props) {
                   <div className="circle"></div>
                 </div>
                 <div class="item2 card-text-role">
-                  <p>{item.author} |</p>
+                  <p><b>{item.author} |</b></p>
                 </div>
                 <div class="item3 card-text-link">
                   <a href="#">{item.linkText}</a>
                 </div>
               </div>
             ))}
+          </div>
+          <div>
+            <button className="show-more-button">Show More</button>
           </div>
         </body>
       </div>
