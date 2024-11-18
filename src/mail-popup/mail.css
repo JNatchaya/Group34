@@ -8,13 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .popup-inner {
   position: relative;
-  padding: 32px;
   width: 100%;
-  max-width: 600px;
+  max-width: 95%;
+  height: 80%;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -26,4 +27,103 @@
   top: 16px;
   right: 16px;
   cursor: pointer;
+}
+
+header.header {
+  padding: 0%;
+}
+
+nav.mail-nav {
+  background-color: var(--primary-vio);
+  padding-left: 4%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  gap: 10%;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+}
+
+a.all-mail{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a.recent-mail{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.all-mail {
+  font-size: 1.5rem;
+}
+
+.recent-mail { 
+  font-size: 1.5rem;
+}
+
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-vio);
+  width: 100%;
+  height: 70%;
+}
+
+.item1 { grid-area: menu; }
+.item2 { grid-area: main; }
+.item3 { grid-area: footer; }
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  width: 98%;
+  height: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'menu main main main main main'
+    'menu footer footer footer footer footer';
+    background-color: var(--primary-white);
+    gap: 15px; 
+    width: 100%;
+    height: 30%;
+    border-radius: 10px;
+}
+
+.circle-container {
+  padding-left: 10%;
+  padding-top: 10%;
+  width: 90%;
+}
+
+
+.circle {
+  width: 60%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: var(--primary-org);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-text-role {
+  display: flex;
+  justify-content: flex-start;
+  translate: -5% 25%;
+}
+
+.card-text-link{
+    display: flex;
+    justify-content: flex-end;
+    translate: -3% 30%;
+}
+
+.card:hover {
+  outline: 2px solid #007bff; /* Blue outline on hover */
 }

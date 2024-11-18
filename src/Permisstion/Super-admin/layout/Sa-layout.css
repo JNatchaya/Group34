@@ -1,3 +1,7 @@
+.child{
+    z-index: -1;
+}
+
 .account-item {
     display: flex;
     align-items: center;
@@ -69,4 +73,8 @@
 
 .add-company-button:hover {
     background-color: #E04A2A;
+}
+
+.mail{
+    cursor: pointer;
 }
