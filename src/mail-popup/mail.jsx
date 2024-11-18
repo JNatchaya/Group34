@@ -41,9 +41,7 @@ function MailPopup(props) {
               </div>
             ))}
           </div>
-          <div>
             <button className="show-more-button">Show More</button>
-          </div>
         </body>
       </div>
     </div>

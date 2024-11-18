@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .log-out-container{
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px;
+            width: 400px;
+            background-color: rgb(255, 0, 0);
+            color: aliceblue;
+            border-radius: 5px;
+            flex-direction: column;
+        }
+
+        .btn-box {
+            width: 100%;
+            height: 65%;
+            background-color: aqua;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row  ;
+        }
+
+        .confirm-btn, .cancel-btn {
+            width: 100px;
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirm-btn {
+            background-color: green;
+            color: aliceblue;
+        }
+
+        .cancel-btn {
+            background-color: red;
+            color: aliceblue;
+        }
+
+        .confirm-btn:hover, .cancel-btn:hover {
+            transform: scale(1.1);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.2);
+        } 
+
+        .log-out-text-container{
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            padding-left: 10px;
+        }
+
+        .log-out-text{
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div class="log-out-container">
+        <div class="log-out-text-container">
+            <span class="log-out-text">Log out?</span>
+        </div>
+        <div class="btn-box">
+            <button class="confirm-btn">Confirm</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>

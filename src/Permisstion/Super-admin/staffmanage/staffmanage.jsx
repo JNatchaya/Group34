@@ -1,7 +1,7 @@
 import './staffmanage.css';
 import assignmentData from "./data.js"; 
 
-function StaffManage() {
+function StaffManagement_tab() {
     return (
             <div className="assingment-container">
           {assignmentData.map((item) => (
@@ -16,7 +16,6 @@ function StaffManage() {
           ))}
         </div>
     )
-}
-    
+}    
 
-export default StaffManage
+export default StaffManagement_tab

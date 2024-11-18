@@ -1,5 +1,5 @@
 import React from "react";
-import "./M-layout.css";
+import '../layout/M-layout.css';
 
 function NearlyPlace({ onReturn }) {
   return (

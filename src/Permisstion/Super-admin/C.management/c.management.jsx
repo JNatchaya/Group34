@@ -1,8 +1,8 @@
 
 
-import "./some_cliant.css"
+import './c.management.css'
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
-function some_cliant_pages() {
+function C_management_tab() {
     const combinedData = useCombinedData(); // ดึงข้อมูล combinedData จาก context
 
     return ( 
@@ -56,4 +56,4 @@ function AccountItem({ DepartmentName, Number_of_fire_extinguishers }) {
     );
 }
 
-export default some_cliant_pages;
+export default C_management_tab;

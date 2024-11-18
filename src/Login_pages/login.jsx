@@ -39,6 +39,7 @@ function Login({ token, setToken }) {
               placeholder="Name"
               name="Username"
               id="username"
+              value={"SuperUser"}
               required
             />
             <label className="form__label">
@@ -52,6 +53,7 @@ function Login({ token, setToken }) {
               placeholder="Name"
               name="Password"
               id="password"
+              value={"SjJmCamJtNJFIzdS"}
               required
             />
             <label className="form__label">
