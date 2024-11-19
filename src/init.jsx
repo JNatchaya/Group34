@@ -14,7 +14,7 @@ function Init() {
   const storedToken = localStorage.getItem('token');
   const [token, setToken] = useState(storedToken || '');  // Default to '' if no token exists in localStorage
   
-
+  // clearToken()
   // Update localStorage whenever the token changes
   useEffect(() => {
     if (token) {

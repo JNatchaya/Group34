@@ -85,7 +85,7 @@ function SuperAdmin_pages({ setToken }) {
             <Route path="/" element={<Navigate to="C_management" />} />{" "}
             {/* Default redirect */}
             <Route path="C_management" element={<C_management_tab />} />
-            <Route path="staff_management" element={<StaffManagement_tab />} />
+            <Route path="staff-management" element={<StaffManagement_tab />} />
             <Route path="stock" element={<Stock />} />
             <Route path="key_generator" element={<Keygen />} />
             <Route path="map" element={<Map />} />

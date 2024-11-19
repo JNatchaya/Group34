@@ -1,7 +1,7 @@
 function StockManage() {
     return (    
         <div>
-            <h1>Stock Manage</h1>
+            <h1>adasd</h1>
         </div>
      );
 }

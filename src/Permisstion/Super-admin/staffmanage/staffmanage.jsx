@@ -3,17 +3,8 @@ import assignmentData from "./data.js";
 
 function StaffManagement_tab() {
     return (
-            <div className="assingment-container">
-          {assignmentData.map((item) => (
-            <div className="assingment" key={item.id}>
-              <div className="assingment-left">
-                <p>{item.author} |</p>
-              </div>
-              <div className="assingment-right">
-              <a href="#">{item.linkText}</a>
-              </div>
-            </div>
-          ))}
+        <div className="assingment-container">
+              <h1>444</h1>
         </div>
     )
 }    
