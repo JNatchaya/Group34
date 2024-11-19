@@ -1,38 +1,8 @@
-// dataModule.js
-
-export const CM = [
-    {
-        "CMname": "Company_1",
-        "DPCH": [
-            {
-                "DPName": "C1_Department_01",
-                "id": "1"
-            },
-            {
-                "DPName": "C1_Department_02",
-                "id": "2"
-            }
-        ]
-    },
-    {
-        "CMname": "Company_2",
-        "DPCH": [
-            {
-                "DPName": "C2_Department_01",
-                "id": "3"
-            },
-            {
-                "DPName": "C2_Department_02",
-                "id": "4"
-            }
-        ]
-    },
-    // ข้อมูลบริษัทอื่นๆ
-];
+// fireExtinguisherData.js
 
 export const fire_extinguisher_data = [
     {
-        "id": 1,
+        "DPName": "C1_Department_01",
         "fire": [
             {
                 "fireID": "001",
@@ -53,7 +23,7 @@ export const fire_extinguisher_data = [
         ]
     },
     {
-        "id": 2,
+        "DPName": "C1_Department_02",
         "fire": [
             {
                 "fireID": "003",
@@ -74,7 +44,7 @@ export const fire_extinguisher_data = [
         ]
     },
     {
-        "id": 3,
+        "DPName": "C2_Department_01",
         "fire": [
             {
                 "fireID": "005",
@@ -87,7 +57,7 @@ export const fire_extinguisher_data = [
         ]
     },
     {
-        "id": 4,
+        "DPName": "C2_Department_02",
         "fire": [
             {
                 "fireID": "006",
@@ -100,12 +70,6 @@ export const fire_extinguisher_data = [
         ]
     }
 ];
-// ข้อมูลถังดับเพลิงอื่นๆ
-
-
-export function fetchCmData() {
-    return CM;
-}
 
 export function fetchFireExtinguisherData() {
     return fire_extinguisher_data;

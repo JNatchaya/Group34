@@ -1,71 +1,94 @@
-.account-item {
+.c-management-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #FFF9E1;
-    padding: 15px;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .company-container {
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  
+  .company-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .company-card {
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
+    background-color: #e6e6e6;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    border: 2px solid #3D2469;
-}
-
-.company-details {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-}
-
-.company-logo {
-    width: 50px;
-    height: 50px;
-    background-color: #FF5733;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.department-name {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.number-of-fire-extinguishers {
-    font-size: 0.9rem;
-}
-
-.more-info {
-    font-size: 0.6rem;
-    margin-top: 30px;
-
-}
-.location{
-    color: aliceblue;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    
-}
-.body {
-    display: flex;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 20px; /* Adjust this padding if needed */
-    background-color: #F8F8F8;
- }
- .add-company-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #FF5733;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    padding: 10px;
+    transition: transform 0.2s;
+  }
+  
+  .company-card.active {
+    background-color: #ff5733;
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .details-container {
+    margin-top: 20px;
+  }
+  
+  .department-container {
+    margin-bottom: 20px;
+  }
+  
+  .department-list {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .department-card {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
 
-.add-company-button:hover {
-    background-color: #E04A2A;
-}
+  
+  .extinguisher-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .company-name {
+    font-weight: bold;
+    position: absolute;
+
+  }
+  .location {
+    cursor: pointer;
+    color: #007bff; /* สีเหมือนลิงก์ */
+    text-decoration: underline;
+  }
+  
+  .location:hover {
+    text-decoration: none;
+  }
+
+  .account-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: right;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .account-item:hover {
+    transform: scale(1.009);
+  }
+  
+  

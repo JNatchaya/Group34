@@ -1,59 +1,77 @@
-
-
-import './c.management.css'
+import React, { useState } from "react";
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
-function C_management_tab() {
-    const combinedData = useCombinedData(); // ดึงข้อมูล combinedData จาก context
+import "./c.management.css";
 
-    return ( 
-        <div className="Sa-pages-container starter">
-            <header className="header">
-                <div className="logo"></div>
-                <div className="user-sec">
-                    <span className="bi bi-envelope-fill"></span>
-                    <div className="user-container">
-                        <label className="username">Superadmin</label>
-                        <div className="pofile-picture"></div>
-                    </div>
-                </div>
-            </header>
-            <main className="body">
-                <div className="sidebar">
-                    <div className="Child active">C.account management <span className="bi bi-caret-right-fill"></span>  </div>
-                    <div className="Child">Staff Management <span  className="bi bi-caret-right-fill"></span></div>
-                    <div className="Child">Stock <span className="bi bi-caret-right-fill"></span></div>
-                    <div className="Child">Key Generator <span className="bi bi-caret-right-fill"></span></div>
-                    <div className="Child">MAP<span className="bi bi-caret-right-fill"></span></div>
-                </div>
-                    <div className="container">
-                    <p className="location">C.account management/ Some Client </p>
-                    <div className="account-list">
-                        {/* ตัวอย่างรายการบัญชี */}
-                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={12} />
-                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={14} />
-                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={10} />
-                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={14} />
-                        <AccountItem DepartmentName="Client Company Department" Number of fire extinguishers={16} />
-                    </div>
-                    <button className="add-company-button">Add Department</button>
-                </div>
-                
-            </main>
+function C_management_tab() {
+  const combinedData = useCombinedData();
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [currentPage, setCurrentPage] = useState("company"); // Current page: 'company' or 'department'
+
+  return (
+    <div className="c-management-container">
+      {/* Top Section */}
+      <div className="container-top">
+  <p
+    className="location"
+    onClick={() => {
+      setCurrentPage("company");
+      setSelectedCompany(null);
+      setSelectedDepartment(null);
+    }}
+  >
+    C.account management/
+  </p>
+</div>
+
+      {/* Company Page */}
+{currentPage === "company" && (
+  <div className="company-container">
+    {combinedData.map((company, index) => (
+      <div
+        key={index}
+        className={`account-item ${
+          selectedCompany?.CMname === company.CMname ? "active" : ""
+        }`}
+        onClick={() => {
+          setSelectedCompany(company);
+          setSelectedDepartment(null);
+          setCurrentPage("department"); // Switch to department page
+        }}
+      >
+        <div className="company-logo"></div>
+        <div className="department-name">
+          {company.CMname}{" "}
+          
+          <span className="department-count">
+             Departments ({company.DPCH.length})
+          </span>
         </div>
-    );
-}
-// ส่วน Component สำหรับรายการบัญชี
-function AccountItem({ DepartmentName, Number_of_fire_extinguishers }) {
-    return (
-        <div className="account-item">
-            <div className="company-details">
-                <div className="company-logo"></div>
-                <div className="department-name">{DepartmentName}</div>
-            </div>
-            <div className="number-of-fire-extinguishers">Number of fire extinguishers ({Number_of_fire_extinguishers})</div>
-            <div className="more-info">click for more</div>
-        </div>
-    );
+      </div>
+    ))}
+  </div>
+)}
+
+      {/* Department Page */}
+{currentPage === "department" && selectedCompany && (
+  <div className="company-container">
+    {selectedCompany.DPCH.map((department, index) => (
+      <div
+        key={index}
+        className={`account-item ${
+          selectedDepartment?.DPName === department.DPName ? "active" : ""
+        }`}
+        onClick={() => setSelectedDepartment(department)}
+      >
+        <div className="company-logo"></div>
+        <div className="department-name">{department.DPName}</div>
+      </div>
+    ))}
+  </div>
+)}
+
+    </div>
+  );
 }
 
 export default C_management_tab;

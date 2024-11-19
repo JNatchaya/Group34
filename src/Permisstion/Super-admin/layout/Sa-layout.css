@@ -54,7 +54,7 @@
 
 .content {
     flex-grow: 1;
-    padding: 20px; /* Adjust this padding if needed */
+    padding: 20px;
     background-color: #F8F8F8;
  }
  .add-company-button {

@@ -1,14 +1,14 @@
 // dataCombiner.js
-import { fetchCmData, fetchFireExtinguisherData } from './dataModule';
+import { fetchCmData } from './companyData';
+import { fetchFireExtinguisherData } from './fireExtinguisherData';
 
-// ฟังก์ชันรวมข้อมูล CM และข้อมูลถังดับเพลิงตาม id ที่ตรงกัน
 export function getCombinedData() {
     const CM = fetchCmData();
     const fireData = fetchFireExtinguisherData();
 
-    // สร้าง lookup สำหรับข้อมูลถังดับเพลิงตาม id
-    const fireDataById = fireData.reduce((acc, item) => {
-        acc[item.id] = item.fire;
+    // สร้าง lookup สำหรับข้อมูลถังดับเพลิงตาม DPName
+    const fireDataByDPName = fireData.reduce((acc, item) => {
+        acc[item.DPName] = item.fire;
         return acc;
     }, {});
 
@@ -19,7 +19,7 @@ export function getCombinedData() {
             DPCH: company.DPCH.map(department => {
                 return {
                     ...department,
-                    fire: fireDataById[department.id] || []  // แนบข้อมูลถังดับเพลิง หรือให้เป็น array ว่างถ้าไม่มีข้อมูลที่ตรงกัน
+                    fire: fireDataByDPName[department.DPName] || [] // แนบข้อมูลถังดับเพลิง หรือให้เป็น array ว่างถ้าไม่มีข้อมูลที่ตรงกัน
                 };
             })
         };
