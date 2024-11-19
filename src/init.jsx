@@ -12,7 +12,7 @@ import "./init.css";
 function Init() {
   // Get token from localStorage on initial load
   const storedToken = localStorage.getItem('token');
-  const [token, setToken] = useState(storedToken || '');  // Default to '' if no token exists in localStorage
+  const [token, setToken] = useState(storedToken || 'SuperAdmin');  // Default to '' if no token exists in localStorage
   
   // clearToken()
   // Update localStorage whenever the token changes
