@@ -58,23 +58,17 @@ function Login({ token, setToken }) {
               <span className="bi bi-key-fill"></span> Key
             </label>
           </div>
-        </div>
 
-        <div className="sup-login">
-          <div className="Stay">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
-            <label>Stay Login?</label>
-          </div>
+          <div className="sup-login">
+          
           <div className="Losing">
             <label style={{ textDecoration: "underline" }}>
               Losing The Key? <span className="bi bi-key-fill"></span>
             </label>
           </div>
+        </div>
+
+
         </div>
 
         <div className="btn-sec">

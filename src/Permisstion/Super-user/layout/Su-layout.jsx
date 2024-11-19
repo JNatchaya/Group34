@@ -5,7 +5,7 @@ import DepartmentMangement_tab from "../Department-management/Department-managem
 import StaffManagement_tab from "../staff-management/staff-management";
 import KeyGen from "../Key-gen/key-gen";
 import Report from "../Report/report";
-import Logout from "../../../Log-out/logout";
+import Logout from "../../../assets/Log-out/logout";
 
 import "./Su-layout.css";
 function Super_user_pages({setToken}) {
@@ -88,7 +88,7 @@ function Super_user_pages({setToken}) {
                 <div className="item item6">6</div>
               </div>
             </div> */}
-            <div className="container">
+            <div className="container-box">
             <Routes>
               {/* Default redirect to "Assignment" */}
               <Route path="/" element={<Navigate to="Department_Management" />} />

@@ -6,7 +6,6 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 9;
-    
 }
 
 .log-out-container{
@@ -14,7 +13,7 @@
     padding: 10px;
     justify-content: space-between;
     align-items: center;
-    height: 120px;
+    height: 200px;
     width: 400px;
     background-color: var(--primary-vio);
     color: aliceblue;
@@ -25,13 +24,12 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    
-
+    font-family: "sukhum";
 }
 
 .btn-box {
     width: 100%;
-    height: 65%;
+    height: 85%;
     background-color: var(--primary-white);
     display: flex;
     justify-content: space-around;
@@ -41,8 +39,8 @@
 }
 
 .confirm-btn, .cancel-btn {
-    width: 80px;
-    height: 40px;
+    width: 35%;
+    height: 35%;
     border: none;
     border-radius: 5px;
     cursor: pointer;

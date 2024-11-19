@@ -16,11 +16,11 @@
     justify-content: space-between;
     width: 100%; height: 125px;
     background-color: var(--primary-white);
-    padding: 0 3rem 0 0 ;
+    padding: 0 0.75rem 0 0 ;
 }
 
 .logo{
-    width: 300px; height: 150px;
+    width: 400px; height: 150px;
     background-image: url(/public/Logos/โลโก้รอง/metthier2.png);
     background-position: center;
     background-size: cover;
@@ -40,11 +40,14 @@
 .user-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0 5px;
     background-color: var(--primary-org);
-    width: 85%; height: 100%;
+    width: 85%; height: 85px;
     border-radius: 10px;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+    cursor: pointer;
 }
 
 .user-container .username{
@@ -53,6 +56,9 @@
     justify-content: center;
     width: 65%; height: 75%;
     border-right: 3px solid #f7f7f7;
+    font-size: X-large;
+    font-weight: bold;
+    
 }
 
 .user-sec    span{
@@ -68,7 +74,7 @@
 
 .body{
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 0.85fr 5fr;
     width: 100vw; height: 100vh;
 }
 .sidebar{
@@ -77,8 +83,7 @@
     gap: 25px;
     justify-content: flex-start;
     align-items: center;
-    border-right: 2px solid var(--primary-white);
-    padding: 2rem 0;
+    padding: 2rem 0.5rem 2rem 0;
 }
 .Child{
     position: relative;
@@ -92,6 +97,15 @@
     border-top-right-radius: 45px;
     border-bottom-right-radius: 45px;
     color: var(--primary-white);
+    text-decoration: none;
+}
+
+.container-box{
+    background-color: #FD6E2B;
+    width: 100%; height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 .active{

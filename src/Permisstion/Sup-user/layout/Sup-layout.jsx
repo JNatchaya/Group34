@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Department_Management from "../Department/department-mangement";
 import Report from "../../Super-user/Report/report";
-import Logout from "../../../Log-out/logout";
+import Logout from "../../../assets/Log-out/logout"
 
 function Sup_user_pages({ setToken }) {
   const [suptab, setSuptab] = useState("Department_Management"); // Default tab
@@ -59,7 +59,7 @@ function Sup_user_pages({ setToken }) {
               Report <span className="bi bi-caret-right-fill"></span>
             </NavLink>
           </nav>
-          <div className="container">
+          <div className="container-box">
             <Routes>
               <Route path="/" element={<Navigate to="Department_Management" />} />
               <Route path="Department_Management" element={<Department_Management />} />

@@ -6,21 +6,21 @@ import C_management_tab from "../C.management/c.management";
 import Map from "../map/map";
 import Keygen from "../key-gen/key-gen";
 import Stock from "../stock/stock-manage";
-import Logout from "../../../Log-out/logout";
+import Logout from "../../../assets/Log-out/logout"
 
 import "./Sa-layout.css";
 
 function SuperAdmin_pages({ setToken }) {
-  const [satab, setSatab] = useState("C_management"); // Default tab
+  const [satab, setSatab] = useState("C_management"); 
   const userContainerRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
 
   const handleRightClick = (event) => {
     event.preventDefault();
-    setToggleLogout(true); // Display logout on right-click
+    setToggleLogout(true); 
   };
 
-  // Add event listener for outside clicks
+  
 
   return (
     <div className="Sa-pages-container starter">
@@ -46,7 +46,7 @@ function SuperAdmin_pages({ setToken }) {
             className={`Child ${satab === "C_management" ? "active" : ""}`}
             onClick={() => setSatab("C_management")}
           >
-            C.account management{" "}
+            Client management{" "}
             <span className="bi bi-caret-right-fill"></span>
           </NavLink>
           <NavLink
@@ -79,7 +79,7 @@ function SuperAdmin_pages({ setToken }) {
           </NavLink>
         </div>
 
-        <div className="container">
+        <div className="container-box">
           {/* Default redirect route */}
           <Routes>
             <Route path="/" element={<Navigate to="C_management" />} />{" "}

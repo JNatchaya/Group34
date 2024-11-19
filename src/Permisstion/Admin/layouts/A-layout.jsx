@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 
 import Assignment from "../Assignment/assignment";
 import User from "../User/user";
-import Logout from "../../../Log-out/logout";
+import Logout from "../../../assets/Log-out/logout"
 import "./A-layout.css";
 
 function Admin_pages({ setToken}) {
@@ -50,7 +50,7 @@ function Admin_pages({ setToken}) {
             User <span className="bi bi-caret-right-fill"></span>
           </NavLink>
         </nav>
-          <div className="container">
+          <div className="container-box">
             <Routes>
               {/* Default redirect to "Assignment" */}
               <Route path="/" element={<Navigate to="Assignment" />} />

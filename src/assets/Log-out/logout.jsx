@@ -1,5 +1,6 @@
 import './log-out-style.css';
-import { clearToken } from '../init';
+import "../../index.css"
+import { clearToken } from '../../init';
 
 function Logout({ setToggleLogout, setToken }) {
     const handleLogout = () => {
