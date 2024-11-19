@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useRef} from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import DepartmentMangement_tab from "../Department-management/Department-management";
 import StaffManagement_tab from "../staff-management/staff-management";
 import KeyGen from "../Key-gen/key-gen";
+import Report from "../Report/report";
+import Logout from "../../../Log-out/logout";
 
 import "./Su-layout.css";
-function Super_user_pages() {
+function Super_user_pages({setToken}) {
     const [sutab, setSutab] = useState("Department_Management");
-
+    const userContainerRef = useRef(null);
+    const [toggleLogout, setToggleLogout] = useState(false);
+  
+    const handleRightClick = (event) => {
+      event.preventDefault();
+      setToggleLogout(true); // Display logout on right-click
+    };
   return (
     <div>
       <div className="Sa-pages-container starter">
@@ -16,7 +24,11 @@ function Super_user_pages() {
           <div className="logo"></div>
           <div className="user-sec">
             <span className="bi bi-envelope-fill"></span>
-            <div className="user-container">
+            <div
+            className="user-container"
+            ref={userContainerRef}
+            onContextMenu={handleRightClick}
+          >
               <label className="username">Superuser</label>
               <div className="pofile-picture"></div>
             </div>
@@ -45,8 +57,14 @@ function Super_user_pages() {
           >
             Key Generator <span className="bi bi-caret-right-fill"></span>
           </NavLink>
+          <NavLink
+            to="report"
+            className={`Child ${sutab === "report" ? "active" : ""}`}
+            onClick={() => setSutab("report")}
+          >
+            Report <span className="bi bi-caret-right-fill"></span>
+          </NavLink>
         </nav>
-          <main className="box">
             {/* <div className="reportinfo-container">
               <div class="grid-container">
                 <div className="item item1">
@@ -77,9 +95,12 @@ function Super_user_pages() {
               <Route path="Department_Management" element={<DepartmentMangement_tab />} />
               <Route path="Staff_Management" element={<StaffManagement_tab />} />
               <Route path="key_generator" element={<KeyGen />} />
+              <Route path="report" element={<Report />} />
             </Routes>
           </div>
-          </main>
+          {toggleLogout && (
+        <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+      )}
         </main>
       </div>
     </div>

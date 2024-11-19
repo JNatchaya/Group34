@@ -13,6 +13,7 @@ function Init() {
   // Get token from localStorage on initial load
   const storedToken = localStorage.getItem('token');
   const [token, setToken] = useState(storedToken || '');  // Default to '' if no token exists in localStorage
+  
 
   // Update localStorage whenever the token changes
   useEffect(() => {
@@ -44,10 +45,10 @@ function Init() {
         <Routes>
           <Route path="/" element={<Navigate to={token === 'SuperAdmin' ? "/SuperAdmin" : token === 'Admin' ? "/Admin" : token === 'SuperUser' ? "/SuperUser" : token === 'SupUser' ? "/SupUser" : token === 'Mehanic' ? "/Mehanic" : "/"} />} />
           
-          {token === 'SuperAdmin' && <Route path="/SuperAdmin/*" element={<SuperAdmin_pages />} />}
-          {token === 'Admin' && <Route path="/Admin/*" element={<Admin_pages />} />}
-          {token === 'SuperUser' && <Route path="/SuperUser/*" element={<Super_user_pages />} />}
-          {token === 'SupUser' && <Route path="/SupUser" element={<Sup_user_pages />} />}
+          {token === 'SuperAdmin' && <Route path="/SuperAdmin/*" element={<SuperAdmin_pages setToken={setToken}/>} />}
+          {token === 'Admin' && <Route path="/Admin/*" element={<Admin_pages setToken={setToken}/>} />}
+          {token === 'SuperUser' && <Route path="/SuperUser/*" element={<Super_user_pages setToken={setToken}/>} />}
+          {token === 'SupUser' && <Route path="/SupUser/*" element={<Sup_user_pages setToken={setToken}/>} />}
           {token === 'Mehanic' && <Route path="/Mehanic" element={<></>} />}
           
           <Route path="*" element={<Navigate to="/" replace />} />
@@ -56,6 +57,10 @@ function Init() {
     </div>
   );
 }
+// utils/localStorageHelper.js
+export const setToken = (token) => localStorage.setItem('token', token);
+export const clearToken = () => localStorage.removeItem('token');
+export const clearAllStorage = () => localStorage.clear();
 
 export default Init;
 

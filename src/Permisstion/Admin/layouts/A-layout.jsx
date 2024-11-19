@@ -1,13 +1,21 @@
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Assignment from "../Assignment/assignment";
 import User from "../User/user";
+import Logout from "../../../Log-out/logout";
 import "./A-layout.css";
 
-function Admin_pages() {
+function Admin_pages({ setToken}) {
   const [atab, setAtab] = useState("Assignment");
+  const userContainerRef = useRef(null);
+  const [toggleLogout, setToggleLogout] = useState(false);
+
+  const handleRightClick = (event) => {
+    event.preventDefault();
+    setToggleLogout(true); // Display logout on right-click
+  };
 
   return (
     <div className="Sa-pages-container starter">
@@ -15,7 +23,11 @@ function Admin_pages() {
         <div className="logo"></div>
         <div className="user-sec">
           <span className="bi bi-envelope-fill"></span>
-          <div className="user-container">
+          <div
+            className="user-container"
+            ref={userContainerRef}
+            onContextMenu={handleRightClick}
+          >
             <label className="username">Admin Pages</label>
             <div className="pofile-picture"></div>
           </div>
@@ -38,8 +50,6 @@ function Admin_pages() {
             User <span className="bi bi-caret-right-fill"></span>
           </NavLink>
         </nav>
-
-        <main className="box">
           <div className="container">
             <Routes>
               {/* Default redirect to "Assignment" */}
@@ -48,7 +58,9 @@ function Admin_pages() {
               <Route path="User" element={<User />} />
             </Routes>
           </div>
-        </main>
+        {toggleLogout && (
+        <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+      )}
       </main>
     </div>
   );
