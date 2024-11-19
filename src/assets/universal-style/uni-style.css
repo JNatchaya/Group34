@@ -2,6 +2,7 @@
     --primary-white: rgb(242, 242, 230);
     --primary-org: #FD6E2B;
     --primary-vio: #473366;
+    --sup-vio:#47336683
 }
 
 .starter{
@@ -36,7 +37,11 @@
     padding-left: 1rem;
     font-size: 25px;
 }
-
+.detail-side{
+display: flex;
+align-items: center;
+justify-content: center;
+}
 .user-container{
     display: flex;
     align-items: center;
@@ -116,14 +121,24 @@
     position: relative;
     width: 100%;
     height: 4rem;
-    margin-bottom: 1rem;
-    background-color: #FD6E2B;
     
 }
 
 .Breadcrumb{
+    display: flex;
+    align-items: center;
     position: absolute;
     left: 1rem;
     width: 400px; height: 100%;
-    background-color: aqua;
+    font-size: 1.5rem;
+    color: #f7f7f7;
+}
+
+.BreadCrumb-child{
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+.BreadCrumb-child:hover{
+    color: var(--primary-org);
 }
