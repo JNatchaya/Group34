@@ -1,30 +1,40 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";  // Import useNavigate hook
+import MapComponent from "../../../assets/leaflet/leaflet";
 import "./map.css";
 
-function MapContainer() {
+function MapContainer({ setSatab }) {
+  const navigate = useNavigate();  
+
+  const handleBackClick = () => {
+    setSatab("C_management");  
+    navigate("/C_management"); 
+  };
+
   return (
     <div className="map-container">
-
-        
+      <div className="Back-Button" onClick={handleBackClick}>
+        return
+      </div>
       <div className="map-section">
-
+        <MapComponent />
       </div>
 
       <div className="summary-section">
         <h1 className="summary-title">SUMMARY</h1>
         <div className="summary-stats">
           <div className="stat-box">
-            <p className="stat-unit" style={{fontWeight:'bold'}}>Client</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>Client</p>
             <p className="stat-value">10</p>
             <p className="stat-unit">UNIT</p>
           </div>
           <div className="stat-box">
-          <p className="stat-unit" style={{fontWeight:'bold'}}>Department</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>Department</p>
             <p className="stat-value">250</p>
             <p className="stat-unit">UNIT</p>
           </div>
           <div className="stat-box">
-          <p className="stat-unit" style={{fontWeight:'bold'}}>fire extinguisher installed</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>Fire extinguisher installed</p>
             <p className="stat-value">30K</p>
             <p className="stat-unit">UNIT</p>
           </div>

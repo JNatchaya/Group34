@@ -1,4 +1,4 @@
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import StaffManagement_tab from "../staffmanage/staffmanage";
@@ -6,7 +6,7 @@ import C_management_tab from "../C.management/c.management";
 import Map from "../map/map";
 import Keygen from "../key-gen/key-gen";
 import Stock from "../stock/stock-manage";
-import Logout from "../../../assets/Log-out/logout"
+import Logout from "../../../assets/Log-out/logout";
 
 import "./Sa-layout.css";
 
@@ -19,8 +19,6 @@ function SuperAdmin_pages({ setToken }) {
     event.preventDefault();
     setToggleLogout(true); 
   };
-
-  
 
   return (
     <div className="Sa-pages-container starter">
@@ -82,13 +80,12 @@ function SuperAdmin_pages({ setToken }) {
         <div className="container-box">
           {/* Default redirect route */}
           <Routes>
-            <Route path="/" element={<Navigate to="C_management" />} />{" "}
-            {/* Default redirect */}
+            <Route path="/" element={<Navigate to="C_management" />} />
             <Route path="C_management" element={<C_management_tab />} />
             <Route path="staff-management" element={<StaffManagement_tab />} />
             <Route path="stock" element={<Stock />} />
             <Route path="key_generator" element={<Keygen />} />
-            <Route path="map" element={<Map />} />
+            <Route path="map" element={<Map setSatab={setSatab} />} />
           </Routes>
         </div>
       </main>

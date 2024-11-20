@@ -2,7 +2,7 @@
   "name": "project-fire",
   "private": true,
   "version": "0.0.0",
-  "Homepages" : "",
+  "Homepages": "",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,9 +15,11 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router": "^6.27.0",
     "react-router-dom": "^6.27.0"
   },
