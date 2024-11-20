@@ -6,9 +6,11 @@ export const CM = [
         "DPCH": [
             {
                 "DPName": "C1_Department_01",
+                "DPLocation": "",
             },
             {
                 "DPName": "C1_Department_02",
+                "DPLocation": "",
             }
         ]
     },
@@ -17,9 +19,11 @@ export const CM = [
         "DPCH": [
             {
                 "DPName": "C2_Department_01",
+                "DPLocation": "",
             },
             {
                 "DPName": "C2_Department_02",
+                "DPLocation": "",
             }
         ]
     },

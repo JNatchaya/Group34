@@ -89,10 +89,16 @@
     text-align: right;
     cursor: pointer;
     transition: transform 0.2s;
+    margin-bottom: 5px;
   }
   
   .account-item:hover {
     transform: scale(1.009);
   }
   
+  .fire-extinguisher-count {
+    font-size: 0.9rem;
+    color: #555;
+    margin-left: 10px;
+  }
   

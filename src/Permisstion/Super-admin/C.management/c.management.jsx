@@ -65,23 +65,29 @@ function C_management_tab() {
         </div>
       )}
 
-      {/* Department Page */}
-      {currentPage === "department" && selectedCompany && (
-        <div className="company-container">
-          {selectedCompany.DPCH.map((department, index) => (
-            <div
-              key={index}
-              className={`account-item ${
-                selectedDepartment?.DPName === department.DPName ? "active" : ""
-              }`}
-              onClick={() => setSelectedDepartment(department)}
-            >
-              <div className="company-logo"></div>
-              <div className="company-name">{department.DPName}</div>
-            </div>
-          ))}
+{/* Department Page */}
+{currentPage === "department" && selectedCompany && (
+  <div className="company-container">
+    {selectedCompany.DPCH.map((department, index) => (
+      <div
+        key={index}
+        className={`account-item ${
+          selectedDepartment?.DPName === department.DPName ? "active" : ""
+        }`}
+        onClick={() => setSelectedDepartment(department)}
+      >
+        <div className="company-logo"></div>
+        <div className="company-name">
+          {department.DPName}
+          <span className="department-count">
+            (Fire Extinguishers {department.fire?.length || 0})
+          </span>
         </div>
-      )}
+      </div>
+    ))}
+  </div>
+)}
+
     </div>
   );
 }
