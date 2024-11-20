@@ -13,12 +13,13 @@
 
 :root {
     --primary-white: rgb(242, 242, 230);
-    --bold-org:#ff7a3d;
+    --bold-org:#fd6d2b;
+    --hold-vio: #473366;
     --primary-org: #fd6d2ba4;
     --sup-org: #fd6d2b6b;
     --primary-vio: #473366a8;
     --sup-vio:#47336683;
-    --hover: blanchedalmond
+    --hover: blanchedalmond;
 }
 
 .starter{
@@ -37,6 +38,7 @@
     padding: 0 0.75rem 0 0 ;
     box-shadow: 2px 4px 5px -2px rgba(0,0,0,0.75);
     z-index: 10;
+    margin-bottom: 0.25rem ;
 }
 
 .logo{
@@ -99,9 +101,10 @@ justify-content: center;
 
 .body{
     display: grid;
-    grid-template-columns: 0.7fr 5fr;
+    grid-template-columns: 0.75fr 5fr;
     width: 100vw; height: 100vh;
 }
+
 .sidebar{
     display: flex;
     flex-direction: column;
@@ -139,7 +142,7 @@ justify-content: center;
 }
 
 .active{
-    background-color: var(--primary-org);
+    background-color: var(--bold-org);
 }
 
 .container-top{
