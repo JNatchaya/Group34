@@ -23,7 +23,6 @@ export const CM = [
             }
         ]
     },
-    // ข้อมูลบริษัทอื่นๆ
 ];
 
 export function fetchCmData() {
