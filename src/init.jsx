@@ -6,6 +6,7 @@ import SuperAdmin_pages from "./Permisstion/Super-admin/layout/Sa-layout";
 import Admin_pages from "./Permisstion/Admin/layouts/A-layout";
 import Super_user_pages from "./Permisstion/Super-user/layout/Su-layout";
 import Sup_user_pages from "./Permisstion/Sup-user/layout/Sup-layout";
+import Mehanic_pages from "./Permisstion/Mechanic/layout/M-layout";
 import "./init.css";
 
 function Init() {
@@ -49,7 +50,7 @@ function Init() {
           {token === 'Admin' && <Route path="/Admin/*" element={<Admin_pages setToken={setToken}/>} />}
           {token === 'SuperUser' && <Route path="/SuperUser/*" element={<Super_user_pages setToken={setToken}/>} />}
           {token === 'SupUser' && <Route path="/SupUser/*" element={<Sup_user_pages setToken={setToken}/>} />}
-          {token === 'Mehanic' && <Route path="/Mehanic" element={<></>} />}
+          {token === 'Mehanic' && <Route path="/Mehanic" element={<Mehanic_pages setToken={setToken}/>} />}
           
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

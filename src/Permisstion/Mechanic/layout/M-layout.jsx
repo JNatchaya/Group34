@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useState } from "react";
+import "../layout/M-layout.css"; // CSS ต้องอยู่ในโฟลเดอร์เดียวกับไฟล์นี้
 
-import "./M-layout.css";
-import AssignmentNearly from "./assignmentnearly";
-import Calendar from "./calendar";
-import AssignmentInfo from "./assignment_info";
+// Import Components
+import AssignmentInfo from "../Assignment/assignment_info";
+import AssignmentNearly from "../Assignment/assignmentnearly";
+import Calendar from "../Calendar/calendar";
 
-function Mehanic_pages() {
+function MechanicPages() {
   const [showMenu, setShowMenu] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
-  const [currentPage, setCurrentPage] = useState("Mehanic_pages");
+  const [currentPage, setCurrentPage] = useState("MechanicPages");
   const [isInNearlyPlace, setIsInNearlyPlace] = useState(false);
 
   const toggleMenu = () => setShowMenu(!showMenu);
@@ -39,7 +39,7 @@ function Mehanic_pages() {
         <>
           <div className="overlay" onClick={toggleLogoutPopup}></div>
           <div className="logout-popup">
-            <p>LOG OUT ?</p>
+            <p>LOG OUT?</p>
             <button
               className="logout-confirm"
               onClick={() => console.log("Logged Out")}
@@ -54,8 +54,8 @@ function Mehanic_pages() {
       )}
 
       <main className="content">
-        {currentPage === "Mehanic_pages" && (
-          <div className="assignment"> 
+        {currentPage === "MechanicPages" && (
+          <div className="assignment">
             <h2>Assignment</h2>
             <div className="task-card" onClick={handleTaskClick}>
               <div className="task-icon"></div>
@@ -76,8 +76,10 @@ function Mehanic_pages() {
           </div>
         )}
 
-        {currentPage === "assignment-info" && <AssignmentInfo onReturn={handlePageChange} />}
-        
+        {currentPage === "assignment-info" && (
+          <AssignmentInfo onReturn={handlePageChange} />
+        )}
+
         {currentPage === "assignment-nearly" && (
           <AssignmentNearly setIsInNearlyPlace={setIsInNearlyPlace} />
         )}
@@ -97,19 +99,25 @@ function Mehanic_pages() {
               <i className="bi bi-x"></i>
             </button>
             <div
-              className={`menu-item ${currentPage === "Mehanic_pages" ? "active" : ""}`}
-              onClick={() => handlePageChange("Mehanic_pages")}
+              className={`menu-item ${
+                currentPage === "MechanicPages" ? "active" : ""
+              }`}
+              onClick={() => handlePageChange("MechanicPages")}
             >
-              <span>Assignment</span> 
+              <span>Assignment</span>
             </div>
             <div
-              className={`menu-item ${currentPage === "assignment-nearly" ? "active" : ""}`}
+              className={`menu-item ${
+                currentPage === "assignment-nearly" ? "active" : ""
+              }`}
               onClick={() => handlePageChange("assignment-nearly")}
             >
               <span>Assignment Nearly</span>
             </div>
             <div
-              className={`menu-item ${currentPage === "calendar" ? "active" : ""}`}
+              className={`menu-item ${
+                currentPage === "calendar" ? "active" : ""
+              }`}
               onClick={() => handlePageChange("calendar")}
             >
               <span>Calendar</span>
@@ -121,4 +129,4 @@ function Mehanic_pages() {
   );
 }
 
-export default Mehanic_pages;
+export default MechanicPages;

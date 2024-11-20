@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NearlyPlace from "../Nearly-place/nearly_place";
-import "./M-layout.css";
+import "../layout/M-layout.css";
 
 function AssignmentNearly({ setIsInNearlyPlace }) { 
   const [showNearlyPlace, setShowNearlyPlace] = useState(false);
