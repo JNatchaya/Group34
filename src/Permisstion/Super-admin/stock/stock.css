@@ -1,4 +1,5 @@
 .stock-container {
+    position: relative;
     width: 100%; height: 100%;
     padding: 20px;
 }
@@ -43,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--primary-white);
+    background-color: var(--primary-org);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -52,7 +53,7 @@
 }
 
 .item-type:hover{
-    background-color: bisque;
+    background-color: var(--hover);
 }
 
 .item-img{
@@ -81,12 +82,11 @@
 .detail-side, .list-side{
     width: 100%; height: 100%;
     background-color: var(--primary-white);
-    border-radius: 15px;
 }
 
 .detail-side-container{
     display: grid;
-    padding: 20px;
+    padding: 0 20px;
     grid-template-columns:1.5fr 3fr ;
     gap: 10px;
     width: 100%; height: 95%;
@@ -96,7 +96,7 @@
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    background-color: var(--sup-vio);
+    background-color: var(--primary-org);
 }
 
 .detail-img img{
@@ -144,7 +144,7 @@
     align-items: center;
     gap: 10px;
     padding: 20px;
-    background-color: var(--sup-vio);
+    background-color: var(--primary-org);
     height: 91%;
     border-radius: 15px;
 }
@@ -175,6 +175,7 @@
 }
 
 .list-side{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -192,7 +193,6 @@
     border-radius: 5px;
     background-color: var(--primary-org);
     padding: 0 1rem;
-    transition: ease-in-out 0.25s;
 }
 .list-head{
     display: flex;
@@ -204,14 +204,8 @@
 }
 
 .list-side-child:hover{
-    background-color: var(--primary-vio);
-    color: var(--primary-white);
-
-    .list-child-img{
-        background-color: white;
-    }
-
-    transition: ease-in-out 0.25s;
+    background-color: var(--hover);
+   
 }
 
 .list-child-img{
@@ -225,10 +219,38 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 .status-ball{
     width: 20px; height: 20px;
     border-radius: 100%;
-    background-color: black;
+    border: 1px solid black;
+}
+
+
+.add-type, .add-Fire-Extinguisher{
+
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 2.5rem;
+    background-color: var(--bold-org);
+    z-index: 0;
+    padding: 0 1rem;
+}
+
+.add-type{
+    position: relative;
+}
+
+.add-Fire-Extinguisher{
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    z-index: 1;
+}
+
+.add-type:hover{
+    background-color: var(--hover);
 }

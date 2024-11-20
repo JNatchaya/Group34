@@ -1,11 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stocks } from "../../../DATA/Stock.js";
+import Add from "../../../assets/add/add.jsx";
 import "./stock.css";
 
 function StockManage() {
   const containerRef = useRef(null);
   const [tapState, setTapState] = useState("type_tap");
   const [type, setType] = useState("");
+  const [open, setOpen] = useState(null)
   const [list, setList] = useState("");
   const [detail, setDetail] = useState("");
 
@@ -28,20 +30,29 @@ function StockManage() {
     setDetail("toggle");
   };
 
+
   return (
     <div className="stock-container">
+      {open === 'open' && tapState === "type_tap"   &&(
+         <Add firstIn={"Add type"} SecIn={"Title"} TirdIn={"type"} fortIn={''} setOpen={setOpen}  />
+      )} 
+      {open === 'open' && tapState === "type_child"   &&(
+         <Add firstIn={"Add Fire Extinguisher"} SecIn={"Title"} TirdIn={"brand"} fortIn={'property'} setOpen={setOpen}  />
+      )} 
       <div className="container-top">
         <div className="Breadcrumb">
             <span className="bi bi-folder-fill"></span>
-            <span className="BreadCrumb-child" onClick={() => setTapState('type_tap')}>Stock /</span>
+            <span className="BreadCrumb-child" onClick={() => setTapState('type_tap')}>Stock /</span>         
             {tapState === "type_child" && (
                 <span className="BreadCrumb-child" onClick={()=>{setList(''); setDetail('')}}>{type} Type /</span>
             )}
-            
-
         </div>
-      </div>
 
+        {tapState === 'type_tap' &&(
+               <div className="add-type box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle"></span> <span> Add type </span></div> 
+            )} 
+      </div>
+           
       <div className="stock-sup-container">
         {tapState === "type_tap" && (
           <div
@@ -52,7 +63,7 @@ function StockManage() {
             {Stocks.map((item, index) => (
               <div
                 key={index}
-                className="item-type"
+                className="item-type box-shadows"
                 data-type={item.type}
                 onClick={typeClick}
               >
@@ -80,7 +91,7 @@ function StockManage() {
                   )
                   .map((child) => (
                     <div className="detail-side-container">
-                      <aside className="detail-img"> <img src={child.img} alt="" /></aside>
+                      <aside className="detail-img box-shadows"> <img src={child.img} alt="" /></aside>
                       <aside className="detail-diss">
                         <div className="diss">
                           <h2>{child.model}</h2>
@@ -92,22 +103,22 @@ function StockManage() {
 
                         <div className="property">
                           <h2>Property:</h2>
-                          <div className="property-diss">
-                            <div className="property-child">
+                          <div className="property-diss box-shadows">
+                            <div className="property-child box-shadows">
                               Class Rating
                               <span className="rate-container">
                                 {Array.from({ length:child.property.ClassRating}, (_, index) => (
-                                  <div key={index} className="rate"></div>
+                                  <div key={index} className="bi bi-star-fill"></div>
                                 ))}
                               </span>
                             </div>
-                            <div className="property-child">
+                            <div className="property-child box-shadows">
                               Capacity <span>{child.property.Capacity}</span>
                             </div>
-                            <div className="property-child">
+                            <div className="property-child box-shadows">
                               Discharge <span>{child.property.Discharge} S</span>{" "}
                             </div>
-                            <div className="property-child">
+                            <div className="property-child box-shadows">
                               Operating Temperature Range <span>{child.property.OperatingTemperatureRange}</span>
                             </div>
                           </div>
@@ -115,19 +126,20 @@ function StockManage() {
                       </aside>
                     </div>
                   ))}
+                 
             </div>
 
-            <div className="list-side">
+            <div className="list-side left-shadows">
               {Stocks.filter((item) => item.type === type).map((filteredItem) =>
                 filteredItem.typeChild.map((child, index) => (
                   <div
-                    className="list-side-child"
+                    className="list-side-child box-shadows"
                     key={index}
                     data-type={child.model}
                     onClick={listlick}
                   >
                     <div className="list-head">
-                      <div className="list-child-img"></div>
+                      <div className="list-child-img "></div>
                       {child.model}
                     </div>
 
@@ -150,7 +162,7 @@ function StockManage() {
                   </div>
                 ))
               )}
-
+               <div className="add-Fire-Extinguisher box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle" style={{marginRight:"1rem"}}></span> <span> Add Fire Extinguisher </span></div> 
             </div>
           </div>
         )}

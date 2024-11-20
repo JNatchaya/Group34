@@ -10,21 +10,20 @@ import Mehanic_pages from "./Permisstion/Mechanic/layout/M-layout";
 import "./init.css";
 
 function Init() {
-  // Get token from localStorage on initial load
   const storedToken = localStorage.getItem('token');
-  const [token, setToken] = useState(storedToken || 'SuperAdmin');  // Default to '' if no token exists in localStorage
+  const [token, setToken] = useState(storedToken || 'SuperAdmin');  
   localStorage.setItem('token', '');
   
   // clearToken()
-  // Update localStorage whenever the token changes
+ 
   useEffect(() => {
     if (token) {
-      localStorage.setItem('token', token);  // Save token to localStorage
+      localStorage.setItem('token', token); 
     }
   }, [token]);
 
   useEffect(() => {
-    // If token is updated, we need to navigate to the appropriate page
+    
     if (token === 'SuperAdmin') {
       window.location.href = "#/SuperAdmin";
     } else if (token === 'Admin') {
