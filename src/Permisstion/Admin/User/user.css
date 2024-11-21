@@ -1,0 +1,13 @@
+
+  .account-item.active {
+    background-color: #f0f8ff;
+  }
+  
+  .mechanic-status {
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+  .mechanic-status{
+    position: fixed;
+    right: 70px;
+  }

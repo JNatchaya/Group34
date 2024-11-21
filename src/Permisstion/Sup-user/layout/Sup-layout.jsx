@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Department_Management from "../Department/department-mangement";
 import Report from "../../Super-user/Report/report";
@@ -7,14 +7,31 @@ import Logout from "../../../assets/Log-out/logout"
 function Sup_user_pages({ setToken }) {
   const [suptab, setSuptab] = useState("Department_Management"); // Default tab
   const userContainerRef = useRef(null);
+  const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
 
-  const handleRightClick = (event) => {
-    event.preventDefault();
-    if (!toggleLogout) {
-      setToggleLogout(true); // Only set toggleLogout if it's not already true
+  const handleLeftClick = () => {
+    setToggleLogout((prevState) => !prevState); 
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      toggleLogout &&
+      logoutRef.current &&
+      !logoutRef.current.contains(event.target) &&
+      userContainerRef.current &&
+      !userContainerRef.current.contains(event.target)
+    ) {
+      setToggleLogout(false); 
     }
   };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleLogout]);
 
   return (
     <div>
@@ -26,7 +43,7 @@ function Sup_user_pages({ setToken }) {
             <div
               className="user-container"
               ref={userContainerRef}
-              onContextMenu={handleRightClick}
+              onClick={handleLeftClick} 
             >
               <label className="username">Superadmin</label>
               <div className="pofile-picture"></div>
@@ -67,7 +84,9 @@ function Sup_user_pages({ setToken }) {
             </Routes>
           </div>
           {toggleLogout && (
-            <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+            <div ref={logoutRef}>
+              <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+            </div>
           )}
         </main>
       </div>

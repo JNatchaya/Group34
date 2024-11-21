@@ -11,17 +11,9 @@ function Logout({ setToggleLogout, setToken }) {
     };
 
     return ( 
-        <div className="log-out-body">
             <div className="log-out-container">
-                <div className="log-out-text-container">
-                    <div className="log-out-text">Log out?</div>
-                </div>
-                <div className="btn-box">
-                    <button className="confirm-btn" onClick={handleLogout}>Confirm</button>
-                    <button className="cancel-btn" onClick={() => setToggleLogout(false)}>Cancel</button>
-                </div>
+                    <button className="confirm-btn" onClick={handleLogout}>Log Out</button>
             </div>
-        </div>
     );
 }
 

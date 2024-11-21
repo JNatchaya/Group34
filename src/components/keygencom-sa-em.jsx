@@ -1,5 +1,6 @@
 import React from "react";
 import "./keygen-sa.css";
+import line from "../IMG/line_3536785.png";
 
 const EmployeeForm = () => {
   return (
@@ -30,8 +31,7 @@ const EmployeeForm = () => {
           </label>
         </div>
         <div className="buttons">
-          <button type="button" className="link-btn green" >Link to Line</button>
-          <button type="button" className="link-btn orange">Link to Something</button>
+        <button type="button" className="link-btn green"><img src={line} alt="Line" style={{width: "24px", height: "24px"}}/> Link to Line</button>
         </div>
         <button type="submit" className="generate-btn">Generate</button>
       </form>

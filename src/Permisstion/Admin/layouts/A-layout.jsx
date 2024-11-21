@@ -1,6 +1,6 @@
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import Assignment from "../Assignment/assignment";
 import User from "../User/user";
@@ -10,12 +10,31 @@ import "./A-layout.css";
 function Admin_pages({ setToken}) {
   const [atab, setAtab] = useState("Assignment");
   const userContainerRef = useRef(null);
+  const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
 
-  const handleRightClick = (event) => {
-    event.preventDefault();
-    setToggleLogout(true); // Display logout on right-click
+  const handleLeftClick = () => {
+    setToggleLogout((prevState) => !prevState); 
   };
+
+  const handleClickOutside = (event) => {
+    if (
+      toggleLogout &&
+      logoutRef.current &&
+      !logoutRef.current.contains(event.target) &&
+      userContainerRef.current &&
+      !userContainerRef.current.contains(event.target)
+    ) {
+      setToggleLogout(false); 
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleLogout]);
 
   return (
     <div className="Sa-pages-container starter">
@@ -24,10 +43,10 @@ function Admin_pages({ setToken}) {
         <div className="user-sec">
           <span className="bi bi-envelope-fill"></span>
           <div
-            className="user-container"
-            ref={userContainerRef}
-            onContextMenu={handleRightClick}
-          >
+              className="user-container"
+              ref={userContainerRef}
+              onClick={handleLeftClick} 
+            >
             <label className="username">Admin Pages</label>
             <div className="pofile-picture"></div>
           </div>
@@ -58,9 +77,11 @@ function Admin_pages({ setToken}) {
               <Route path="User" element={<User />} />
             </Routes>
           </div>
-        {toggleLogout && (
-        <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
-      )}
+          {toggleLogout && (
+            <div ref={logoutRef}>
+              <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+            </div>
+          )}
       </main>
     </div>
   );
