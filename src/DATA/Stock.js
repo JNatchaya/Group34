@@ -13,13 +13,14 @@ export const Stocks = [
                     stockRemain: 50,
                     ClassRating: 4,
                     Capacity: "9 L",
-                    Discharge: "30", // seconds
-                    OperatingTemperatureRange: "5-60°C"
+                    Discharge: "30", 
+                    OperatingTemperatureRange: "5-60°C",
+                    ULRating: "2A"
                 }
             },
             {
                 model: "Water Model B",
-                brand: "HydroPro",
+                brand: "AquaBrand", // Same brand as Model A
                 img: "water_model_b.png",
                 Publisher: "CompanyB",
                 type: "Water",
@@ -27,12 +28,13 @@ export const Stocks = [
                     stockRemain: 200,
                     ClassRating: 3,
                     Capacity: "6 L",
-                    Discharge: "25", // seconds
-                    OperatingTemperatureRange: "5-55°C"
+                    Discharge: "25", 
+                    OperatingTemperatureRange: "5-55°C",
+                    ULRating: "1A"
                 }
             },
             {
-                model: "Water Model C", // Added a new model
+                model: "Water Model C",
                 brand: "H2OFire",
                 img: "water_model_c.png",
                 Publisher: "CompanyC",
@@ -41,8 +43,9 @@ export const Stocks = [
                     stockRemain: 150,
                     ClassRating: 5,
                     Capacity: "12 L",
-                    Discharge: "45", // seconds
-                    OperatingTemperatureRange: "0-60°C"
+                    Discharge: "45", 
+                    OperatingTemperatureRange: "0-60°C",
+                    ULRating: "3A"
                 }
             }
         ]
@@ -61,13 +64,14 @@ export const Stocks = [
                     stockRemain: 120,
                     ClassRating: 5,
                     Capacity: "6 L",
-                    Discharge: "20", // seconds
-                    OperatingTemperatureRange: "-5-50°C"
+                    Discharge: "20", 
+                    OperatingTemperatureRange: "-5-50°C",
+                    ULRating: "2A:10B"
                 }
             },
             {
                 model: "Foam Model Y",
-                brand: "FoamSafe",
+                brand: "FoamShield", // Same brand as Model X
                 img: "foam_model_y.png",
                 Publisher: "CompanyD",
                 type: "Foam",
@@ -75,12 +79,13 @@ export const Stocks = [
                     stockRemain: 80,
                     ClassRating: 4,
                     Capacity: "9 L",
-                    Discharge: "35", // seconds
-                    OperatingTemperatureRange: "-5-45°C"
+                    Discharge: "35", 
+                    OperatingTemperatureRange: "-5-45°C",
+                    ULRating: "3A:20B"
                 }
             },
             {
-                model: "Foam Model Z", // Added a new model
+                model: "Foam Model Z",
                 brand: "FoamMaster",
                 img: "foam_model_z.png",
                 Publisher: "CompanyE",
@@ -89,8 +94,9 @@ export const Stocks = [
                     stockRemain: 100,
                     ClassRating: 4,
                     Capacity: "7 L",
-                    Discharge: "28", // seconds
-                    OperatingTemperatureRange: "-5-45°C"
+                    Discharge: "28", 
+                    OperatingTemperatureRange: "-5-45°C",
+                    ULRating: "2A:15B"
                 }
             }
         ]
@@ -109,13 +115,14 @@ export const Stocks = [
                     stockRemain: 300,
                     ClassRating: 5,
                     Capacity: "4 kg",
-                    Discharge: "15", // seconds
-                    OperatingTemperatureRange: "-10-50°C"
+                    Discharge: "15", 
+                    OperatingTemperatureRange: "-10-50°C",
+                    ULRating: "2A:20B:C"
                 }
             },
             {
                 model: "Powder Model Q",
-                brand: "DustSafe",
+                brand: "PowderPro", // Same brand as Model P
                 img: "powder_model_q.png",
                 Publisher: "CompanyF",
                 type: "Dry Powder",
@@ -123,12 +130,13 @@ export const Stocks = [
                     stockRemain: 500,
                     ClassRating: 6,
                     Capacity: "6 kg",
-                    Discharge: "25", // seconds
-                    OperatingTemperatureRange: "-20-55°C"
+                    Discharge: "25", 
+                    OperatingTemperatureRange: "-20-55°C",
+                    ULRating: "3A:40B:C"
                 }
             },
             {
-                model: "Powder Model R", // Added a new model
+                model: "Powder Model R",
                 brand: "FireGuard",
                 img: "powder_model_r.png",
                 Publisher: "CompanyG",
@@ -137,8 +145,9 @@ export const Stocks = [
                     stockRemain: 400,
                     ClassRating: 5,
                     Capacity: "5 kg",
-                    Discharge: "20", // seconds
-                    OperatingTemperatureRange: "-15-50°C"
+                    Discharge: "20", 
+                    OperatingTemperatureRange: "-15-50°C",
+                    ULRating: "2A:30B:C"
                 }
             }
         ]
@@ -157,13 +166,14 @@ export const Stocks = [
                     stockRemain: 180,
                     ClassRating: 4,
                     Capacity: "2 kg",
-                    Discharge: "20", // seconds
-                    OperatingTemperatureRange: "-30-60°C"
+                    Discharge: "20", 
+                    OperatingTemperatureRange: "-30-60°C",
+                    ULRating: "5B:C"
                 }
             },
             {
                 model: "CO2 Model N",
-                brand: "CO2Shield",
+                brand: "CarbonGuard", // Same brand as Model M
                 img: "co2_model_n.png",
                 Publisher: "CompanyH",
                 type: "CO2",
@@ -171,12 +181,13 @@ export const Stocks = [
                     stockRemain: 250,
                     ClassRating: 5,
                     Capacity: "5 kg",
-                    Discharge: "35", // seconds
-                    OperatingTemperatureRange: "-25-55°C"
+                    Discharge: "35", 
+                    OperatingTemperatureRange: "-25-55°C",
+                    ULRating: "10B:C"
                 }
             },
             {
-                model: "CO2 Model O", // Added a new model
+                model: "CO2 Model O",
                 brand: "CO2Blast",
                 img: "co2_model_o.png",
                 Publisher: "CompanyI",
@@ -185,8 +196,9 @@ export const Stocks = [
                     stockRemain: 220,
                     ClassRating: 4,
                     Capacity: "3 kg",
-                    Discharge: "25", // seconds
-                    OperatingTemperatureRange: "-35-55°C"
+                    Discharge: "25", 
+                    OperatingTemperatureRange: "-35-55°C",
+                    ULRating: "8B:C"
                 }
             }
         ]
@@ -205,13 +217,14 @@ export const Stocks = [
                     stockRemain: 70,
                     ClassRating: 3,
                     Capacity: "6 L",
-                    Discharge: "25", // seconds
-                    OperatingTemperatureRange: "10-50°C"
+                    Discharge: "25", 
+                    OperatingTemperatureRange: "10-50°C",
+                    ULRating: "1A:F"
                 }
             },
             {
                 model: "Chemical Model T",
-                brand: "ChemShield",
+                brand: "SafeChem", // Same brand as Model S
                 img: "chemical_model_t.png",
                 Publisher: "CompanyJ",
                 type: "Wet Chemical",
@@ -220,11 +233,12 @@ export const Stocks = [
                     ClassRating: 4,
                     Capacity: "9 L",
                     Discharge: "30", 
-                    OperatingTemperatureRange: "5-45°C"
+                    OperatingTemperatureRange: "5-45°C",
+                    ULRating: "2A:F"
                 }
             },
             {
-                model: "Chemical Model U", // Added a new model
+                model: "Chemical Model U",
                 brand: "FireChem",
                 img: "chemical_model_u.png",
                 Publisher: "CompanyK",
@@ -234,7 +248,8 @@ export const Stocks = [
                     ClassRating: 5,
                     Capacity: "7 L",
                     Discharge: "30", 
-                    OperatingTemperatureRange: "5-45°C"
+                    OperatingTemperatureRange: "5-45°C",
+                    ULRating: "2A:10F"
                 }
             }
         ]

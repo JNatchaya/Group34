@@ -105,7 +105,10 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
                   onChange={handleAddEvidence}
                 />
               </div>
-              <div className="button-container">
+ 
+            </>
+          )}             
+          <div className="button-container">
                 <button
                   className="cancel-button"
                   onClick={() => {
@@ -123,8 +126,6 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
                   Confirm
                 </button>
               </div>
-            </>
-          )}
         </div>
       </div>
     </div>
