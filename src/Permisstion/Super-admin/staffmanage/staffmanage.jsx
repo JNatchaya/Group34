@@ -55,7 +55,7 @@ function C_management_tab() {
           ))}
         </div>
       )}
-
+        {/* ======================================ลบได้ ลบเลยมีไว้ทดสอบเฉยๆ ==========================================*/}
       {/* Staff Details Section
       {currentPage === "details" && selectedStaff && (
         <div className="staff-details-container">

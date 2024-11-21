@@ -220,7 +220,123 @@
     border-radius: 8px;
     overflow: hidden;
   }
+  .context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    min-width: 15px;
+  }
+  
+  .context-menu-item {
+    padding: 100px 105px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .context-menu-item:hover {
+    background-color: #f0f0f0;
+  }
+  /* General popup overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Dimmed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
+/* Styled popup container */
+.popup-container {
+  background: #ffe5d4; /* Light peach background */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  padding: 20px;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+/* Popup header */
+.popup-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff6b35; /* Orange header color */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Form labels */
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Input fields */
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+  background: #f9f9f9;
+}
+
+/* Map placeholder or container */
+.map-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  background: #f9f9f9;
+  color: #999;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+/* Buttons */
+.popup-container button {
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #d9534f; /* Red button */
+  color: #fff;
+  margin-right: 10px;
+}
+
+.edit-btn {
+  background: #5cb85c; /* Green button */
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: #c9302c;
+}
+
+.edit-btn:hover {
+  background: #4cae4c;
+}
+
+  
   
   
   
