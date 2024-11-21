@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
+import { CM } from "../../DATA/companyData"; 
 import L from 'leaflet'; 
 
 import 'leaflet/dist/leaflet.css'; 
@@ -7,12 +8,15 @@ import './leaflet.css'
 const MapComponent = () => {
   const [position, setPosition] = useState([13.7563, 100.5018]); 
 
-  const locations = [
-    { id: 1, lat: 13.7563, lng: 100.5018, title: 'Bangkok', color: 'red' },
-    { id: 2, lat: 13.7367, lng: 100.5231, title: 'Sukhumvit', color: 'green' },
-    { id: 3, lat: 13.7461, lng: 100.5375, title: 'Ratchada', color: 'blue' },
-  ];
-
+  const locations = CM.flatMap(company =>
+    company.DPCH.map(department => ({
+      id: Math.random(),
+      lat: department.DPLocation.lat,
+      lng: department.DPLocation.lng,
+      title: department.DPName,
+      color: department.color,
+    }))
+  );
 
 
   return (

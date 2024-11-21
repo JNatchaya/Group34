@@ -1,15 +1,55 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate hook
+import { useNavigate } from "react-router-dom";
 import MapComponent from "../../../assets/leaflet/leaflet";
+import { CM } from "../../../DATA/companyData";
+import { fire_extinguisher_data } from "../../../DATA/fireExtinguisherData";
+
 import "./map.css";
 
 function MapContainer({ setSatab }) {
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
+
+  function matchCompanyWithFireExtinguishers() {
+    return CM.map((company) => {
+      const matchedDepartments = company.DPCH.map((department) => {
+        const fireData = fire_extinguisher_data.find(
+          (fireData) => fireData.DPName === department.DPName
+        );
+        return {
+          ...department,
+          fire: fireData ? fireData.fire : [],
+        };
+      });
+
+      return {
+        CMname: company.CMname,
+        status: company.status,
+        due: company.due,
+        DPCH: matchedDepartments,
+      };
+    });
+  }
 
   const handleBackClick = () => {
-    setSatab("C_management");  
-    navigate("/C_management"); 
+    setSatab("C_management");
+    navigate("/C_management");
   };
+
+  const matchedData = matchCompanyWithFireExtinguishers();
+  const totalClients = matchedData.length;
+  const totalDepartments = matchedData.reduce(
+    (acc, company) => acc + company.DPCH.length,
+    0
+  );
+  const totalFireExtinguishers = matchedData.reduce((acc, company) => {
+    return (
+      acc +
+      company.DPCH.reduce(
+        (depAcc, department) => depAcc + department.fire.length,
+        0
+      )
+    );
+  }, 0);
 
   return (
     <div className="map-container">
@@ -24,18 +64,24 @@ function MapContainer({ setSatab }) {
         <h1 className="summary-title">SUMMARY</h1>
         <div className="summary-stats">
           <div className="stat-box">
-            <p className="stat-unit" style={{ fontWeight: "bold" }}>Client</p>
-            <p className="stat-value">10</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>
+              Client
+            </p>
+            <p className="stat-value">{totalClients}</p>
             <p className="stat-unit">UNIT</p>
           </div>
           <div className="stat-box">
-            <p className="stat-unit" style={{ fontWeight: "bold" }}>Department</p>
-            <p className="stat-value">250</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>
+              Department
+            </p>
+            <p className="stat-value">{totalDepartments}</p>
             <p className="stat-unit">UNIT</p>
           </div>
           <div className="stat-box">
-            <p className="stat-unit" style={{ fontWeight: "bold" }}>Fire extinguisher installed</p>
-            <p className="stat-value">30K</p>
+            <p className="stat-unit" style={{ fontWeight: "bold" }}>
+              Fire extinguisher installed
+            </p>
+            <p className="stat-value">{totalFireExtinguishers}</p>
             <p className="stat-unit">UNIT</p>
           </div>
         </div>
@@ -47,20 +93,74 @@ function MapContainer({ setSatab }) {
             <div className="header-cell">Percentage</div>
           </div>
           <div className="table-body">
-            {[...Array(15)].map((_, index) => (
-              <div className="table-row" key={index}>
-                <div className="cell">Something company</div>
-                <div className="cell">Some Where Department</div>
-                <div className="cell">365</div>
-                <div className="cell">
-                  <div className="percentage-bar">
-                    <span className="green-bar"></span>
-                    <span className="yellow-bar"></span>
-                    <span className="red-bar"></span>
+            {matchedData.map((company, companyIndex) =>
+              company.DPCH.map((department, depIndex) => {
+                const fireExtinguishers = department.fire;
+                const totalFireExtinguishersInDept = fireExtinguishers.length;
+
+                const activeFireExtinguishers = fireExtinguishers.filter(
+                  (fire) => fire.status === "Active"
+                ).length;
+
+                const inactiveFireExtinguishers = fireExtinguishers.filter(
+                  (fire) => fire.status === "Inactive"
+                ).length;
+
+                const disabledFireExtinguishers = fireExtinguishers.filter(
+                  (fire) => fire.status === "Disabled"
+                ).length;
+
+                const activePercentage =
+                  totalFireExtinguishersInDept > 0
+                    ? (activeFireExtinguishers / totalFireExtinguishersInDept) *
+                      100
+                    : 0;
+
+                const inactivePercentage =
+                  totalFireExtinguishersInDept > 0
+                    ? (inactiveFireExtinguishers /
+                        totalFireExtinguishersInDept) *
+                      100
+                    : 0;
+
+                const disabledPercentage =
+                  totalFireExtinguishersInDept > 0
+                    ? (disabledFireExtinguishers /
+                        totalFireExtinguishersInDept) *
+                      100
+                    : 0;
+
+                return (
+                  <div className="table-row" key={depIndex}>
+                    <div className="cell">
+                      <span
+                        className="company-color-indicator"
+                        style={{ backgroundColor: department.color }}
+                      ></span>
+                      {company.CMname}
+                    </div>
+                    <div className="cell">{department.DPName}</div>
+                    <div className="cell">{totalFireExtinguishersInDept}</div>
+                    <div className="cell">
+                      <div className="percentage-bar">
+                        <span
+                          className="green-bar"
+                          style={{ width: `${activePercentage}%` }}
+                        ></span>
+                        <span
+                          className="yellow-bar"
+                          style={{ width: `${inactivePercentage}%` }}
+                        ></span>
+                        <span
+                          className="red-bar"
+                          style={{ width: `${disabledPercentage}%` }}
+                        ></span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              })
+            )}
           </div>
         </div>
       </div>

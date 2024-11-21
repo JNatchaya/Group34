@@ -116,6 +116,9 @@ function StockManage() {
                               Capacity <span>{child.property.Capacity}</span>
                             </div>
                             <div className="property-child box-shadows">
+                            ULRating <span>{child.property.ULRating}</span>
+                            </div>
+                            <div className="property-child box-shadows">
                               Discharge <span>{child.property.Discharge} S</span>{" "}
                             </div>
                             <div className="property-child box-shadows">

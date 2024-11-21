@@ -157,7 +157,7 @@ function FireAdd({ setToggle }) {
                           saveValue(
                             matchedBrand.property.ULRating,
                             matchedBrand.property.Capacity
-                          ); // Save values when size is clicked
+                          ); 
                         }}
                       >
                         {matchedBrand.property.ULRating} -{" "}

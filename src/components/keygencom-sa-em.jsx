@@ -9,15 +9,15 @@ const EmployeeForm = () => {
       <form>
         <label>
           First Name *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <label>
           Last Name *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <label>
           Employee *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <div className="radio-group">
           <p>Permission Type</p>

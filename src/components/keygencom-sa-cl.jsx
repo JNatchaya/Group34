@@ -9,19 +9,19 @@ const ClientForm = () => {
       <form>
         <label>
           First Name *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <label>
           Last Name *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <label>
           Name of Company *
-          <input type="text" required />
+          <input type="text" className="c-input" required />
         </label>
         <label>
           Choose location
-          <input type="text" />
+          <input type="text" className="c-input" />
         </label>
         <div className="radio-group">
           <p>Permission Type</p>

@@ -11,7 +11,7 @@
   
   .summary-section {
     display: grid;
-    grid-template-rows: 50px 12% 1fr;
+    grid-template-rows: 50px 150px 1fr;
     padding: 20px;
     gap: 10px;
     background-color: var(--primary-white);
@@ -94,7 +94,7 @@
   
   /* Hide the scrollbar but keep scrolling */
   .table-body::-webkit-scrollbar {
-    width: 0;
+    width: 1px;
     height: 0;
   }
   
@@ -106,6 +106,7 @@
   }
   
   .cell {
+    position: relative;
     padding: 10px;
     border-right: 1px solid #ddd;
   }
@@ -117,24 +118,25 @@
   .percentage-bar {
     display: flex;
     width: 100px;
-    height: 10px;
+    height: 15px;
     border-radius: 5px;
     overflow: hidden;
     margin: 0 auto;
+    border: 2px solid black;
   }
   
   .green-bar {
-    flex: 1;
+
     background-color: green;
   }
   
   .yellow-bar {
-    flex: 1;
+
     background-color: yellow;
   }
   
   .red-bar {
-    flex: 1;
+
     background-color: red;
   }
   
@@ -156,3 +158,14 @@
     background-color: var(--hover);
     color: black;
   }
+  .company-color-indicator {
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 8px; 
+    border-radius: 50%;
+    top: 50%; left: 1rem; translate: -50% -50%;
+    
+  }
+  
