@@ -37,7 +37,7 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
               {fortIn}:
             </label>
             <div className="details-container">
-    {/* Class Rating */}
+    
     <div className="detail-item">
       <span className="detail-label">Class Rating</span>
       <input
@@ -49,7 +49,7 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
       />
     </div>
 
-    {/* Capacity */}
+    
     <div className="detail-item">
       <span className="detail-label">Capacity</span>
       <input
@@ -57,9 +57,18 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
         className="detail-input"
         placeholder="Enter capacity (e.g., 9)"
       />
+
+    </div>
+    <div className="detail-item">
+      <span className="detail-label">ULRate</span>
+      <input
+        type="number"
+        className="detail-input"
+        placeholder="Enter ULRate"
+      />
     </div>
 
-    {/* Discharge */}
+    
     <div className="detail-item">
       <span className="detail-label">Discharge</span>
       <input
@@ -105,7 +114,10 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
                   onChange={handleAddEvidence}
                 />
               </div>
-              <div className="button-container">
+ 
+            </>
+          )}             
+          <div className="button-container">
                 <button
                   className="cancel-button"
                   onClick={() => {
@@ -123,8 +135,6 @@ function Add({ firstIn, SecIn, TirdIn, fortIn, setOpen }) {
                   Confirm
                 </button>
               </div>
-            </>
-          )}
         </div>
       </div>
     </div>

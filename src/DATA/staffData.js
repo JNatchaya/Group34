@@ -38,13 +38,13 @@ export const Staff = [
                 "AssignmentID": "A001",
                 "Task": "Manage Inventory",
                 "Date": "2024-11-01",
-                "Status": "Completed"
+                "AssignmentStatus": "Completed"
             },
             {
                 "AssignmentID": "A002",
                 "Task": "Prepare Report",
                 "Date": "2024-11-15",
-                "Status": "Pending"
+                "AssignmentStatus": "Pending"
             }
         ]
     },
@@ -52,45 +52,19 @@ export const Staff = [
         "StaffID": "S002",
         "Name": "Jane Smith",
         "Role": "Mechanic",
-        "Mail": "jane.smith@mail.com",
-        "Tel": "0324123312",
-        "UserInformation": [
-            {
-                "informationID": "I002",
-                "Address":"456 Main Street, Anytown, USA",
-                "parents" : [
-                    {
-                        "ParentID": "P003",
-                        "ParentName": "Josh Smith",
-                        "Relationship": "Father",
-                        "Tel": "1234567890"
-                    },
-                    {   
-                        "ParentID": "P004",
-                        "ParentName": "Haily Smith",
-                        "Relationship": "Mother",
-                        "Tel": "1234567890"
-                    }
-                ],
-                "Birthday": "1991-04-05",
-                "Age": 35,
-                "Height": 168,
-                "Weight": 50
-            }
-        ],
         "BehaviorScore": 88,
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A003",
                 "Task": "Repair Engine",
                 "Date": "2024-11-10",
-                "Status": "Completed"
+                "AssignmentStatus": "Completed"
             },
             {
                 "AssignmentID": "A004",
                 "Task": "Conduct Maintenance",
                 "Date": "2024-11-20",
-                "Status": "In Progress"
+                "AssignmentStatus": "In Progress"
             }
         ]
     },
@@ -130,13 +104,13 @@ export const Staff = [
                 "AssignmentID": "A005",
                 "Task": "Schedule Meetings",
                 "Date": "2024-11-12",
-                "Status": "Completed"
+                "AssignmentStatus": "Completed"
             },
             {
                 "AssignmentID": "A006",
                 "Task": "Organize Documents",
                 "Date": "2024-11-18",
-                "Status": "Pending"
+                "AssignmentStatus": "Pending"
             }
         ]
     },
@@ -144,49 +118,65 @@ export const Staff = [
         "StaffID": "S004",
         "Name": "Bob Brown",
         "Role": "Mechanic",
-        "Mail": "bob.brown@mail.com",
-        "Tel": "132032421",
-        "UserInformation": [
-            {
-                "informationID": "I004",
-                "Address":"101 Main Street, Anytown, USA",
-                "parents" : [
-                    {
-                        "ParentID": "P007",
-                        "ParentName": "David Brown",
-                        "Relationship": "Father",
-                        "Tel": "1234567890"
-                    },
-                    {   
-                        "ParentID": "P008",
-                        "ParentName": "Taylor Brown",
-                        "Relationship": "Mother",
-                        "Tel": "1234567890"
-                    }
-                ],
-                "Birthday": "1983-06-20",
-                "Age": 41,
-                "Height": 165,
-                "Weight": 60
-            }
-        ],
         "BehaviorScore": 92,
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A007",
                 "Task": "Inspect Vehicles",
                 "Date": "2024-11-05",
-                "Status": "Completed"
+                "AssignmentStatus": "Completed"
             },
             {
                 "AssignmentID": "A008",
                 "Task": "Replace Tires",
                 "Date": "2024-11-19",
-                "Status": "In Progress"
+                "AssignmentStatus": "In Progress"
+            }
+        ]
+    },
+    {
+        "StaffID": "S005",
+        "Name": "Emily Davis",
+        "Role": "Admin",
+        "BehaviorScore": 80,
+        "AssignmentFootprint": [
+            {
+                "AssignmentID": "A009",
+                "Task": "Update Database",
+                "Date": "2024-11-08",
+                "AssignmentStatus": "Completed"
+            },
+            {
+                "AssignmentID": "A010",
+                "Task": "Perform Audit",
+                "Date": "2024-11-22",
+                "AssignmentStatus": "Pending"
+            }
+        ]
+    },
+    {
+        "StaffID": "S006",
+        "Name": "Michael Wilson",
+        "Role": "Mechanic",
+        "MechanicStatus": "Day Off",
+        "BehaviorScore": 90,
+        "AssignmentFootprint": [
+            {
+                "AssignmentID": "A011",
+                "Task": "Maintain Equipment",
+                "Date": "2024-11-07",
+                "AssignmentStatus": "Completed"
+            },
+            {
+                "AssignmentID": "A012",
+                "Task": "Perform Inspection",
+                "Date": "2024-11-21",
+                "AssignmentStatus": "In Progress"
             }
         ]
     }
 ];
+
 
 /**
  * Fetch all staff data

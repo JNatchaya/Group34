@@ -16,7 +16,7 @@
     width: 50%;
     background-color: var(--primary-white);
     border-radius: 5px;
-    top: 50%; left: 50%; translate: -50% -50%;
+    top: 50%; left: 50%; translate: -50% -55%;
   }
   
   .header-add {

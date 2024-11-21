@@ -43,15 +43,15 @@ body {
     margin-bottom: 10px;
   }
   
-  input[type="text"] {
-    width: 99%; /* Ensures inputs fill their container */
-    max-width: 300px; /* Sets a maximum width for consistency */
+  .c-input {
+    width: 99%; 
+    max-width: 300px; 
     padding: 5px;
     margin-top: 5px;
     margin-right: 10px;
     border: 1px solid #ff5733;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    box-sizing: border-box; 
 }
 
   
@@ -88,7 +88,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-
   
   .generate-btn {
     width: 100%;
