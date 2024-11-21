@@ -6,11 +6,19 @@ export const CM = [
         "DPCH": [
             {
                 "DPName": "C1_Department_01",
-                "DPLocation": "",
+                "DPLocation": {
+                    "lat": 13.7563,
+                    "lng": 100.5018,
+                },
+                "color": "red"
             },
             {
                 "DPName": "C1_Department_02",
-                "DPLocation": "",
+                "DPLocation": {
+                    "lat": 13.7367,
+                    "lng": 100.5231,
+                },
+                "color": "green"
             }
         ]
     },
@@ -19,14 +27,22 @@ export const CM = [
         "DPCH": [
             {
                 "DPName": "C2_Department_01",
-                "DPLocation": "",
+                "DPLocation": {
+                    "lat": 13.7461,
+                    "lng": 100.5375,
+                },
+                "color": "blue"
             },
             {
                 "DPName": "C2_Department_02",
-                "DPLocation": "",
+                "DPLocation": {
+                    "lat": 13.7661,
+                    "lng": 100.5445,
+                },
+                "color": "blue"
             }
         ]
-    },
+    }
 ];
 
 export function fetchCmData() {

@@ -26,7 +26,7 @@ body {
   
   .form-card {
     background: #fdf6e3;
-    color: #ff8300;
+    color: #ff5733;
     padding: 20px;
     border-radius: 10px;
     width: 40%;
@@ -49,7 +49,7 @@ body {
     padding: 5px;
     margin-top: 5px;
     margin-right: 10px;
-    border: 1px solid #ff8300;
+    border: 1px solid #ff5733;
     border-radius: 5px;
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
@@ -82,20 +82,17 @@ body {
   }
   
   .link-btn.green {
-    background: #28a745;
+    background: #3ACE01;
+    width: 100%;
     color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  .link-btn.orange {
-    background: #ff8300;
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+
   
   .generate-btn {
     width: 100%;
-    background: #ff8300;
+    background: #ff5733;
     color: #fff;
     border: none;
     padding: 10px;

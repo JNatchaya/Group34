@@ -32,7 +32,7 @@ function SuperAdmin_pages({ setToken }) {
           <div
               className="user-container"
               ref={userContainerRef}
-              onClick={handleLeftClick} 
+              onClick={handleRightClick} 
             >
             <label className="username">Superadmin</label>
             <div className="pofile-picture"></div>
