@@ -6,6 +6,32 @@ export const Staff = [
         "StaffID": "S001",
         "Name": "John Doe",
         "Role": "Admin",
+        "Mail": "john.doe@mail.com",
+        "Tel": "1234567890",
+        "UserInformation": [
+            {
+                "informationID": "I001",
+                "Address":"123 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P001",
+                        "ParentName": "Bob Doe",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {
+                        "ParentID": "P002",
+                        "ParentName": "Jane Doe",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1990-01-01",
+                "Age": 34,
+                "Height": 175,
+                "Weight": 75
+            }
+        ],
         "BehaviorScore": 95,
         "AssignmentFootprint": [
             {
@@ -26,6 +52,32 @@ export const Staff = [
         "StaffID": "S002",
         "Name": "Jane Smith",
         "Role": "Mechanic",
+        "Mail": "jane.smith@mail.com",
+        "Tel": "0324123312",
+        "UserInformation": [
+            {
+                "informationID": "I002",
+                "Address":"456 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P003",
+                        "ParentName": "Josh Smith",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {   
+                        "ParentID": "P004",
+                        "ParentName": "Haily Smith",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1991-04-05",
+                "Age": 35,
+                "Height": 168,
+                "Weight": 50
+            }
+        ],
         "BehaviorScore": 88,
         "AssignmentFootprint": [
             {
@@ -46,6 +98,32 @@ export const Staff = [
         "StaffID": "S003",
         "Name": "Alice Johnson",
         "Role": "Admin",
+        "Mail": "alice.johnson@mail.com",
+        "Tel": "1237834512",
+        "UserInformation": [
+            {
+                "informationID": "I003",
+                "Address":"789 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P005",
+                        "ParentName": "Alexander Johnson",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {   
+                        "ParentID": "P006",
+                        "ParentName": "Emily Johnson",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1991-01-29",
+                "Age": 35,
+                "Height": 170,
+                "Weight": 45
+            }
+        ],
         "BehaviorScore": 75,
         "AssignmentFootprint": [
             {
@@ -66,6 +144,32 @@ export const Staff = [
         "StaffID": "S004",
         "Name": "Bob Brown",
         "Role": "Mechanic",
+        "Mail": "bob.brown@mail.com",
+        "Tel": "132032421",
+        "UserInformation": [
+            {
+                "informationID": "I004",
+                "Address":"101 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P007",
+                        "ParentName": "David Brown",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {   
+                        "ParentID": "P008",
+                        "ParentName": "Taylor Brown",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1983-06-20",
+                "Age": 41,
+                "Height": 165,
+                "Weight": 60
+            }
+        ],
         "BehaviorScore": 92,
         "AssignmentFootprint": [
             {

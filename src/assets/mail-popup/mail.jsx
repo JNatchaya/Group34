@@ -2,14 +2,12 @@ import React from "react";
 import "./mail.css";
 import cardData from "./data.js";
 
-function MailPopup(props) {
-  return props.trigger ? (
+function MailPopup({ trigger, setTrigger }) {
+  return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <div className="close-btn" onClick={() => props.setTrigger(false)}>
-          X
-        </div>
-        {props.children}
+        <button className="close-btn bi bi-x-circle" onClick={() => setTrigger(false)}>
+        </button>
         <header className="header">
           <div className="logo"></div>
         </header>
@@ -25,29 +23,29 @@ function MailPopup(props) {
             </a>
           </span>
         </nav>
-        <body className="mail-container">
+        <div className="mail-container">
           <div className="card-container">
-            {cardData.map((item, index) => (
-              <div class="grid-container" key={item.id}>
-                <div class="item1 circle-container">
+            {cardData.map((item) => (
+              <div className="grid-container" key={item.id}>
+                <div className="item1 circle-container">
                   <div className="circle"></div>
                 </div>
-                <div class="item2 card-text-role">
-                  <p><b>{item.author} |</b></p>
+                <div className="item2 card-text-role">
+                  <p>
+                    <b>{item.author} |</b>
+                  </p>
                 </div>
-                <div class="item3 card-text-link">
+                <div className="item3 card-text-link">
                   <a href="#">{item.linkText}</a>
                 </div>
               </div>
             ))}
           </div>
-            <button className="show-more-button">Show More</button>
-        </body>
+          <button className="show-more-button">Show More</button>
+        </div>
       </div>
     </div>
-  ) : (
-    ""
-  );
+  ) : null; // Return null if not triggered
 }
 
 export default MailPopup;

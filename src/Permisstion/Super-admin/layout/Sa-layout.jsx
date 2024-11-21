@@ -1,4 +1,4 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect} from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import StaffManagement_tab from "../staffmanage/staffmanage";
@@ -16,13 +16,28 @@ function SuperAdmin_pages({ setToken }) {
   const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
 
-  const handleRightClick = (event) => {
-    event.preventDefault();
-    setToggleLogout(true); 
+  const handleLeftClick = () => {
+    setToggleLogout((prevState) => !prevState); 
   };
 
-  
+  const handleClickOutside = (event) => {
+    if (
+      toggleLogout &&
+      logoutRef.current &&
+      !logoutRef.current.contains(event.target) &&
+      userContainerRef.current &&
+      !userContainerRef.current.contains(event.target)
+    ) {
+      setToggleLogout(false); 
+    }
+  };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleLogout]);
   return (
     <div className="Sa-pages-container starter">
       <header className="header">
@@ -32,7 +47,7 @@ function SuperAdmin_pages({ setToken }) {
           <div
               className="user-container"
               ref={userContainerRef}
-              onClick={handleRightClick} 
+              onClick={handleLeftClick} 
             >
             <label className="username">Superadmin</label>
             <div className="pofile-picture"></div>
