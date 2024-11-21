@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 
-
-function Report() {
-    return ( 
-        <div>
-            
-=======
 import './report.css';
 
 function Report() {
@@ -44,7 +37,6 @@ function Report() {
                     <button className="submit-btn">Submit</button>
                 </div>
             </div>   
->>>>>>> b01d7fdf17cfa7f587f3249af2175fa7de50fa6e
         </div>
     );
 }
