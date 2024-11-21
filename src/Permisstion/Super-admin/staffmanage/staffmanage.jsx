@@ -60,8 +60,7 @@ function StaffManagement_tab() {
           ))}
         </div>
       )}
-
-      {/* Staff Details Section
+      
       {currentPage === "details" && selectedStaff && (
         <div className="staff-details-container">
           <h2>{selectedStaff.Name}</h2>
