@@ -4,16 +4,37 @@ import "./userprofile.css";
 import { fetchStaffData, fetchStaffByID } from "../../../DATA/staffData";
 
 function StaffManagement() {
-  const staffData = fetchStaffData(); // Fetch staff data
-  const [selectedStaffID, setSelectedStaffID] = useState(null);
-  const [currentPage, setCurrentPage] = useState("staff");
-  const [userData, setUserData] = useState(null);
+  const [staffData, setStaffData] = useState(null); // All staff data
+  const [userData, setUserData] = useState(null); // Specific user data for details page
+  const [selectedStaffID, setSelectedStaffID] = useState(null); // Selected staff ID
+  const [currentPage, setCurrentPage] = useState("staff"); // Page state: "staff" or "details"
 
+  // Fetch all staff data on component mount
   useEffect(() => {
-    if (selectedStaffID) {
-      const data = fetchStaffByID(selectedStaffID);
-      setUserData(data);
+    async function fetchData() {
+      try {
+        const data = await fetchStaffData();
+        setStaffData(data); // Set all staff data
+      } catch (error) {
+        console.error("Error fetching staff data:", error);
+      }
     }
+    fetchData();
+  }, []);
+
+  // Fetch specific staff details when a staff member is selected
+  useEffect(() => {
+    async function fetchUserDetails() {
+      if (selectedStaffID) {
+        try {
+          const data = await fetchStaffByID(selectedStaffID);
+          setUserData(data); // Set selected staff's user data
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    }
+    fetchUserDetails();
   }, [selectedStaffID]);
 
   return (
@@ -27,6 +48,7 @@ function StaffManagement() {
             onClick={() => {
               setCurrentPage("staff");
               setSelectedStaffID(null);
+              setUserData(null);
             }}
           >
             Staff /
@@ -37,96 +59,105 @@ function StaffManagement() {
         </div>
       </div>
 
-      {/* Staff List Section */}
+      {/* Staff List Page */}
       {currentPage === "staff" && (
         <div className="staff-container">
-          {staffData.map((staff, index) => (
-            <div
-              key={index}
-              className={`account-item ${
-                selectedStaffID === staff.StaffID ? "active" : ""
-              }`}
-              onClick={() => {
-                setSelectedStaffID(staff.StaffID);
-                setCurrentPage("details");
-              }}
-            >
-              <div className="company-logo"></div>
-              <div className="company-name">
-                {staff.Name}
-                <span className="department-count">Role: {staff.Role}</span>
+          {staffData ? (
+            staffData.map((staff) => (
+              <div
+                key={staff.StaffID}
+                className={`account-item ${
+                  selectedStaffID === staff.StaffID ? "active" : ""
+                }`}
+                onClick={() => {
+                  setSelectedStaffID(staff.StaffID);
+                  setCurrentPage("details");
+                }}
+              >
+                <div className="company-logo"></div>
+                <div className="company-name">
+                  {staff.Name}
+                  <span className="department-count">Role: {staff.Role}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div>Loading staff data...</div>
+          )}
         </div>
       )}
 
-       {/* Staff Details Section */}
-       {currentPage === "details" && userData && (
+      {/* Staff Details Page */}
+      {currentPage === "details" && userData && (
         <div className="staffmanage-container">
           <div className="information">
             <div className="user-info">
               <div className="profile-photo">
-                <img src="" alt="User Photo" />
+                <img src={userData.Photo || ""} alt="User Photo" />
               </div>
               <div className="user-details">
                 <div className="user-name">{userData.Name}</div>
                 <div className="role">{userData.Role}</div>
-                <div className="contact-info bi bi-envelope">&nbsp;{userData.Mail}</div>
-                <div className="contact-info bi bi-telephone">&nbsp;{userData.Tel}</div>
+                <div className="contact-info bi bi-envelope">
+                  &nbsp;{userData.Mail}
+                </div>
+                <div className="contact-info bi bi-telephone">
+                  &nbsp;{userData.Tel}
+                </div>
               </div>
             </div>
             <div className="user-description-container">
               <div className="user-description-header">User Information</div>
               <div className="user-description-body">
-                {userData.UserInformation.map((information) => (
+                {userData.UserInformation?.map((information) => (
                   <div
                     className="information-body"
                     key={information.informationID}
                   >
                     <div className="information-left">
-                      <p>Address:{information.Address}</p>
+                      <p>Address: {information.Address}</p>
                       <div>
-                        {information.parents.map((parent) => (
+                        {information.parents?.map((parent) => (
                           <div className="parent" key={parent.ParentID}>
                             <p>
-                              Parent: {parent.ParentName} ({parent.Relationship}
-                              )
+                              Parent: {parent.ParentName} (
+                              {parent.Relationship})
                             </p>
                             <p>Contact: {parent.Tel}</p>
                           </div>
                         ))}
                       </div>
-                      
                     </div>
                     <div className="information-right">
-                    <div className="information-right-inner">
-                      <p>Birthday: {information.Birthday}</p>
-                      <p>Age: {information.Age}</p>
-                      <p>Height: {information.Height}</p>
-                      <p>Weight: {information.Weight}</p>
-                    </div>
+                      <div className="information-right-inner">
+                        <p>Birthday: {information.Birthday}</p>
+                        <p>Age: {information.Age}</p>
+                        <p>Height: {information.Height}</p>
+                        <p>Weight: {information.Weight}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="edit-button-container">
-                <button className="edit-button">Edit</button>
-              </div>
+            </div>
+            <div className="edit-button-container">
+              <button className="edit-button">Edit</button>
             </div>
           </div>
           <div className="behavior-container">
             <div className="behavior-header">Behavior Score</div>
-            <div className="behavior-body">{userData.BehaviorScore}</div>
+            <div className="behavior-body">
+              {userData.BehaviorScore || "N/A"}
+            </div>
           </div>
 
           <div className="assignment-footprint-container">
             <div className="assignment-footprint-header">
               Assignment Footprint
             </div>
-            <div className="assignment-footprint">
+            <div className="assignment-footprint box-shadows">
               <div className="assignment-footprint-body">
-                {userData.AssignmentFootprint.map((assignment) => (
+                {userData.AssignmentFootprint?.map((assignment) => (
                   <div className="assignment" key={assignment.AssignmentID}>
                     <div className="assignment-left">
                       <p>
@@ -135,7 +166,7 @@ function StaffManagement() {
                       </p>
                     </div>
                   </div>
-                ))}
+                )) || <p>No assignments available.</p>}
               </div>
             </div>
           </div>
@@ -146,4 +177,6 @@ function StaffManagement() {
 }
 
 export default StaffManagement;
+
+
 

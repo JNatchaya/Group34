@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { fetchStaffData } from "../../../DATA/staffData"; // Import your staff data module
 import "./user.css";
+import "../../Super-admin/staffmanage/userprofile.css";
+import "../../Super-admin/staffmanage/staffmanage.css";
 
 function User() {
   const staffData = fetchStaffData(); // Fetch staff data
+  const [userData, setUserData] = useState(null);
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [currentPage, setCurrentPage] = useState("staff");
 
@@ -86,6 +89,81 @@ function User() {
           })}
         </div>
       )}
+     {/* Staff Details Page */}
+     {currentPage === "details" && userData && (
+        <div className="staffmanage-container">
+          <div className="information">
+            <div className="user-info">
+              <div className="profile-photo">
+                <img src={userData.Photo || ""} alt="User Photo" />
+              </div>
+              <div className="user-details">
+                <div className="user-name">{userData.Name}</div>
+                <div className="role">{userData.Role}</div>
+                <div className="contact-info bi bi-envelope">
+                  &nbsp;{userData.Mail}
+                </div>
+                <div className="contact-info bi bi-telephone">
+                  &nbsp;{userData.Tel}
+                </div>
+              </div>
+            </div>
+            <div className="user-description-container">
+              <div className="user-description-header">User Information</div>
+              <div className="user-description-body">
+                {userData.UserInformation?.map((information) => (
+                  <div
+                    className="information-body"
+                    key={information.informationID}
+                  >
+                    <div className="information-left">
+                      <p>Address: {information.Address}</p>
+                      <div>
+                        {information.parents?.map((parent) => (
+                          <div className="parent" key={parent.ParentID}>
+                            <p>
+                              Parent: {parent.ParentName} (
+                              {parent.Relationship})
+                            </p>
+                            <p>Contact: {parent.Tel}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="information-right">
+                      <div className="information-right-inner">
+                        <p>Birthday: {information.Birthday}</p>
+                        <p>Age: {information.Age}</p>
+                        <p>Height: {information.Height}</p>
+                        <p>Weight: {information.Weight}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="assignment-footprint-container">
+            <div className="assignment-footprint-header">
+              Assignment Footprint
+            </div>
+            <div className="assignment-footprint box-shadows">
+              <div className="assignment-footprint-body">
+                {userData.AssignmentFootprint?.map((assignment) => (
+                  <div className="assignment" key={assignment.AssignmentID}>
+                    <div className="assignment-left">
+                      <p>
+                        {assignment.Date} / {assignment.Task} /{" "}
+                        {assignment.Status}
+                      </p>
+                    </div>
+                  </div>
+                )) || <p>No assignments available.</p>}
+              </div>
+            </div>
+          </div>
+        </div>
+      )} 
     </div>
   );
 }
