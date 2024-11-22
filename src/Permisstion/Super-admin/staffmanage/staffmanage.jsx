@@ -3,7 +3,7 @@ import "./staffmanage.css";
 import "./userprofile.css";
 import { fetchStaffData, fetchStaffByID } from "../../../DATA/staffData";
 
-function StaffManagement_tab() {
+function StaffManagement() {
   const staffData = fetchStaffData(); // Fetch staff data
   const [selectedStaffID, setSelectedStaffID] = useState(null);
   const [currentPage, setCurrentPage] = useState("staff");
@@ -60,34 +60,90 @@ function StaffManagement_tab() {
           ))}
         </div>
       )}
-      
-      {currentPage === "details" && selectedStaff && (
-        <div className="staff-details-container">
-          <h2>{selectedStaff.Name}</h2>
-          <p><strong>Role:</strong> {selectedStaff.Role}</p>
-          <p><strong>Behavior Score:</strong> {selectedStaff.BehaviorScore}</p>
-          <h3>Assignment Footprint:</h3>
-          <ul>
-            {selectedStaff.AssignmentFootprint.map((assignment, index) => (
-              <li key={index}>
-                <p><strong>Task:</strong> {assignment.Task}</p>
-                <p><strong>Date:</strong> {assignment.Date}</p>
-                <p><strong>Status:</strong> {assignment.Status}</p>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={() => {
-              setCurrentPage("staff");
-              setSelectedStaff(null);
-            }}
-          >
-            Back to Staff
-          </button>
+
+       {/* Staff Details Section */}
+       {currentPage === "details" && userData && (
+        <div className="staffmanage-container">
+          <div className="information">
+            <div className="user-info">
+              <div className="profile-photo">
+                <img src="" alt="User Photo" />
+              </div>
+              <div className="user-details">
+                <div className="user-name">{userData.Name}</div>
+                <div className="role">{userData.Role}</div>
+                <div className="contact-info bi bi-envelope">&nbsp;{userData.Mail}</div>
+                <div className="contact-info bi bi-telephone">&nbsp;{userData.Tel}</div>
+              </div>
+            </div>
+            <div className="user-description-container">
+              <div className="user-description-header">User Information</div>
+              <div className="user-description-body">
+                {userData.UserInformation.map((information) => (
+                  <div
+                    className="information-body"
+                    key={information.informationID}
+                  >
+                    <div className="information-left">
+                      <p>Address:{information.Address}</p>
+                      <div>
+                        {information.parents.map((parent) => (
+                          <div className="parent" key={parent.ParentID}>
+                            <p>
+                              Parent: {parent.ParentName} ({parent.Relationship}
+                              )
+                            </p>
+                            <p>Contact: {parent.Tel}</p>
+                          </div>
+                        ))}
+                      </div>
+                      
+                    </div>
+                    <div className="information-right">
+                    <div className="information-right-inner">
+                      <p>Birthday: {information.Birthday}</p>
+                      <p>Age: {information.Age}</p>
+                      <p>Height: {information.Height}</p>
+                      <p>Weight: {information.Weight}</p>
+                    </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="edit-button-container">
+                <button className="edit-button">Edit</button>
+              </div>
+            </div>
+          </div>
+          <div className="behavior-container">
+            <div className="behavior-header">Behavior Score</div>
+            <div className="behavior-body">{userData.BehaviorScore}</div>
+          </div>
+
+          <div className="assignment-footprint-container">
+            <div className="assignment-footprint-header">
+              Assignment Footprint
+            </div>
+            <div className="assignment-footprint">
+              <div className="assignment-footprint-body">
+                {userData.AssignmentFootprint.map((assignment) => (
+                  <div className="assignment" key={assignment.AssignmentID}>
+                    <div className="assignment-left">
+                      <p>
+                        {assignment.Date} / {assignment.Task} /{" "}
+                        {assignment.Status}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
 }
 
-export default StaffManagement_tab;
+export default StaffManagement;
+
