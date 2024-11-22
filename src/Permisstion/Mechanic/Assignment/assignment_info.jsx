@@ -3,19 +3,33 @@ import "../Assignment/assignment_info.css";
 
 function AssignmentInfo({ onReturn }) {
   const [evidence, setEvidence] = useState([]);
-  const [checkedItems, setCheckedItems] = useState(Array(6).fill(false)); 
+  const [checkedItems, setCheckedItems] = useState(Array(6).fill(false));
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAddEvidence = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setEvidence([...evidence, URL.createObjectURL(file)]);
-    }
+    const files = Array.from(event.target.files);
+    const newEvidence = files.map((file) => URL.createObjectURL(file));
+    setEvidence((prevEvidence) => [...prevEvidence, ...newEvidence]);
+  };
+
+  const handleDeleteEvidence = (indexToDelete) => {
+    setEvidence((prevEvidence) =>
+      prevEvidence.filter((_, index) => index !== indexToDelete)
+    );
   };
 
   const toggleChecked = (index) => {
     const newCheckedItems = [...checkedItems];
     newCheckedItems[index] = !newCheckedItems[index];
     setCheckedItems(newCheckedItems);
+  };
+
+  const handleSubmit = () => {
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      onReturn(); // กลับ
+    }, 3000);
   };
 
   const checklistData = [
@@ -29,13 +43,10 @@ function AssignmentInfo({ onReturn }) {
 
   return (
     <div className="info-container">
-      {/* Header Section */}
       <div className="info-header">
         <h3>Assignment Info</h3>
       </div>
-      {/* Main Content Section */}
       <div className="info-main-content">
-        {/* top Section with Nested Grid */}
         <div className="info-section-top">
           <div className="info-section-item">
             <div className="place">
@@ -48,17 +59,16 @@ function AssignmentInfo({ onReturn }) {
               <div className="info-report">
                 <h4>Report Details</h4>
               </div>
-              <div className="report-image">Reported image</div>
+              <div className="M-report-image">Reported image</div>
             </div>
             <div className="i-location">
-              <div className="Location">
+              <div className="M-Location">
                 <h4>Location</h4>
               </div>
-              <div className="location-details">Map</div>
+              <div className="M-location-details">Map</div>
             </div>
           </div>
         </div>
-        {/* Bottom Section with Nested Grid */}
         <div className="info-section-bottom">
           <div className="info-section-item">
             <div className="check-list">
@@ -88,43 +98,43 @@ function AssignmentInfo({ onReturn }) {
             </div>
             <div className="evidence-preview">
               {evidence.map((src, index) => (
-                <img
-                  key={index}
-                  src={src}
-                  alt="evidence"
-                  className="evidence-image"
-                />
+                <div key={index} className="evidence-item">
+                  <img src={src} alt="evidence" className="evidence-image" />
+                  <i
+                    className="bi bi-x-circle-fill delete-image-icon"
+                    onClick={() => handleDeleteEvidence(index)}
+                  ></i>
+                </div>
               ))}
 
               <label className="add-button">
                 <h5>Add</h5>
-                <input type="file" onChange={handleAddEvidence} hidden />
+                <input
+                  type="file"
+                  onChange={handleAddEvidence}
+                  multiple
+                  hidden
+                />
               </label>
             </div>
           </div>
         </div>
-
-        {/* Footer Section */}
         <div className="info-footer">
-          <div className="info-footer-item"></div>
-          <div className="info-footer-item">
-            <button
-              className="return-button2"
-              onClick={() => onReturn("MechanicPages")}
-            >
-              Return
-            </button>
-          </div>
-          <div className="info-footer-item">
-            <button
-              className="submit-button"
-              onClick={() => onReturn("MechanicPages")}
-            >
-              Submit
-            </button>
-          </div>
+          <button className="return-button2" onClick={onReturn}>
+            Return
+          </button>
+          <button className="submit-button" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       </div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>Submitted successfully!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

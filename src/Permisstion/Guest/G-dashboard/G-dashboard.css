@@ -1,0 +1,226 @@
+
+
+.g-dashboard-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #F2F2E6;
+  margin: 0 auto;
+}
+
+.g-dashboard-header {
+  height: 7vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.g-logo {
+  margin-top: 5px;
+  width: 50px;
+  height: 100px;
+  background-size: cover;
+  background-image: url(/public/Logos/โลโก้รอง/metthier2.png);
+}
+
+.g-dashboard-body {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 10px;
+  width: 100%;
+}
+
+.g-dashboard {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.g-dashboard h3 {
+  color: black;
+  margin: 0;
+  text-align: left;
+}
+
+.g-department {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  width: 100%;
+  height: 25vh;
+  gap: 10px;
+}
+
+.d-deL {
+  display: grid;
+  grid-template-rows: auto auto; 
+  gap: 5px; 
+}
+
+.d-department-name {
+  background-color: #FAD8B0; 
+  border-radius: 10px; 
+  width: 100%;
+  height: 70px; 
+  display: flex;
+  align-items: center; 
+  padding: 10px; 
+  box-sizing: border-box; 
+  gap: 15px; 
+  margin: 0;
+}
+
+.d-department-name span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FD6E2B;
+  border-radius: 50%; 
+  width: 100%;
+  height: 100%;
+  font-size: 50px; 
+}
+
+.d-department-name h5 {
+  color: black;
+  font-size: 14px; 
+  margin: 0;
+  font-weight: bold; 
+}
+
+.d-fire-img {
+  border: solid 3px #FAD8B0; 
+  background-color: #fceedd;
+  width: 100%;
+  height: 150px; 
+  margin: 0; 
+  border-radius: 10px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.d-fire-img h8 {
+  margin: 0; 
+  font-size: 14px; 
+  color: black;
+}
+
+
+
+.d-deR {
+  display: grid;
+  grid-template-rows: repeat(10, auto);
+  gap: 5px;
+}
+
+.list-df {
+  width: 100%;
+  background-color: #FAD8B0;
+  border-end-end-radius: 10px;
+  border-start-end-radius: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.list-df h8 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.status-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.status-container p {
+  margin-top: 10px;
+  font-size: 10px; 
+  color: black; 
+
+}
+
+.status-container span {
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: #39A847;
+  font-size: 14px;
+}
+
+
+.g-history {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.list-gh-container {
+  border-radius: 5px;
+  background-color: #FAD8B0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.list-gh {
+  border-radius: 5px;
+  background-color: #fceedd;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-gh h8{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.g-report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+  width: 100%; /* ใช้พื้นที่เต็ม */
+}
+
+.g-report button {
+  border: none;
+  background-color: #FD6E2B;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  height: 45px;
+  width: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+.gh-text h5 {
+  margin-top: 10px;
+  color: black;
+}
+
+
+
+
+
