@@ -105,12 +105,12 @@ function Super_user_pages({ setToken }) {
               <Route path="report" element={<Report />} />
             </Routes>
           </div>
-          {toggleLogout && (
+        </main>
+        {toggleLogout && (
             <div ref={logoutRef}>
               <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
             </div>
           )}
-        </main>
       </div>
     </div>
   );

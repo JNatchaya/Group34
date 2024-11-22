@@ -1,27 +1,31 @@
 import React, { useState } from "react";
-import "../layout/M-layout.css"; // CSS ต้องอยู่ในโฟลเดอร์เดียวกับไฟล์นี้
+import "../layout/M-layout.css";
 
 // Import Components
 import AssignmentInfo from "../Assignment/assignment_info";
 import AssignmentNearly from "../Assignment/assignmentnearly";
 import Calendar from "../Calendar/calendar";
+import NearlyPlace from "../Nearly-place/nearly_place";
 
 function MechanicPages() {
   const [showMenu, setShowMenu] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [currentPage, setCurrentPage] = useState("MechanicPages");
   const [isInNearlyPlace, setIsInNearlyPlace] = useState(false);
+  const [lastPage, setLastPage] = useState("MechanicPages");
 
   const toggleMenu = () => setShowMenu(!showMenu);
   const toggleLogoutPopup = () => setShowLogoutPopup(!showLogoutPopup);
 
   const handlePageChange = (page) => {
+    setLastPage(currentPage); // หน้าล่าสุด
     setCurrentPage(page);
     setShowMenu(false);
     setIsInNearlyPlace(false);
   };
 
   const handleTaskClick = () => {
+    setLastPage(currentPage); //หน้าล่าสุด
     setCurrentPage("assignment-info");
   };
 
@@ -55,7 +59,7 @@ function MechanicPages() {
 
       <main className="content">
         {currentPage === "MechanicPages" && (
-          <div className="assignment">
+          <div className="M-assignment">
             <h2>Assignment</h2>
             <div className="task-card" onClick={handleTaskClick}>
               <div className="task-icon"></div>
@@ -77,17 +81,30 @@ function MechanicPages() {
         )}
 
         {currentPage === "assignment-info" && (
-          <AssignmentInfo onReturn={handlePageChange} />
+          <AssignmentInfo onReturn={() => handlePageChange(lastPage)} />
         )}
 
         {currentPage === "assignment-nearly" && (
-          <AssignmentNearly setIsInNearlyPlace={setIsInNearlyPlace} />
+          <AssignmentNearly
+            setIsInNearlyPlace={setIsInNearlyPlace}
+            onTaskClick={() => handlePageChange("nearly-place")}
+          />
         )}
 
-        {currentPage === "calendar" && <Calendar />}
+        {currentPage === "nearly-place" && (
+          <NearlyPlace
+            onReturn={() => handlePageChange("assignment-nearly")}
+            onTaskClick={() => handlePageChange("assignment-info")}
+          />
+        )}
+
+        {currentPage === "calendar" && (
+          <Calendar onDateClick={() => handlePageChange("MechanicPages")} />
+        )}
       </main>
 
-      {!isInNearlyPlace && currentPage !== "assignment-info" && (
+      {/* ซ่อนปุ่มเมนูเมื่ออยู่ในหน้า nearly-place */}
+      {!isInNearlyPlace && currentPage !== "assignment-info" && currentPage !== "nearly-place" && (
         <button className="menu-button" onClick={toggleMenu}></button>
       )}
 

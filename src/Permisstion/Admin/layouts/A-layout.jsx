@@ -77,12 +77,12 @@ function Admin_pages({ setToken}) {
               <Route path="User" element={<User />} />
             </Routes>
           </div>
-          {toggleLogout && (
+      </main>
+      {toggleLogout && (
             <div ref={logoutRef}>
               <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
             </div>
           )}
-      </main>
     </div>
   );
 }

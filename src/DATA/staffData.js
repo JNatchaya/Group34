@@ -52,6 +52,32 @@ export const Staff = [
         "StaffID": "S002",
         "Name": "Jane Smith",
         "Role": "Mechanic",
+        "Mail": "jane.smith@mail.com",
+        "Tel": "1234567890",
+        "UserInformation": [
+            {
+                "informationID": "I003",
+                "Address":"456 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P003",
+                        "ParentName": "Josh Smith",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {
+                        "ParentID": "P004",
+                        "ParentName": "Taylor Smith",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1990-05-15",
+                "Age": 34,
+                "Height": 170,
+                "Weight": 60
+            }
+        ],
         "BehaviorScore": 88,
         "AssignmentFootprint": [
             {
@@ -118,6 +144,32 @@ export const Staff = [
         "StaffID": "S004",
         "Name": "Bob Brown",
         "Role": "Mechanic",
+        "Mail": "bob.brown@mail.com",
+        "Tel": "1234567890",
+        "UserInformation": [
+            {
+                "informationID": "I004",
+                "Address":"101 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P009",
+                        "ParentName": "David Brown",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {
+                        "ParentID": "P010",
+                        "ParentName": "Sara Brown",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1980-12-05",
+                "Age": 44,
+                "Height": 190,
+                "Weight": 95
+            }
+        ],
         "BehaviorScore": 92,
         "AssignmentFootprint": [
             {
@@ -138,6 +190,32 @@ export const Staff = [
         "StaffID": "S005",
         "Name": "Emily Davis",
         "Role": "Admin",
+        "Mail": "emily.davis@mail.com",
+        "Tel": "1234567890",
+        "UserInformation": [
+            {
+                "informationID": "I005",
+                "Address":"102 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P011",
+                        "ParentName": "Lebron Davis",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {
+                        "ParentID": "P012",
+                        "ParentName": "Nadia Davis",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1995-08-013",
+                "Age": 29,
+                "Height": 168,
+                "Weight": 55
+            }
+        ],
         "BehaviorScore": 80,
         "AssignmentFootprint": [
             {
@@ -158,6 +236,32 @@ export const Staff = [
         "StaffID": "S006",
         "Name": "Michael Wilson",
         "Role": "Mechanic",
+        "Mail": "michael.wilson@mail.com",
+        "Tel": "1234567890",
+        "UserInformation": [
+            {
+                "informationID": "I006",
+                "Address":"103 Main Street, Anytown, USA",
+                "parents" : [
+                    {
+                        "ParentID": "P013",
+                        "ParentName": "Dave Wilson",
+                        "Relationship": "Father",
+                        "Tel": "1234567890"
+                    },
+                    {
+                        "ParentID": "P014",
+                        "ParentName": "Scalet Wilson",
+                        "Relationship": "Mother",
+                        "Tel": "1234567890"
+                    }
+                ],
+                "Birthday": "1989-05-19",
+                "Age": 35,
+                "Height": 188,
+                "Weight": 75
+            }
+        ],
         "MechanicStatus": "Day Off",
         "BehaviorScore": 90,
         "AssignmentFootprint": [
