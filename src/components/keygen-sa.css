@@ -52,7 +52,17 @@ body {
     border: 1px solid #ff5733;
     border-radius: 5px;
     box-sizing: border-box; 
-}
+  }
+  .c1-input {
+    width: 50%; 
+    max-width: 100px; 
+    padding: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border: 1px solid #ff5733;
+    border-radius: 5px;
+    box-sizing: border-box; 
+  }
 
   
   .radio-group {
@@ -107,3 +117,4 @@ body {
   .HHH{
     margin-bottom: 5.15rem;
   }
+  

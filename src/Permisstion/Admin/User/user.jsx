@@ -69,28 +69,43 @@ function User() {
                 <div className="company-name">{staff.Name}</div>
                 <div
                   className="mechanic-status"
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
+                    width: "10%",
+                  }}
                 >
+                  <span style={{ fontSize: "14px", fontWeight: "bold" }}>
+                    Status
+                  </span>
                   <div
                     style={{
-                      width: "15px",
-                      height: "15px",
-                      borderRadius: "50%",
-                      border: "2px solid black",
-                      backgroundColor: color,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
                     }}
-                  ></div>
-                  <span style={{ fontSize: "14px", fontWeight: "bold" }}>
-                    Status: {label}
-                  </span>
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      {label}
+                    </span>
+                    <div
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        borderRadius: "50%",
+                        backgroundColor: color,
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
       )}
-     {/* Staff Details Page */}
-     {currentPage === "details" && userData && (
+      {/* Staff Details Page */}
+      {currentPage === "details" && userData && (
         <div className="staffmanage-container">
           <div className="information">
             <div className="user-info">
@@ -122,8 +137,8 @@ function User() {
                         {information.parents?.map((parent) => (
                           <div className="parent" key={parent.ParentID}>
                             <p>
-                              Parent: {parent.ParentName} (
-                              {parent.Relationship})
+                              Parent: {parent.ParentName} ({parent.Relationship}
+                              )
                             </p>
                             <p>Contact: {parent.Tel}</p>
                           </div>
@@ -163,7 +178,7 @@ function User() {
             </div>
           </div>
         </div>
-      )} 
+      )}
     </div>
   );
 }

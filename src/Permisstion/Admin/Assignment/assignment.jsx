@@ -49,17 +49,25 @@ function Assignment() {
                                 <div className="company-name">{company.CMname}</div>
                             </div>
                             <div className="company-right">
-                                <span className="due-text">Due: {company.due || "N/A"}</span>
-                                <span className="status-text">
-                                    <span
-                                        className="status-circle"
-                                        style={{
-                                            backgroundColor: getStatusColor(company.status),
-                                        }}
-                                    ></span>
-                                    Status: {company.status}
-                                </span>
-                            </div>
+    <div className="info-column">
+        <span className="label">Due</span>
+        <span className="due-text">{company.due || "N/A"}</span>
+    </div>
+    <div className="info-column">
+    <span className="label">Status</span>
+    <div className="status-container">
+        <span className="status-text">{company.status}</span>
+        <span
+            className="status-circle"
+            style={{
+                backgroundColor: getStatusColor(company.status),
+            }}
+        ></span>
+    </div>
+</div>
+
+</div>
+
                         </div>
                     ))}
                 </div>
