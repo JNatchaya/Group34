@@ -3,17 +3,46 @@
     align-items: center;
 }
 
+.company-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000; /* Adjust for better contrast if needed */
+    margin-bottom: 4px;
+}
+
 .due-text {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    position: fixed;
-    right: 200px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #000000;
+}
+
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px; /* Adjust gap for better spacing */
+    width: 100%;
 }
 
 .status-text {
-    display: flex;
-    align-items: center;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    flex-grow: 1; /* Push the circle to the far right */
+    text-align: left;
 }
 
 .status-circle {
@@ -21,7 +50,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    margin-right: 5px;
-    border: 2px solid #000000;
-    vertical-align: middle;
+    border: 2px solid #000; /* Adjust border color if needed */
+    flex-shrink: 0; /* Prevent shrinking */
 }
+

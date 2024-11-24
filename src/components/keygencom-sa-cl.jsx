@@ -21,7 +21,9 @@ const ClientForm = () => {
         </label>
         <label>
           Choose location
-          <input type="text" className="c-input" />
+          <input type="text" className="c1-input" placeholder="Enter lat"/>
+          <input type="text" className="c1-input" placeholder="Enter lng"/>
+
         </label>
         <div className="radio-group">
           <p>Permission Type</p>
