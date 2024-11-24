@@ -112,17 +112,22 @@
   }
   
   .cell:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-right: none;
   }
   
   .percentage-bar {
     display: flex;
-    width: 100px;
-    height: 15px;
+    width: 125px;
+    height: 20px;
     border-radius: 5px;
     overflow: hidden;
-    margin: 0 auto;
-    border: 2px solid black;
+    margin: 0;
+    margin-left: 1rem;
+    border: 1px solid black;
+
   }
   
   .green-bar {
