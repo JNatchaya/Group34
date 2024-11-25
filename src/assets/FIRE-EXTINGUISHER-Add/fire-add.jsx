@@ -1,52 +1,67 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { Stocks } from "../../DATA/Stock";
+import { fire_extinguisher_data } from "../../DATA/fireExtinguisherData";
 import "./fire-add.css";
 
-function FireAdd({ setToggle }) {
+function FireAdd({ setToggle, selectedDepartment }) {
   const [type, setType] = useState("");
   const [brand, setBrand] = useState("");
-  const [value, setValue] = useState({
-    ULRating: "",
-    Capacity: "",
-    SerialNumber: "",
-  });
-  const [size, setSize] = useState(false);
+  const [floor, setFloor] = useState("");
+  const [place, setPlace] = useState("");
+  const [size, setSize] = useState("");
+  const [serialNumber, setSerialNumber] = useState("");
 
   const generateRandomSN = (length) => {
     const randomNum = Math.floor(Math.random() * Math.pow(10, length));
     return `SN${randomNum.toString().padStart(length, "0")}`;
   };
 
+  // Generate serial number when size changes
+  useEffect(() => {
+    if (size) {
+      setSerialNumber(generateRandomSN(6));
+    }
+  }, [size]);
+
+  const isConfirmDisabled = !type || !brand || !size || !floor || !place;
+
   const getType = (event) => {
     const data = event.currentTarget.getAttribute("data-set");
     setType(data);
   };
 
-  const saveValue = (ULRating, Capacity) => {
-    const SerialNumber = generateRandomSN(6);
-    setValue({
-      ULRating,
-      Capacity,
-      SerialNumber,
-    });
-  };
+  const addValue = () => {
+    const location = `${floor} - ${place}`;
+    const newValue = {
+      type,
+      location,
+      lastMaintenance: "",
+      nextMaintenance: "",
+      serialNumber: serialNumber,
+      status: "Active",
+    };
 
-  useEffect(() => {}, [brand]);
+    const DeparmentData =
+      fire_extinguisher_data.find(
+        (item) => item.DPName === selectedDepartment.DPName
+      ) || {};
+      console.log("Added Fire Extinguisher Data: ", newValue);
+      console.log("Department Data: ", DeparmentData);
+      DeparmentData.fire.push(newValue);
+      console.log("Department Data after: ", DeparmentData);
+  };
 
   useEffect(() => {
     setBrand("");
     setSize("");
-    setValue("");
+    setFloor("");
+    setPlace("");
   }, [type]);
 
   useEffect(() => {
     setSize("");
-    setValue("");
   }, [brand]);
-
-  const isConfirmDisabled =
-    !value.ULRating || !value.Capacity || !value.SerialNumber;
 
   return (
     <div className="fire-add-container">
@@ -180,14 +195,7 @@ function FireAdd({ setToggle }) {
                         key={index}
                         className="size-child"
                         onClick={() => {
-                          setSize(
-                            matchedBrand.property.ULRating,
-                            matchedBrand.property.Capacity
-                          );
-                          saveValue(
-                            matchedBrand.property.ULRating,
-                            matchedBrand.property.Capacity
-                          );
+                          setSize(matchedBrand.property.ULRating);
                         }}
                       >
                         {matchedBrand.property.ULRating} -{" "}
@@ -196,13 +204,29 @@ function FireAdd({ setToggle }) {
                     ))}
                 </div>
 
-                {size != "" && (
+                {size && (
                   <div className="Serial-num-container">
                     Fire Extinguisher Serial Number
                     <input
                       className="Serial-value"
                       disabled
-                      value={value.SerialNumber || generateRandomSN(6)}
+                      value={serialNumber}
+                    />
+                    Location
+                    <input
+                      type="number"
+                      className="Serial-value"
+                      placeholder="Floor"
+                      value={floor}
+                      onChange={(e) => setFloor(e.target.value)}
+                    />
+                    <input
+                      style={{ marginTop: "1rem" }}
+                      type="text"
+                      className="Serial-value"
+                      placeholder="Room or Place"
+                      value={place}
+                      onChange={(e) => setPlace(e.target.value)}
                     />
                   </div>
                 )}
@@ -222,10 +246,9 @@ function FireAdd({ setToggle }) {
                 className="btn btn-success"
                 onClick={() => {
                   setToggle(false);
-                  // Optionally save the data when confirming
-                  console.log("Final Values: ", value); // Final log of selected values
+                  addValue();
                 }}
-                disabled={isConfirmDisabled} // Disable the button if any of the values are empty
+                disabled={isConfirmDisabled}
               >
                 Confirm
               </button>

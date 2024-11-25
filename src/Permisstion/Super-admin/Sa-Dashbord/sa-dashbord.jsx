@@ -76,7 +76,7 @@ function SaDashBord({ selectedDepartment, permiss }) {
 
   return (
     <div className="Sa-dashbord-container">
-      {toggle && <FireAdd setToggle={setToggle} />}
+      {toggle && <FireAdd setToggle={setToggle} selectedDepartment={selectedDepartment}/>}
       {open && (
         <Add
           firstIn={"Request"}
