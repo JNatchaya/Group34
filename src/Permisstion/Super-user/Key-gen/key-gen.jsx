@@ -1,7 +1,13 @@
+import React from 'react';
+import EmployeeFormSU from "../../../components/keygencom-su";
+
 function KeyGen() {
     return ( 
         <div>
-            <h1>Key Gen</h1>
+            <div className="forms-container">
+              <EmployeeFormSU />    
+            </div>
+            
         </div>
      );
 }

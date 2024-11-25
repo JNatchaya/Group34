@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../../assets/input";
 import FireAdd from "../../../assets/FIRE-EXTINGUISHER-Add/fire-add";
 import Add from "../../../assets/add/add";
@@ -6,11 +7,72 @@ import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import "./sa-dashbord.css";
 
 function SaDashBord({ selectedDepartment, permiss }) {
-  const [more, setMore] = useState(false);
+  const navigate = useNavigate();
+  
+  const handleViewLocation = () => {
+    // Ensure the selectedDepartment has a valid DPLocation
+    if (selectedDepartment?.DPLocation) {
+      navigate("../map", { state: { location: selectedDepartment.DPLocation } });
+    } else {
+      console.error("No location data available for the selected department.");
+    }
+  };
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const fireData = selectedDepartment?.fire || []; // Dynamic fire extinguisher data
+  const fireData = selectedDepartment?.fire || [];
+  const [more, setMore] = useState(false);
+  const [isEditing, setIsEditing] = useState(false); // For DPName
+  const [isEditingRounds, setIsEditingRounds] = useState(false); // For round-child
+
+  const [editableData, setEditableData] = useState({
+    DPName: selectedDepartment?.DPName || "Department",
+    rounds: [
+      selectedDepartment?.CheckRoundCircular || "",
+      selectedDepartment?.NextCheckRoundDate || "",
+      selectedDepartment?.PreviousCheckRoundDate || "",
+    ],
+  });
+
+  // Toggles the department name edit state
+  const handleEditToggle = () => setIsEditing((prev) => !prev);
+
+  // Toggles the round inputs edit state
+  const handleRoundEditButtonToggle = () => {
+    setIsEditingRounds((prev) => !prev);
+  };
+
+  // Handles changes to DPName and rounds
+  const handleInputChange = (field, value) => {
+    if (field === "DPName") {
+      setEditableData((prev) => ({ ...prev, DPName: value }));
+    } else {
+      const updatedRounds = [...editableData.rounds];
+      updatedRounds[field] = value;
+      setEditableData((prev) => ({ ...prev, rounds: updatedRounds }));
+    }
+  };
+
+  // Renders the input fields or display spans for round values
+  const renderRoundInput = (index, label) => (
+    <div className="round-child" key={index}>
+      {isEditingRounds ? (
+        <input
+          type={index === 0 ? "number" : "date"}
+          value={editableData.rounds[index]}
+          onChange={(e) => handleInputChange(index, e.target.value)}
+        />
+      ) : (
+        <span>
+          {label}{" "}
+          <span style={{ color: "white" }}>
+            {editableData.rounds[index]}
+            {index === 0 && " month"}
+          </span>
+        </span>
+      )}
+    </div>
+  );
 
   return (
     <div className="Sa-dashbord-container">
@@ -29,17 +91,28 @@ function SaDashBord({ selectedDepartment, permiss }) {
           <div className="department-container">
             <div
               className="dp-name box-shadows"
-              onClick={() => {
-                setMore(!more);
-              }}
+              onClick={() => setMore(!more)}
             >
-              {selectedDepartment?.DPName || "Department"}{" "}
+              {isEditing ? (
+                <input
+                  type="text"
+                  placeholder="Click to edit"
+                  value={editableData.DPName}
+                  onChange={(e) => handleInputChange("DPName", e.target.value)}
+                  onBlur={handleEditToggle}
+                />
+              ) : (
+                <span>{editableData.DPName}</span>
+              )}
               <span
                 style={{ color: "white" }}
                 className={`bi bi-caret-down-fill ${more ? "downActive" : ""}`}
               ></span>
-              <div className={`more-container ${more ? "moreCactive" : ""} box-shadows`}>
-
+              <div
+                className={`more-container ${
+                  more ? "moreCactive" : ""
+                } box-shadows`}
+              >
                 <div className="more-child">
                   <span style={{ fontSize: "1.1rem", fontWeight: "bold" }}>
                     Date of Membership
@@ -57,19 +130,30 @@ function SaDashBord({ selectedDepartment, permiss }) {
                   </span>
                 </div>
                 <div className="more-child">
-                  <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                    Location
-                  </span>
-                  <span style={{ fontSize: "1rem" }}>
-                    {selectedDepartment?.DPlocatename || "N/A"}
-                  </span>
-                  <span style={{ color: "blue", fontSize: "1rem", cursor: "pointer" }}>
-                    <br />View Location
-                  </span>
-                </div>
+          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+            Location
+          </span>
+          <span style={{ fontSize: "1rem" }}>
+            {selectedDepartment?.DPlocatename || "N/A"}
+          </span>
+          <span
+            style={{ color: "blue", fontSize: "1rem", cursor: "pointer" }}
+            onClick={handleViewLocation}
+          >
+            <br />View Location
+          </span>
+        </div>
               </div>
             </div>
-            <button className="edit box-shadows">Edit</button>
+            <button
+              className="edit box-shadows"
+              onClick={() => {
+                handleEditToggle();
+                handleRoundEditButtonToggle();
+              }}
+            >
+              {isEditing ? "Save" : "Edit"}
+            </button>
           </div>
           <div className="sec-container">
             <h3>FIRE EXTINGUISHER DATA</h3>
@@ -78,10 +162,15 @@ function SaDashBord({ selectedDepartment, permiss }) {
                 <div
                   className="add-type box-shadows"
                   onClick={() => {
-                    permiss === "SuperAdmin" ? setToggle(!toggle) : setOpen(!open);
+                    permiss === "SuperAdmin"
+                      ? setToggle(!toggle)
+                      : setOpen(!open);
                   }}
                 >
-                  <span className="bi bi-plus-circle" style={{ marginRight: "1rem" }}></span>
+                  <span
+                    className="bi bi-plus-circle"
+                    style={{ marginRight: "1rem" }}
+                  ></span>
                   <span style={{ fontSize: "0.8rem" }}>
                     {permiss === "SuperAdmin" ? "Add" : "Request"}
                   </span>
@@ -97,11 +186,13 @@ function SaDashBord({ selectedDepartment, permiss }) {
                       </div>
                       <div className="info">
                         <span>Status: {fire.status}</span>
-                        <div className="status-circle"
+                        <div
+                          className="status-circle"
                           style={{
                             width: "15px",
                             height: "15px",
-                            backgroundColor: fire.status === "Active" ? "green" : "red",
+                            backgroundColor:
+                              fire.status === "Active" ? "green" : "red",
                             borderRadius: "100%",
                           }}
                         ></div>
@@ -128,11 +219,8 @@ function SaDashBord({ selectedDepartment, permiss }) {
                   {fireData?.length ? (
                     fireData.map((fire, index) => (
                       <div className="dp-child" key={index}>
-                        {/* Serial Number and Location */}
                         <span>Serial Number: {fire.serialNumber}</span>
-                        <span>Location: {fire.location}</span>
-
-                        {/* Optional: Display additional information */}
+                        <span style={{ marginLeft: "auto" }}>Location: {fire.location}</span>
                         <div className="info">
                           <span style={{ fontSize: "0.8rem" }}>
                             {fire.lastMaintenanceDate}
@@ -151,24 +239,11 @@ function SaDashBord({ selectedDepartment, permiss }) {
 
         <div className="bottom-right">
           <div className="round-container">
-            <div className="round-child">
-              Check round circular{" "}
-              <span style={{ color: "white" }}>
-                {selectedDepartment?.CheckRoundCircular || ""}
-              </span>
-            </div>
-            <div className="round-child">
-              Next Check round Date{" "}
-              <span style={{ color: "white" }}>
-                {selectedDepartment?.NextCheckRoundDate || ""}
-              </span>
-            </div>
-            <div className="round-child">
-              previous Check round Date{" "}
-              <span style={{ color: "white" }}>
-                {selectedDepartment?.PreviousCheckRoundDate || ""}
-              </span>
-            </div>
+            {[
+              "Check round circular",
+              "Next Check round Date",
+              "Previous Check round Date",
+            ].map((label, index) => renderRoundInput(index, label))}
           </div>
 
           <div className="sec-container" style={{ gridRow: "span 2" }}>
@@ -204,22 +279,22 @@ function SaDashBord({ selectedDepartment, permiss }) {
                             flexDirection: "column",
                           }}
                         >
-                          <span style={{ fontSize: "0.8rem" }}>Status</span>
-                          <div
+                          <span style={{ fontSize: "0.8rem" }}>Status:</span>
+                          <span
                             style={{
-                              width: "15px",
-                              height: "15px",
-                              backgroundColor:
+                              fontSize: "0.8rem",
+                              color:
                                 fire.status === "Active" ? "green" : "red",
-                              borderRadius: "100%",
                             }}
-                          ></div>
+                          >
+                            {fire.status}
+                          </span>
                         </div>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <p>No fire extinguisher data available</p>
+                  <p>No report data available</p>
                 )}
               </div>
             </div>

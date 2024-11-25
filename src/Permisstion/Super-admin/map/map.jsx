@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import MapComponent from "../../../assets/leaflet/leaflet";
 import { CM } from "../../../DATA/companyData";
 import { fire_extinguisher_data } from "../../../DATA/fireExtinguisherData";
-
+import { useLocation } from "react-router-dom";
 import "./map.css";
 
 function MapContainer({ setSatab }) {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const departmentLocation = location.state?.location;
+  console.log(departmentLocation);
   function matchCompanyWithFireExtinguishers() {
+    
     return CM.map((company) => {
       const matchedDepartments = company.DPCH.map((department) => {
         const fireData = fire_extinguisher_data.find(

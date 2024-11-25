@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import { Stocks } from "../../DATA/Stock";
 import "./fire-add.css";
 
@@ -12,21 +13,18 @@ function FireAdd({ setToggle }) {
   });
   const [size, setSize] = useState(false);
 
-  // Generate Random Serial Number
   const generateRandomSN = (length) => {
-    const randomNum = Math.floor(Math.random() * Math.pow(10, length)); // Generate a random number with the specified length
-    return `SN${randomNum.toString().padStart(length, "0")}`; // Add "SN" prefix and pad the number to the correct length
+    const randomNum = Math.floor(Math.random() * Math.pow(10, length));
+    return `SN${randomNum.toString().padStart(length, "0")}`;
   };
 
-  // Set the type based on selection
   const getType = (event) => {
     const data = event.currentTarget.getAttribute("data-set");
     setType(data);
   };
 
-  // Save the selected values for ULRating, Capacity, and SerialNumber
   const saveValue = (ULRating, Capacity) => {
-    const SerialNumber = generateRandomSN(6); // Generate the serial number
+    const SerialNumber = generateRandomSN(6);
     setValue({
       ULRating,
       Capacity,
@@ -47,7 +45,6 @@ function FireAdd({ setToggle }) {
     setValue("");
   }, [brand]);
 
-  // Disable confirm button if ULRating, Capacity, or SerialNumber are empty
   const isConfirmDisabled =
     !value.ULRating || !value.Capacity || !value.SerialNumber;
 
@@ -79,7 +76,7 @@ function FireAdd({ setToggle }) {
 
         <div className="fire-main">
           <div className="fireman-left">
-            <div className="fireman-title">
+            <div className="fireman-title" style={{ color: "var(--bold-org)" }}>
               {type === ""
                 ? "Choose Type first"
                 : "Choose Fire Extinguisher Brands"}
@@ -108,36 +105,66 @@ function FireAdd({ setToggle }) {
                   ))}
               </div>
             )}
-            {/* <div className="fireman-infomation-container">
-              <div className="picture"></div>
-              <div className="property">
-                <div style={{ fontSize: "1rem" }}>Property:</div>
-                <div className="property-diss ">
-                  <div className="property-child">
-                    Class Rating
-                    <span className="rate-container">
-                      {Array.from({ length:child.property.ClassRating}, (_, index) => (
-                      <div key={1} className="bi bi-star-fill"></div>
 
-                       ))}
-                    </span>
-                  </div>
-                  <div className="property-child">
-                    Capacity <span>3L</span>
-                  </div>
-                  <div className="property-child">
-                    Discharge <span>50 S</span>{" "}
-                  </div>
-                  <div className="property-child">
-                    Operating Temperature Range <span>50 - 70 c</span>
-                  </div>
+            {type && brand && size && (
+              <div className="fireman-infomation-container">
+                <div className="picture"></div>
+                <div className="property">
+                  {Stocks.filter((item) => item.type === type)
+                    .flatMap((filteredItem) => filteredItem.typeChild)
+                    .filter((item) => item.brand === brand)
+                    .filter(
+                      (item) =>
+                        item.property.ULRating === size &&
+                        item.property.Capacity
+                    )
+                    .map((item, index) => (
+                      <React.Fragment key={index}>
+                        <div
+                          style={{ fontSize: "1rem", color: "var(--bold-org)" }}
+                        >
+                          Property:
+                        </div>
+                        <div className="property-diss">
+                          <div className="property-child">
+                            Class Rating
+                            <span className="rate-container">
+                              {Array.from(
+                                { length: item.property.ClassRating },
+                                (_, index) => (
+                                  <div
+                                    key={index}
+                                    className="bi bi-star-fill"
+                                  ></div>
+                                )
+                              )}
+                            </span>
+                          </div>
+                          <div className="property-child">
+                            ULrating <span>{item.property.ULRating}</span>
+                          </div>
+                          <div className="property-child">
+                            Capacity <span>{item.property.Capacity}</span>
+                          </div>
+                          <div className="property-child">
+                            Discharge <span>{item.property.Discharge} S</span>
+                          </div>
+                          <div className="property-child">
+                            Operating Temperature Range{" "}
+                            <span>
+                              {item.property.OperatingTemperatureRange}
+                            </span>
+                          </div>
+                        </div>
+                      </React.Fragment>
+                    ))}
                 </div>
               </div>
-            </div> */}
+            )}
           </div>
 
           <div className="fireman-right">
-            <div className="fireman-title">
+            <div className="fireman-title" style={{ color: "var(--bold-org)" }}>
               {type && !brand && "Choose Brand first"}
               {type && brand && "Choose Fire Extinguisher Sizes"}
             </div>
@@ -153,11 +180,14 @@ function FireAdd({ setToggle }) {
                         key={index}
                         className="size-child"
                         onClick={() => {
-                          setSize(matchedBrand.property.ULRating);
+                          setSize(
+                            matchedBrand.property.ULRating,
+                            matchedBrand.property.Capacity
+                          );
                           saveValue(
                             matchedBrand.property.ULRating,
                             matchedBrand.property.Capacity
-                          ); 
+                          );
                         }}
                       >
                         {matchedBrand.property.ULRating} -{" "}

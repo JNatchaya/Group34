@@ -53,10 +53,15 @@ function StaffManagement() {
           )}
         </div>
       </div>
+      {currentPage === "staff" && (
+    <div className="search-container">
+      <input type="text" placeholder="Search" className="search-bar" />
+    </div>
+  )}
 
       {/* Staff List Section */}
       {currentPage === "staff" && (
-        <div className="staff-container">
+        <div className="staff-container" style={{marginTop: "20px"}}>
           {staffData ? (
             staffData.map((staff) => (
               <div

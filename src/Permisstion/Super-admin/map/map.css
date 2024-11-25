@@ -112,17 +112,22 @@
   }
   
   .cell:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-right: none;
   }
   
   .percentage-bar {
     display: flex;
-    width: 100px;
-    height: 15px;
+    width: 125px;
+    height: 20px;
     border-radius: 5px;
     overflow: hidden;
-    margin: 0 auto;
-    border: 2px solid black;
+    margin: 0;
+    margin-left: 1rem;
+    border: 1px solid black;
+
   }
   
   .green-bar {
@@ -147,7 +152,7 @@
     font-size: 1rem;
     position: absolute;
     background-color: var(--bold-org);
-    bottom: 11%; left: 1rem;
+    bottom: 9rem; left: 1rem;
     width: 150px; height: 45px;
     z-index: 500;
     color: white;

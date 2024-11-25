@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Stocks } from "../../../DATA/Stock.js";
 import Add from "../../../assets/add/add.jsx";
+import Input from "../../../assets/input.jsx";
 import "./stock.css";
 
 function StockManage() {
@@ -49,7 +50,12 @@ function StockManage() {
         </div>
 
         {tapState === 'type_tap' &&(
-               <div className="add-type box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle"></span> <span> Add type </span></div> 
+          <div className="btn-input-container">
+           <div className="add-type box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle"></span> <span> Add type </span></div> 
+           <Input />
+          </div>
+              
+               
             )} 
       </div>
            

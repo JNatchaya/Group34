@@ -52,26 +52,51 @@ function C_management_tab() {
 
   // Handle right-click on an account item
   const handleRightClick = (event, item, type) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default browser context menu
     setContextMenu({
       visible: true,
-      x: event.pageX,
-      y: event.pageY,
+      x: event.pageX -240,
+      y: event.pageY -120, 
       item: item,
-      type: type,
+      type: type, 
     });
   };
+  
 
   // Close context menu
   const handleCloseContextMenu = () => {
     setContextMenu({ visible: false, x: 0, y: 0, item: null, type: null });
   };
+  
 
   // Context menu actions
   const handleDelete = () => {
-    console.log("Delete", contextMenu.item);
+    if (contextMenu.type === "company") {
+      // Deleting a company
+      const updatedCompanies = combinedData.filter(
+        (company) => company.CMname !== contextMenu.item.CMname
+      );
+      combinedData.splice(0, combinedData.length, ...updatedCompanies); // Update context directly
+      console.log("Deleted company:", contextMenu.item.CMname);
+    } else if (contextMenu.type === "department") {
+      // Deleting a department
+      const updatedDepartments = contextMenu.item.DPCH.filter(
+        (department) => department.DPName !== contextMenu.item.DPName
+      );
+      const updatedCompanies = combinedData.map((company) => {
+        if (company.CMname === selectedCompany.CMname) {
+          return { ...company, DPCH: updatedDepartments };
+        }
+        return company;
+      });
+      combinedData.splice(0, combinedData.length, ...updatedCompanies); // Update context directly
+      console.log("Deleted department:", contextMenu.item.DPName);
+    }
     handleCloseContextMenu();
+    setSelectedDepartment(null); // Reset selection
   };
+  
+
 
   const handleEdit = () => {
     setEditingEntity({
@@ -81,6 +106,7 @@ function C_management_tab() {
     setShowEditPopup(true); // Show the Edit popup
     handleCloseContextMenu();
   };
+  
 
   // Popup controls
   const handleAddCompany = () => setShowAddCompanyPopup(true);
@@ -130,7 +156,13 @@ function C_management_tab() {
           )}
         </div>
       </div>
-
+      
+      {/* Conditionally render the search bar */}
+{currentPage !== "FireExtinguishers" && (
+  <div className="search-container">
+    <input type="text" placeholder="Search" className="search-bar" />
+  </div>
+)}
       {currentPage === "company" && (
         <div className="company-container">
           {combinedData.map((company, index) => (
@@ -203,39 +235,55 @@ function C_management_tab() {
       )}
 
       {/* Add buttons */}
-      <button
-        className="add-company-btn"
-        onClick={
-          currentPage === "company" ? handleAddCompany : handleAddDepartment
-        }
-      >
-        {currentPage === "company" ? "Add Company" : "Add Department"}
-      </button>
+      {currentPage !== "FireExtinguishers" && (
+        <button
+          className="add-company-btn"
+          onClick={
+            currentPage === "company" ? handleAddCompany : handleAddDepartment
+          }
+        >
+          {currentPage === "company" ? "Add Company" : "Add Department"}
+        </button>
+      )}
 
       {/* Add Company Popup */}
-      {showAddCompanyPopup && (
-        <div className="popup-overlay">
-          <div className="popup-container styled-popup">
-            <h3 className="popup-header">Add Company</h3>
-            <form>
-              <label className="form-label">Name</label>
-              <input
-                type="text"
-                className="form-input large-input"
-                placeholder="Enter company name"
-              />
-              <label className="form-label">Date of subscription</label>
-              <input type="date" className="form-input" />
-              <button type="submit" className="form-submit-btn">
-                Confirm
-              </button>
-            </form>
-            <button className="close-popup-btn" onClick={closeCompanyPopup}>
-              ✕
-            </button>
-          </div>
+{showAddCompanyPopup && (
+  <div className="popup-overlay">
+    <div className="popup-container styled-popup">
+      <h3 className="popup-header">Add Company</h3>
+      <form>
+        <label className="form-label">Name</label>
+        <input
+          type="text"
+          className="form-input large-input"
+          placeholder="Enter company name"
+        />
+
+        <label className="form-label">Date of subscription</label>
+        <input type="date" className="form-input" />
+
+        <label className="form-label"></label>
+        <div className="custom-dropdown">
+          Membership Registration Format
+          <select className="custom-dropdown-select">
+            <option value="basic">1 Year</option>
+            <option value="premium">2 Year</option>
+            <option value="enterprise">3 Year</option>
+          </select>
         </div>
-      )}
+
+        <button type="submit" className="form-submit-btn">
+          Confirm
+        </button>
+      </form>
+      <button className="close-popup-btn" onClick={closeCompanyPopup}>
+        ✕
+      </button>
+    </div>
+  </div>
+)}
+
+
 
       {/* Add Department Popup */}
       {showAddDepartmentPopup && (
@@ -281,69 +329,92 @@ function C_management_tab() {
         </div>
       )}
 
-      {/* Edit Popup */}
-      {showEditPopup && (
-        <div className="popup-overlay">
-          <div className="popup-container">
-            <h3 className="popup-header">
-              Edit {editingEntity.type === "company" ? "Company" : "Department"}{" "}
-              Information
-            </h3>
-            <form>
-              <label className="form-label">
-                {editingEntity.type === "company"
-                  ? "Company Name"
-                  : "Department Name"}
-              </label>
-              <input
-                type="text"
-                className="form-input"
-                value={
-                  editingEntity.data?.CMname || editingEntity.data?.DPName || ""
-                }
-                onChange={(e) =>
-                  setEditingEntity({
-                    ...editingEntity,
-                    data: {
-                      ...editingEntity.data,
-                      [editingEntity.type === "company" ? "CMname" : "DPName"]:
-                        e.target.value,
-                    },
-                  })
-                }
-              />
+{/* Edit Popup */}
+{showEditPopup && (
+  <div className="popup-overlay">
+    <div className="popup-container">
+      <h3 className="popup-header">
+        Edit {editingEntity.type === "company" ? "Company" : "Department"}{" "}
+        Information
+      </h3>
+      <form>
+        <label className="form-label">
+          {editingEntity.type === "company"
+            ? "Company Name"
+            : "Department Name"}
+        </label>
+        <input
+          type="text"
+          className="form-input"
+          value={
+            editingEntity.data?.CMname || editingEntity.data?.DPName || ""
+          }
+          onChange={(e) =>
+            setEditingEntity({
+              ...editingEntity,
+              data: {
+                ...editingEntity.data,
+                [editingEntity.type === "company" ? "CMname" : "DPName"]:
+                  e.target.value,
+              },
+            })
+          }
+        />
 
-              <label className="form-label">Location</label>
-              <div className="map-placeholder">Choose New Location</div>
+        {editingEntity.type === "department" && (
+          <>
+            <label className="form-label">Location</label>
+            <div className="map-placeholder">Choose New Location</div>
+          </>
+        )}
 
-              {/* Action buttons */}
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <button
-                  type="button"
-                  className="cancel-btn"
-                  onClick={closeEditPopup}
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="edit-btn">
-                  Save
-                </button>
-              </div>
-            </form>
-          </div>
+        {/* Action buttons */}
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <button
+            type="button"
+            className="cancel-btn"
+            onClick={closeEditPopup}
+          >
+            Cancel
+          </button>
+          <button type="submit" className="edit-btn">
+            Save
+          </button>
         </div>
-      )}
+      </form>
+    </div>
+  </div>
+)}
 
-      {/* Context Menu */}
-      {contextMenu.visible && (
-        <div
-          className="context-menu"
-          style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
-        >
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
-      )}
+
+{/* Context Menu */}
+{contextMenu.visible && (
+  <div
+    className="context-menu"
+    style={{
+      position: "absolute",
+      top: `${contextMenu.y}px`,
+      left: `${contextMenu.x}px`,
+      zIndex: 1000, // Ensure it's above other elements
+      backgroundColor: "#fff",
+      border: "1px solid #ddd",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+      padding: "10px",
+      borderRadius: "5px",
+    }}
+  >
+    <button
+      style={{ display: "block", marginBottom: "5px" }}
+      onClick={handleEdit}
+    >
+      Edit
+    </button>
+    <button style={{ display: "block" }} onClick={handleDelete}>
+      Delete
+    </button>
+  </div>
+)}
+
     </div>
   );
 }

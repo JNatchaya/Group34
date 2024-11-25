@@ -4,10 +4,9 @@
   }
   
   .mechanic-status {
-    font-size: 0.9em;
-    font-weight: bold;
-  }
-  .mechanic-status{
-    position: fixed;
-    right: 70px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  gap: 8px;
+}
