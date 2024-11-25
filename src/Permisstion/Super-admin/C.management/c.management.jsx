@@ -71,9 +71,32 @@ function C_management_tab() {
 
   // Context menu actions
   const handleDelete = () => {
-    console.log("Delete", contextMenu.item);
+    if (contextMenu.type === "company") {
+      // Deleting a company
+      const updatedCompanies = combinedData.filter(
+        (company) => company.CMname !== contextMenu.item.CMname
+      );
+      combinedData.splice(0, combinedData.length, ...updatedCompanies); // Update context directly
+      console.log("Deleted company:", contextMenu.item.CMname);
+    } else if (contextMenu.type === "department") {
+      // Deleting a department
+      const updatedDepartments = contextMenu.item.DPCH.filter(
+        (department) => department.DPName !== contextMenu.item.DPName
+      );
+      const updatedCompanies = combinedData.map((company) => {
+        if (company.CMname === selectedCompany.CMname) {
+          return { ...company, DPCH: updatedDepartments };
+        }
+        return company;
+      });
+      combinedData.splice(0, combinedData.length, ...updatedCompanies); // Update context directly
+      console.log("Deleted department:", contextMenu.item.DPName);
+    }
     handleCloseContextMenu();
+    setSelectedDepartment(null); // Reset selection
   };
+  
+
 
   const handleEdit = () => {
     setEditingEntity({
