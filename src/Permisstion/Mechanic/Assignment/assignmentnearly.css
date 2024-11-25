@@ -1,15 +1,19 @@
 
 /* หน้า assignment-nearly */
-.assignment-nearly-container{
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-color: #F2F2E6;
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-  }
-  .assignment-nearly {
-    height: 80vh;
+.assignment-nearly-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #F2F2E6;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  box-sizing: border-box;
+}
+.assignment-nearly {
+  height: auto;
   width: 100%;
   background-color: #F2F2E6;
   padding: 20px;
@@ -19,15 +23,50 @@
   gap: 16px;
   margin: 0;
   box-sizing: border-box;
-  }
+  flex-grow: 1; 
+}
   .assignment-nearly h2 {
     color: black;
     margin: 0;
   }
+  .task-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .task-holder {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .holder-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .holder-active {
+    background-color: #fd6e2b; 
+  }
+  
+  .holder-inactive {
+    background-color: #e0e0e0;
+  }
+
 
 
   /* หน้า place-nearly */
   .nearly-place-container {
+    position: relative; 
     height: 90vh; 
     width: 100%; 
     background-color: #F2F2E6; 
@@ -38,6 +77,7 @@
     gap: 20px;
     box-sizing: border-box;
     margin: 0;
+
   }
   .nearly-place-container h2 {
     color: black;
@@ -46,29 +86,7 @@
     font-size: 25px;
     font-weight: bold;
   }
-  .place-section {
-    /* border: dashed 3px #FD6E2B; */
-    border-radius: 10px;
-    height: 100%;
-    max-height: 70%; 
-    width: 100%; 
-    background-color: #FAD8B0; 
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 16px;
-    box-sizing: border-box;
-    overflow-y: auto; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  .place-section h3 {
-    color: black;
-    margin: 0 0 10px 0; 
-    font-size: 20px;
-    font-weight: bold;
-  }
+
   .task-card2 {
     display: flex;
     align-items: center;
@@ -79,10 +97,13 @@
     justify-content: space-between;
     color: white;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   .task-card2 .task-title {
     font-size: 16px;
+  }
+  .task-card2 p {
+    margin: 0;
   }
   .finish {
     display: flex;
@@ -90,9 +111,9 @@
     gap: 5px;
   }
   .return-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    bottom: 100px;
+    align-self: flex-end; 
     width: 80px;
     padding: 10px;
     font-size: 14px;
@@ -101,8 +122,8 @@
     border: none;
     border-radius: 5px;
     text-align: center;
-    margin-right: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   

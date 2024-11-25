@@ -5,11 +5,12 @@ function AssignmentInfo({ onReturn }) {
   const [evidence, setEvidence] = useState([]);
   const [checkedItems, setCheckedItems] = useState(Array(6).fill(false));
   const [showPopup, setShowPopup] = useState(false);
+  const [dropdowns, setDropdowns] = useState(Array(6).fill(false)); 
 
   const handleAddEvidence = (event) => {
     const files = Array.from(event.target.files);
     const newEvidence = files.map((file) => URL.createObjectURL(file));
-    setEvidence((prevEvidence) => [...prevEvidence, ...newEvidence]);
+    setEvidence((prevEvidence) => [...newEvidence, ...prevEvidence]);
   };
 
   const handleDeleteEvidence = (indexToDelete) => {
@@ -24,11 +25,17 @@ function AssignmentInfo({ onReturn }) {
     setCheckedItems(newCheckedItems);
   };
 
+  const toggleDropdown = (index) => {
+    const newDropdowns = [...dropdowns];
+    newDropdowns[index] = !newDropdowns[index]; 
+    setDropdowns(newDropdowns);
+  };
+
   const handleSubmit = () => {
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
-      onReturn(); // กลับ
+      onReturn();
     }, 3000);
   };
 
@@ -65,7 +72,11 @@ function AssignmentInfo({ onReturn }) {
               <div className="M-Location">
                 <h4>Location</h4>
               </div>
-              <div className="M-location-details">Map</div>
+              <div className="M-location-details">
+                <span>
+                  <i class="bi bi-pin-map-fill"></i> &nbsp;Map
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -77,17 +88,34 @@ function AssignmentInfo({ onReturn }) {
             <div className="Checklist-details">
               {checklistData.map((item, index) => (
                 <div key={index} className="checklist-item">
-                  <span>{item}</span>
-                  <button
-                    className="checklist-icon"
-                    onClick={() => toggleChecked(index)}
-                  >
-                    {checkedItems[index] ? (
-                      <i className="bi bi-check-circle-fill"></i>
-                    ) : (
-                      <i className="bi bi-circle"></i>
-                    )}
-                  </button>
+                  <div className="checklist-header">
+                    <span>{item}</span>
+                    <div className="mChecklist-line">
+                      <i
+                        className={`bi ${
+                          dropdowns[index]
+                            ? "bi-caret-up-fill"
+                            : "bi-caret-down-fill"
+                        }`}
+                        onClick={() => toggleDropdown(index)}
+                      ></i>
+                      <button
+                        className="checklist-icon"
+                        onClick={() => toggleChecked(index)}
+                      >
+                        {checkedItems[index] ? (
+                          <i className="bi bi-check-circle-fill"></i>
+                        ) : (
+                          <i className="bi bi-circle"></i>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  {dropdowns[index] && (
+                    <div className="dropdown-box">
+                      <p>Additional details for {item}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -97,17 +125,19 @@ function AssignmentInfo({ onReturn }) {
               <h4>Evidence</h4>
             </div>
             <div className="evidence-preview">
-              {evidence.map((src, index) => (
-                <div key={index} className="evidence-item">
-                  <img src={src} alt="evidence" className="evidence-image" />
-                  <i
-                    className="bi bi-x-circle-fill delete-image-icon"
-                    onClick={() => handleDeleteEvidence(index)}
-                  ></i>
-                </div>
-              ))}
+              <div className="evidence-container">
+                {evidence.map((src, index) => (
+                  <div key={index} className="evidence-item">
+                    <img src={src} alt="evidence" className="evidence-image" />
+                    <i
+                      className="bi bi-x-circle-fill delete-image-icon"
+                      onClick={() => handleDeleteEvidence(index)}
+                    ></i>
+                  </div>
+                ))}
+              </div>
 
-              <label className="add-button">
+              <label className="mAdd-button">
                 <h5>Add</h5>
                 <input
                   type="file"
