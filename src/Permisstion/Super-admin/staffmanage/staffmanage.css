@@ -4,7 +4,13 @@
     padding: 20px;
     height: 100%;
   }
-  
+ 
+  .staff-container {
+    display: flex;
+    flex-direction: column;
+
+  }
+
   .company-container {
     margin-top: 20px;
     overflow: hidden;
