@@ -1,15 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.M-app {
-  width: 100%;
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  position: relative;
+  background-color: #E5E5E5; 
+}
+
+/* ปรับขนาด UI ของโทรศัพท์ */
+.M-app {
+  width: 393px;
+  height: 852px;
+  position: relative; 
   background-color: #F2F2E6;
-  font-family: Arial, sans-serif;
-  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .M-header {
   height: 10vh;
@@ -33,6 +39,7 @@
   align-items: center;
   gap: 10px;
   margin-left: 60%;
+  cursor: pointer;
 }
 .icon-mail {
   font-size: 180%;
@@ -51,7 +58,7 @@
   font-size: 20px;
 }
 .overlay {
-  position: fixed;
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
@@ -60,45 +67,47 @@
   backdrop-filter: blur(5px);
   z-index: 10;
 }
+
 /* Log out */
-.logout-popup {
-  position: fixed;
+.m-logout-popup {
+  position: absolute; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
-  width: 60%;
+  width: 80%; 
+  max-width: 300px;
   background-color: #F2F2E6;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.logout-popup p {
+.m-logout-popup p {
   font-size: 24px;
   color: #473366;
   margin-bottom: 20px;
 }
-.logout-confirm,
-.logout-cancel {
+.m-logout-confirm,
+.m-logout-cancel {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
   font-size: 18px;
-  cursor: pointer;
   border: none;
 }
-.logout-confirm {
+.m-logout-confirm {
   background-color: #FD6E2B;
   color: white;
 }
-.logout-cancel {
+.m-logout-cancel {
   background-color: #473366;
   color: white;
 }
+
 /* เมนู */
 .menu-button {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   right: 20px;
   width: 70px;
@@ -106,16 +115,16 @@
   background-color: #FD6E2B;
   border-radius: 50%;
   border: none;
-  margin-bottom: 30px;
-  margin-right: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 .menu-popup {
   transition: 0.5s;
-  position: fixed;
-  bottom: 40px;
-  right: 20px;
+  position: absolute; 
+  bottom: 100px; 
+  right: 20px; 
   width: 250px;
-  height: 300px;
+  height: 330px;
   background-color: #F2F2E6;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -148,6 +157,7 @@
   margin: 10px 0;
   padding: 8px;
   text-align: center;
+  cursor: pointer;
 }
 .menu-item.active {
   background-color: #FD6E2B;
@@ -156,7 +166,6 @@
   height: 50px;
   border: 1px solid #FD6E2B;
 }
-
 
 /* หน้า assignment */
 .content {
@@ -168,7 +177,7 @@
   justify-content: center;
   margin: 0;
 }
-.M-assignment-container{
+.M-assignment-container {
   height: 90vh;
   width: 100%;
   background-color: #F2F2E6;
@@ -194,6 +203,7 @@
   margin: 0;
 }
 
+
 /* การ์ด */
 .task-card {
   display: flex;
@@ -207,9 +217,10 @@
   width: 100%;
   height: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 .task-icon {
-  width: 50px;
+  width: 55px;
   height: 45px;
   background-color: #FD6E2B;
   border-radius: 50%;
@@ -240,3 +251,116 @@
 .value {
   font-size: 14px;
 }
+
+input[type="checkbox"] {
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  width: 20px; 
+  height: 20px;
+  background-color: #f0f0f0; 
+  border: 2px solid #ccc; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s, border-color 0.3s; 
+}
+
+input[type="checkbox"]:checked {
+  background-color: #FD6E2B; 
+  border-color: #FD6E2B; 
+}
+
+input[type="checkbox"]:hover {
+  border-color: #888; 
+}
+
+
+/* popup notification */
+
+.mail-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; 
+  max-width: 400px; 
+  height: 600px;
+  background-color: white; 
+  padding: 20px;
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เงา */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+.mail-popup-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  height: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #473366;
+  margin-bottom: 10px;
+  position: relative; 
+}
+.mail-popup-header .m-close-button {
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 1.5rem; 
+  color: #473366; 
+  position: relative; 
+  margin-left: auto; 
+}
+.mail-popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  width: 100%;
+  
+}
+.notification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: #FDBB92;
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+.notification-card .circle {
+  width: 40px;
+  height: 40px;
+  background-color: #FD6E2B;
+  border-radius: 50%;
+}
+.notification-card .content {
+  padding-top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: #473366;
+  width: 40px;
+  height: 80px;
+  background-color: #FDBB92;
+  margin: 0;
+}
+.m-show-more-button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  background-color: #FD6E2B;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+

@@ -1,169 +1,220 @@
-.g-report-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.g-report-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.g-report-header{
-    margin-top: 20px;
-    width: 100%;
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.g-report-header {
+  margin-top: 20px;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.g-logo-report{
+.g-logo-report {
   margin-top: 5px;
   width: 87px;
   height: 100px;
   background-size: cover;
   background-image: url(/public/Logos/โลโก้รอง/metthier2\ สำเนา.png);
 }
-.g-report-header h1{
-    margin-top: 20px;
-    font-weight: bolder;
-    font-size: 30px;
-    color: #FD6E2B;
+.g-report-header h1 {
+  margin-top: 20px;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #FD6E2B;
 }
 
-.report-body{
-    margin-top: 10px;
-    width: 80%;
-    height: 60vh;
+.report-body {
+  margin-top: 10px;
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  text-align: left; 
 }
 
-.report-field{
-    margin-top: 20px;
-}
-.report-field h2{
-    font-size: 20px;
-    color: #FD6E2B;
+.report-field {
+  margin-top: 20px;
+  width: 100%; 
 }
 
+.report-field h2 {
+  font-size: 20px;
+  color: #FD6E2B;
+  margin-bottom: 0;
+  text-align: left; 
+}
+
+.auto-filled {
+  color: #333;
+  font-weight: bold;
+  display: inline-block; 
+}
 
 .report-textarea {
-    width: 100%;
-    border: none; 
-    border-bottom: 2px solid #FD6E2B; 
-    outline: none; 
-    font-size: 1rem; 
-    line-height: 1; 
-    color: #000; 
-    padding: 0; 
-    margin: 0; 
-    background: transparent; 
-    transition: border-color 0.2s ease; 
-  }
-  
-  .report-textarea::placeholder {
-    color: #ccc; 
-  }
-  
-  .report-textarea:focus {
-    border-bottom: 2px solid #FF784E; 
-  }
-  
-  .report-field label {
-    font-size: 1.2rem; 
-    color: #FD6E2B; 
-    font-weight: bold; 
-    margin-bottom: 40px; 
-    display: block;
-  }
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #FD6E2B;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000;
+  padding: 5px;
+  margin-top: 0;
+  background: transparent;
+  text-align: left; 
+  transition: border-color 0.2s ease;
+}
 
- /* ตัวอย่างรูป */
+.report-textarea::placeholder {
+  color: #ccc;
+}
+
+.report-textarea:focus {
+  border-bottom: 2px solid #FF784E;
+}
+
+.report-field label {
+  font-size: 1.2rem;
+  color: #FD6E2B;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: block;
+}
+
 .image-preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .image-preview {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .image-preview img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  
-  .delete-image-icon {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 20px;
-    color: red;
-    background-color: white;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+  max-height: 100px; 
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  visibility: hidden; 
+}
 
-/* ป๊อปอัพ */
+.image-preview-container.visible {
+  visibility: visible; 
+}
+
+
+.image-preview {
+  position: relative;
+  width: 90px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+
+.delete-image-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+  color: red;
+  background-color: white;
+}
+
+.report-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute; 
+  bottom: 40px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+
+.submit-button {
+  background-color: #FD6E2B;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.submit-button:hover {
+  background-color: #FF784E;
+}
+
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-content p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.popup-close {
+  background-color: #fd6e2b;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+  background-color: #ff784e;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  
-  .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out; 
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .popup-content p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #4caf50; 
-    margin-bottom: 20px;
-  }
-  
-  .popup-close {
-    background-color: #fd6e2b;
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .popup-close:hover {
-    background-color: #ff784e;
-  }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
+}

@@ -1,32 +1,36 @@
 import React from "react";
+import mAssigmData from "../../../DATA/m-assignData";
 import "../layout/M-layout.css";
 import "../Assignment/assignmentnearly.css";
 
-function NearlyPlace({ onReturn, onTaskClick }) {
+function NearlyPlace({ onTaskClick, onReturn , select}) {
+  const allData = mAssigmData.filter((task) => task.place === select).flatMap((assignment) => assignment.data.filter((task) => !task.finished));
+  console.log("select:", allData ); 
+
   return (
     <div className="nearly-place-container">
-      <h2>Assignment Nearly</h2>
-      <div className="place-section">
-        <h3>Place</h3>
-        {[...Array(5)].map((_, index) => (
+      <h2>Assignments</h2>
+      
+        {allData.map((item, index) => (
           <div
             key={index}
             className="task-card2"
-            onClick={onTaskClick} // ไปหน้า AssignmentInfo
+            onClick={() => onTaskClick(item)} 
           >
-            <span className="task-title">Fire extinguisher Serial number {index + 1}</span>
-            <label className="finish">
-              <span className="label">Finish</span>
-              <input type="checkbox" />
-            </label>
+            <p>
+              <strong></strong> {item.serialNumber}
+            </p>
+            <div className="task-finished">
+              <label className="finish">
+                <span className="label">Finished</span>
+                <input type="checkbox" checked={item.finished} readOnly />
+              </label>
+            </div>
           </div>
         ))}
-      </div>
-
-      <button
-        className="return-button"
-        onClick={onReturn} //กลับไป AssignmentNearly
-      >
+        
+      
+      <button className="return-button" onClick={onReturn}>
         Return
       </button>
     </div>
