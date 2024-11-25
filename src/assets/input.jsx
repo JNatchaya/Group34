@@ -27,11 +27,11 @@ const StyledWrapper = styled.div`
 
   .input {
     width: 350px;
-    height: 25px;
+    height: 75%;
     line-height: 28px;
     padding: 0 1rem;
     padding-left: 2.5rem;
-    border: 2px solid transparent;
+    border: 2px solid black;
     border-radius: 8px;
     outline: none;
     background-color: #f3f3f4;
