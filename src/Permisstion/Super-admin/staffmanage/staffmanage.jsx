@@ -92,12 +92,13 @@ function StaffManagement() {
             <span className="BreadCrumb-child">{userData.Name} /</span>
           )}
         </div>
-      </div>
-      {currentPage === "staff" && (
+        {currentPage === "staff" && (
     <div className="search-container">
       <input type="text" placeholder="Search" className="search-bar" />
     </div>
   )}
+      </div>
+      
 
       {/* Staff List Section */}
       {currentPage === "staff" && (

@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import "./G-report.css";
 
 function GReport({ handlePageChange }) {
-  const serialNumber = "12345"; // ตัวอย่าง Serial Number
-  const [previewImages, setPreviewImages] = useState([]); 
-  const [showPopup, setShowPopup] = useState(false); 
+  const serialNumber = "SN456790"; 
+  const [previewImages, setPreviewImages] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleFileUpload = (event) => {
     const files = event.target.files;
     const imageUrls = Array.from(files).map((file) =>
       URL.createObjectURL(file)
-    ); 
-    setPreviewImages((prevImages) => [...prevImages, ...imageUrls]); 
+    );
+    setPreviewImages((prevImages) => [...prevImages, ...imageUrls]);
   };
 
   const handleDeleteImage = (indexToDelete) => {
     setPreviewImages((prevImages) =>
       prevImages.filter((_, index) => index !== indexToDelete)
-    ); 
+    );
   };
 
   const handleSubmit = () => {
@@ -27,9 +27,9 @@ function GReport({ handlePageChange }) {
     };
 
     console.log("Submitted data:", reportData);
-    setShowPopup(true); 
+    setShowPopup(true);
 
-    // เวลาโชว์ pop up
+
     setTimeout(() => {
       setShowPopup(false);
       handlePageChange("dashboard");
@@ -65,9 +65,13 @@ function GReport({ handlePageChange }) {
             type="file"
             className="upload-file"
             onChange={handleFileUpload}
-            multiple 
+            multiple
           />
-          <div className="image-preview-container">
+          <div
+            className={`image-preview-container ${
+              previewImages.length > 0 ? "visible" : ""
+            }`}
+          >
             {previewImages.map((image, index) => (
               <div key={index} className="image-preview">
                 <img src={image} alt={`Preview ${index + 1}`} />

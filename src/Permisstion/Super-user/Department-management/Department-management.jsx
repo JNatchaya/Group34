@@ -4,12 +4,15 @@ import "leaflet/dist/leaflet.css"; // Import Leaflet styles
 import L from "leaflet";
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import SaDashBord from "../../Super-admin/Sa-Dashbord/sa-dashbord";
+
 function DepartmentMangement() {
-    const combinedData = useCombinedData();
+  const combinedData = useCombinedData();
   const firstCompany = combinedData[0]; // Get the first company
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [currentPage, setCurrentPage] = useState("department");
   const [showAddDepartmentPopup, setShowAddDepartmentPopup] = useState(false);
+  const [showEditDepartmentPopup, setShowEditDepartmentPopup] = useState(false); // For editing
+  const [editDepartmentName, setEditDepartmentName] = useState(""); // For edited name
   const [departmentLocation, setDepartmentLocation] = useState(null);
   const [contextMenu, setContextMenu] = useState({
     visible: false,
@@ -36,20 +39,61 @@ function DepartmentMangement() {
 
   // Context menu actions
   const handleDelete = () => {
-    console.log("Delete", contextMenu.item);
+    if (!contextMenu.item) return;
+  
+    // Update the firstCompany's DPCH directly
+    const updatedDPCH = firstCompany.DPCH.filter(
+      (department) => department !== contextMenu.item
+    );
+  
+    // Update the firstCompany's data locally
+    firstCompany.DPCH = updatedDPCH;
+  
+    console.log("Deleted Department:", contextMenu.item);
+  
+    // Optionally, re-render by updating a local state (e.g., a dummy state toggle)
+    forceUpdate();
+  
     handleCloseContextMenu();
   };
+  
+  // Force a re-render without a context or setter
+  const [, setRender] = useState(0);
+  const forceUpdate = () => setRender((prev) => prev + 1);
+  
 
   const handleEdit = () => {
-    console.log("Edit", contextMenu.item);
+    setEditDepartmentName(contextMenu.item?.DPName || "");
+    setShowEditDepartmentPopup(true);
     handleCloseContextMenu();
   };
 
-  // Popup controls
-  const handleAddDepartment = () => setShowAddDepartmentPopup(true);
-  const closeDepartmentPopup = () => {
-    setShowAddDepartmentPopup(false);
-    setDepartmentLocation(null);
+  // Close edit popup
+  const closeEditPopup = () => setShowEditDepartmentPopup(false);
+
+  // Handle edit form submission
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    console.log("Updated Department Name:", editDepartmentName);
+
+    // Update the department name in your data here
+    // For example, you could use a function to update the context or state
+    const updatedCompanyData = combinedData.map((company) => {
+      if (company === firstCompany) {
+        return {
+          ...company,
+          DPCH: company.DPCH.map((department) =>
+            department === contextMenu.item
+              ? { ...department, DPName: editDepartmentName }
+              : department
+          ),
+        };
+      }
+      return company;
+    });
+
+    console.log("Updated Data:", updatedCompanyData);
+    setShowEditDepartmentPopup(false);
   };
 
   return (
@@ -74,12 +118,12 @@ function DepartmentMangement() {
             </>
           )}
         </div>
+        {currentPage === "department" && (
+          <div className="search-container">
+            <input type="text" placeholder="Search" className="search-bar" />
+          </div>
+        )}
       </div>
-      {currentPage === "department" && (
-    <div className="search-container">
-      <input type="text" placeholder="Search" className="search-bar" />
-    </div>
-  )}
 
       {currentPage === "department" && firstCompany && (
         <div className="company-container">
@@ -119,49 +163,29 @@ function DepartmentMangement() {
 
       {/* Add Department Button */}
       {currentPage !== "FireExtinguishers" && (
-        <button className="add-company-btn" onClick={handleAddDepartment}>
+        <button className="add-company-btn" onClick={() => setShowAddDepartmentPopup(true)}>
           Add Department
         </button>
       )}
 
-      {/* Add Department Popup */}
-      {showAddDepartmentPopup && (
+      {/* Edit Department Popup */}
+      {showEditDepartmentPopup && (
         <div className="popup-overlay">
           <div className="popup-container styled-popup">
-            <h3 className="popup-header">Add Department</h3>
-            <form>
+            <h3 className="popup-header">Edit Department</h3>
+            <form onSubmit={handleEditSubmit}>
               <label className="form-label">Department Name</label>
               <input
                 type="text"
                 className="form-input large-input"
-                placeholder="Enter department name"
-              />
-              <label className="form-label">Location</label>
-              <MapContainer
-                center={[51.505, -0.09]}
-                zoom={13}
-                className="map"
-                style={{ height: "300px", width: "100%" }}
-              >
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <LocationSelector setLocation={setDepartmentLocation} />
-                {departmentLocation && (
-                  <Marker
-                    position={[departmentLocation.lat, departmentLocation.lng]}
-                  />
-                )}
-              </MapContainer>
-              <label className="form-label">Number of Fire Extinguishers</label>
-              <input
-                type="number"
-                className="form-input"
-                placeholder="Enter number"
+                value={editDepartmentName}
+                onChange={(e) => setEditDepartmentName(e.target.value)}
               />
               <button type="submit" className="form-submit-btn">
-                Confirm
+                Save Changes
               </button>
             </form>
-            <button className="close-popup-btn" onClick={closeDepartmentPopup}>
+            <button className="close-popup-btn" onClick={closeEditPopup}>
               ✕
             </button>
           </div>
@@ -179,7 +203,6 @@ function DepartmentMangement() {
             zIndex: 1000,
             backgroundColor: "#fff",
             border: "1px solid #ddd",
-
             borderRadius: "5px",
           }}
         >
