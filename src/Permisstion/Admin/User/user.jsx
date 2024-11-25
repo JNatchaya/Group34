@@ -46,12 +46,13 @@ function User() {
             <span className="BreadCrumb-child">{selectedStaff.Name} /</span>
           )}
         </div>
-      </div>
-      {currentPage === "staff" && (
+        {currentPage === "staff" && (
     <div className="search-container">
       <input type="text" placeholder="Search" className="search-bar" />
     </div>
   )}
+      </div>
+
 
       {/* Staff Section */}
       {currentPage === "staff" && (

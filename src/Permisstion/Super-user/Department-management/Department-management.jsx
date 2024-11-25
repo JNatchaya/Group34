@@ -74,12 +74,13 @@ function DepartmentMangement() {
             </>
           )}
         </div>
-      </div>
-      {currentPage === "department" && (
+        {currentPage === "department" && (
     <div className="search-container">
       <input type="text" placeholder="Search" className="search-bar" />
     </div>
   )}
+      </div>
+
 
       {currentPage === "department" && firstCompany && (
         <div className="company-container">

@@ -57,12 +57,13 @@ function StaffManagementTab() {
             <span className="BreadCrumb-child">{selectedStaff.Name} /</span>
           )}
         </div>
-      </div>
-      {currentPage === "staff" && (
+        {currentPage === "staff" && (
     <div className="search-container">
       <input type="text" placeholder="Search" className="search-bar" />
     </div>
   )}
+      </div>
+
       {/* Staff Section */}
       {currentPage === "staff" && (
         <div className="staff-container"  style={{marginTop:"20px"}}>
