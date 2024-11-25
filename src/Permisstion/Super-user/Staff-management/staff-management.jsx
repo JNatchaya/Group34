@@ -58,10 +58,14 @@ function StaffManagementTab() {
           )}
         </div>
       </div>
-
+      {currentPage === "staff" && (
+    <div className="search-container">
+      <input type="text" placeholder="Search" className="search-bar" />
+    </div>
+  )}
       {/* Staff Section */}
       {currentPage === "staff" && (
-        <div className="staff-container">
+        <div className="staff-container"  style={{marginTop:"20px"}}>
           {mechanicStaff.map((staff, index) => {
             const { color, label } = getStatusStyle(staff.MechanicStatus);
 

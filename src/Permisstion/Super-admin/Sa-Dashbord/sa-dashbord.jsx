@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../../assets/input";
 import FireAdd from "../../../assets/FIRE-EXTINGUISHER-Add/fire-add";
 import Add from "../../../assets/add/add";
@@ -6,6 +7,16 @@ import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import "./sa-dashbord.css";
 
 function SaDashBord({ selectedDepartment, permiss }) {
+  const navigate = useNavigate();
+  
+  const handleViewLocation = () => {
+    // Ensure the selectedDepartment has a valid DPLocation
+    if (selectedDepartment?.DPLocation) {
+      navigate("../map", { state: { location: selectedDepartment.DPLocation } });
+    } else {
+      console.error("No location data available for the selected department.");
+    }
+  };
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -119,23 +130,19 @@ function SaDashBord({ selectedDepartment, permiss }) {
                   </span>
                 </div>
                 <div className="more-child">
-                  <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-                    Location
-                  </span>
-                  <span style={{ fontSize: "1rem" }}>
-                    {selectedDepartment?.DPlocatename || "N/A"}
-                  </span>
-                  <span
-                    style={{
-                      color: "blue",
-                      fontSize: "1rem",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <br />
-                    View Location
-                  </span>
-                </div>
+          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+            Location
+          </span>
+          <span style={{ fontSize: "1rem" }}>
+            {selectedDepartment?.DPlocatename || "N/A"}
+          </span>
+          <span
+            style={{ color: "blue", fontSize: "1rem", cursor: "pointer" }}
+            onClick={handleViewLocation}
+          >
+            <br />View Location
+          </span>
+        </div>
               </div>
             </div>
             <button
@@ -213,7 +220,7 @@ function SaDashBord({ selectedDepartment, permiss }) {
                     fireData.map((fire, index) => (
                       <div className="dp-child" key={index}>
                         <span>Serial Number: {fire.serialNumber}</span>
-                        <span>Location: {fire.location}</span>
+                        <span style={{ marginLeft: "auto" }}>Location: {fire.location}</span>
                         <div className="info">
                           <span style={{ fontSize: "0.8rem" }}>
                             {fire.lastMaintenanceDate}

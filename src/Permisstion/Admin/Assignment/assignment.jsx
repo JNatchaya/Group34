@@ -29,7 +29,11 @@ function Assignment() {
                     )}
                 </div>
             </div>
-
+            {currentPage === "company" && (
+    <div className="search-container">
+      <input type="text" placeholder="Search" className="search-bar" />
+    </div>
+  )}
             {/* Company Section */}
             {currentPage === "company" && (
                 <div className="company-container">

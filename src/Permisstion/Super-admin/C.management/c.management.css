@@ -390,6 +390,31 @@
 .custom-dropdown-select option {
   color: black; /* Text color in dropdown options */
 }
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.search-bar {
+  width: 300px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 0 15px;
+  font-size: 16px;
+  background-color: #fdfcf6;
+  outline: none;
+  box-sizing: border-box;
+  position: fixed;
+  right: 3rem;
+  margin-bottom: 3rem;
+}
+
+.search-bar::placeholder {
+  color: #6a6a6a;
+  font-style: italic;
+}
 
 
 

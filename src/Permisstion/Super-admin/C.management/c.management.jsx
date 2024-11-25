@@ -156,7 +156,13 @@ function C_management_tab() {
           )}
         </div>
       </div>
-
+      
+      {/* Conditionally render the search bar */}
+{currentPage !== "FireExtinguishers" && (
+  <div className="search-container">
+    <input type="text" placeholder="Search" className="search-bar" />
+  </div>
+)}
       {currentPage === "company" && (
         <div className="company-container">
           {combinedData.map((company, index) => (
