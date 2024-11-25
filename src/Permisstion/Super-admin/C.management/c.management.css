@@ -247,7 +247,7 @@
   
   
   .context-menu-item {
-    padding: 100px 105px;
+    padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.2s;
   }

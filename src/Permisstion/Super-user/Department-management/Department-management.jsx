@@ -5,99 +5,76 @@ import L from "leaflet";
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import SaDashBord from "../../Super-admin/Sa-Dashbord/sa-dashbord";
 
-function DepartmentMangement() {
+function DepartmentManagement() {
   const combinedData = useCombinedData();
-  const firstCompany = combinedData[0]; // Get the first company
+  const firstCompany = combinedData[0];
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [currentPage, setCurrentPage] = useState("department");
-  const [showAddDepartmentPopup, setShowAddDepartmentPopup] = useState(false);
-  const [showEditDepartmentPopup, setShowEditDepartmentPopup] = useState(false); // For editing
-  const [editDepartmentName, setEditDepartmentName] = useState(""); // For edited name
-  const [departmentLocation, setDepartmentLocation] = useState(null);
-  const [contextMenu, setContextMenu] = useState({
-    visible: false,
-    x: 0,
-    y: 0,
-    item: null,
-  });
+  const [showEditDepartmentPopup, setShowEditDepartmentPopup] = useState(false);
+  const [editDepartmentName, setEditDepartmentName] = useState("");
+  const [contextMenu, setContextMenu] = useState(null);
 
-  // Handle right-click on an account item
-  const handleRightClick = (event, item) => {
-    event.preventDefault(); // Prevent the default browser context menu
-    setContextMenu({
-      visible: true,
-      x: event.pageX - 240,
-      y: event.pageY - 120,
-      item: item,
-    });
-  };
-
-  // Close context menu
-  const handleCloseContextMenu = () => {
-    setContextMenu({ visible: false, x: 0, y: 0, item: null });
-  };
-
-  // Context menu actions
-  const handleDelete = () => {
-    if (!contextMenu.item) return;
-  
-    // Update the firstCompany's DPCH directly
-    const updatedDPCH = firstCompany.DPCH.filter(
-      (department) => department !== contextMenu.item
-    );
-  
-    // Update the firstCompany's data locally
-    firstCompany.DPCH = updatedDPCH;
-  
-    console.log("Deleted Department:", contextMenu.item);
-  
-    // Optionally, re-render by updating a local state (e.g., a dummy state toggle)
-    forceUpdate();
-  
-    handleCloseContextMenu();
-  };
-  
-  // Force a re-render without a context or setter
-  const [, setRender] = useState(0);
-  const forceUpdate = () => setRender((prev) => prev + 1);
-  
-
-  const handleEdit = () => {
-    setEditDepartmentName(contextMenu.item?.DPName || "");
-    setShowEditDepartmentPopup(true);
-    handleCloseContextMenu();
-  };
-
-  // Close edit popup
-  const closeEditPopup = () => setShowEditDepartmentPopup(false);
-
-  // Handle edit form submission
+  // Handle Edit Submission
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    console.log("Updated Department Name:", editDepartmentName);
+    if (!editDepartmentName.trim()) {
+      alert("Please provide a valid department name.");
+      return;
+    }
 
-    // Update the department name in your data here
-    // For example, you could use a function to update the context or state
-    const updatedCompanyData = combinedData.map((company) => {
-      if (company === firstCompany) {
-        return {
-          ...company,
-          DPCH: company.DPCH.map((department) =>
-            department === contextMenu.item
-              ? { ...department, DPName: editDepartmentName }
-              : department
-          ),
-        };
-      }
-      return company;
-    });
+    // Update the selected department's name
+    const updatedDPCH = firstCompany.DPCH.map((department) =>
+      department.DPName === selectedDepartment?.DPName
+        ? { ...department, DPName: editDepartmentName }
+        : department
+    );
 
-    console.log("Updated Data:", updatedCompanyData);
+    firstCompany.DPCH = updatedDPCH;
+    console.log("Updated Department:", firstCompany);
+
     setShowEditDepartmentPopup(false);
+    setSelectedDepartment(null);
   };
 
+  // Handle Delete Department
+  const handleDeleteDepartment = () => {
+    if (window.confirm(`Are you sure you want to delete ${selectedDepartment?.DPName}?`)) {
+      firstCompany.DPCH = firstCompany.DPCH.filter(
+        (department) => department.DPName !== selectedDepartment?.DPName
+      );
+      console.log("Deleted Department:", selectedDepartment?.DPName);
+      setSelectedDepartment(null);
+    }
+    setContextMenu(null);
+  };
+
+  // Open Edit Popup
+  const handleEditDepartment = (department) => {
+    setEditDepartmentName(department.DPName);
+    setSelectedDepartment(department);
+    setShowEditDepartmentPopup(true);
+    setContextMenu(null);
+  };
+
+  // Context Menu Handler
+  const handleRightClick = (e, department) => {
+    e.preventDefault();
+    setContextMenu({
+      department,
+      x: e.pageX - 240,
+      y: e.pageY - 120,
+    });
+    setSelectedDepartment(department);
+  };
+
+  // Close Context Menu
+  const closeContextMenu = () => setContextMenu(null);
+
   return (
-    <div className="c-management-container" onClick={handleCloseContextMenu}>
+    <div
+      className="c-management-container"
+      onClick={closeContextMenu} // Close context menu on outside click
+    >
       {/* Breadcrumb */}
       <div className="container-top">
         <div className="Breadcrumb">
@@ -118,40 +95,37 @@ function DepartmentMangement() {
             </>
           )}
         </div>
-        {currentPage === "department" && (
-          <div className="search-container">
-            <input type="text" placeholder="Search" className="search-bar" />
-          </div>
-        )}
       </div>
 
-      {currentPage === "department" && firstCompany && (
-        <div className="company-container">
-          {firstCompany.DPCH.map((department, index) => (
-            <div
-              key={index}
-              className={`account-item ${
-                selectedDepartment?.DPName === department.DPName ? "active" : ""
-              }`}
-              onClick={() => {
-                console.log("Selected Department:", department.DPName);
-                setSelectedDepartment(department);
-                setCurrentPage("FireExtinguishers");
-              }}
-              onContextMenu={(e) => handleRightClick(e, department)}
-            >
-              <div className="company-logo"></div>
-              <div className="company-name">
-                {department.DPName}
-                <span className="department-count">
-                  (Fire Extinguishers {department.fire?.length || 0})
-                </span>
-              </div>
-            </div>
-          ))}
+{/* Department List */}
+{currentPage === "department" && firstCompany && (
+  <div className="company-container">
+    {firstCompany.DPCH.map((department, index) => (
+      <div
+        key={index}
+        className={`account-item ${
+          selectedDepartment?.DPName === department.DPName ? "active" : ""
+        }`}
+        onClick={() => {
+          setSelectedDepartment(department); // Set the selected department
+          setCurrentPage("FireExtinguishers"); // Navigate to dashboard
+        }}
+        onContextMenu={(e) => handleRightClick(e, department)} // Trigger context menu
+      >
+        <div className="company-logo"></div>
+        <div className="company-name">
+          {department.DPName}
+          <span className="department-count">
+            (Fire Extinguishers {department.fire?.length || 0})
+          </span>
         </div>
-      )}
+      </div>
+    ))}
+  </div>
+)}
 
+
+      {/* Fire Extinguishers Dashboard */}
       {currentPage === "FireExtinguishers" && selectedDepartment && (
         <div className="company-container">
           <SaDashBord
@@ -161,11 +135,32 @@ function DepartmentMangement() {
         </div>
       )}
 
-      {/* Add Department Button */}
-      {currentPage !== "FireExtinguishers" && (
-        <button className="add-company-btn" onClick={() => setShowAddDepartmentPopup(true)}>
-          Add Department
-        </button>
+      {/* Context Menu */}
+      {contextMenu && (
+        <div
+          className="context-menu"
+          style={{
+            position: "absolute",
+            top: contextMenu.y,
+            left: contextMenu.x,
+            background: "#fff",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="context-menu-item"
+            onClick={() => handleEditDepartment(contextMenu.department)}
+          >
+            Edit
+          </div>
+          <div
+            className="context-menu-item"
+            onClick={handleDeleteDepartment}
+          >
+            Delete
+          </div>
+        </div>
       )}
 
       {/* Edit Department Popup */}
@@ -185,40 +180,17 @@ function DepartmentMangement() {
                 Save Changes
               </button>
             </form>
-            <button className="close-popup-btn" onClick={closeEditPopup}>
+            <button
+              className="close-popup-btn"
+              onClick={() => setShowEditDepartmentPopup(false)}
+            >
               ✕
             </button>
           </div>
-        </div>
-      )}
-
-      {/* Context Menu */}
-      {contextMenu.visible && (
-        <div
-          className="context-menu"
-          style={{
-            position: "absolute",
-            top: `${contextMenu.y}px`,
-            left: `${contextMenu.x}px`,
-            zIndex: 1000,
-            backgroundColor: "#fff",
-            border: "1px solid #ddd",
-            borderRadius: "5px",
-          }}
-        >
-          <button
-            style={{ display: "block", marginBottom: "5px" }}
-            onClick={handleEdit}
-          >
-            Edit
-          </button>
-          <button style={{ display: "block" }} onClick={handleDelete}>
-            Delete
-          </button>
         </div>
       )}
     </div>
   );
 }
 
-export default DepartmentMangement;
+export default DepartmentManagement;
