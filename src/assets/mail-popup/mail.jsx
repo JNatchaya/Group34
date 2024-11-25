@@ -6,10 +6,10 @@ function MailPopup({ trigger, setTrigger }) {
   return trigger ? (
     <div className="popup">
       <div className="popup-inner">
-        <button className="close-btn bi bi-x-circle" onClick={() => setTrigger(false)}>
-        </button>
-        <header className="header">
+        <header className="header mail-header">
           <div className="logo"></div>
+          <button className="close-btn bi bi-x-circle" onClick={() => setTrigger(false)}>
+          </button>
         </header>
         <nav className="mail-nav">
           <span>
@@ -49,3 +49,13 @@ function MailPopup({ trigger, setTrigger }) {
 }
 
 export default MailPopup;
+// .popup-inner .close-btn {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   cursor: pointer;
+//   font-size: 1.2rem;
+//   color: #333;
+//   border: none;
+//   background: none;
+// }

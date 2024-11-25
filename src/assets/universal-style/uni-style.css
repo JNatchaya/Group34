@@ -172,3 +172,11 @@ justify-content: center;
 .BreadCrumb-child:hover{
     color: var(--primary-vio);
 }
+
+.mailbox {
+    cursor: pointer;
+}
+
+.mailbox:hover{
+    color: var(--bold-org);
+}
