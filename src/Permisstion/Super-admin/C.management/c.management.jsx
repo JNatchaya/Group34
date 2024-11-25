@@ -6,6 +6,7 @@ import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import "./c.management.css";
 import SaDashBord from "../Sa-Dashbord/sa-dashbord";
 
+
 // Fix Leaflet's marker icons not appearing
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -78,21 +79,37 @@ function C_management_tab() {
       console.log("Deleted company:", contextMenu.item.CMname);
     } else if (contextMenu.type === "department") {
       // Deleting a department
-      const updatedDepartments = contextMenu.item.DPCH.filter(
-        (department) => department.DPName !== contextMenu.item.DPName
-      );
       const updatedCompanies = combinedData.map((company) => {
-        if (company.CMname === selectedCompany.CMname) {
-          return { ...company, DPCH: updatedDepartments };
+        if (company.CMname === selectedCompany?.CMname) {
+          return {
+            ...company,
+            DPCH: company.DPCH.filter(
+              (department) => department.DPName !== contextMenu.item.DPName
+            ),
+          };
         }
         return company;
       });
+  
       combinedData.splice(0, combinedData.length, ...updatedCompanies); // Update context directly
+  
+      // Update state to force re-render
+      setSelectedCompany((prev) => {
+        return {
+          ...prev,
+          DPCH: prev.DPCH.filter(
+            (department) => department.DPName !== contextMenu.item.DPName
+          ),
+        };
+      });
+  
       console.log("Deleted department:", contextMenu.item.DPName);
     }
+  
     handleCloseContextMenu();
-    setSelectedDepartment(null); // Reset selection
+    setSelectedDepartment(null); // Reset selection after deletion
   };
+  
 
   const handleEdit = () => {
     setEditingEntity({
