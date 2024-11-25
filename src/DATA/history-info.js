@@ -50,7 +50,12 @@
                 "abitOfMaintains": "true",
                 "requiredChange": "false",
                 "other": "false"
-            }
+            },
+            ],
+            "reportI,mage": [
+                {
+                    
+                }
             ]
         },
         {

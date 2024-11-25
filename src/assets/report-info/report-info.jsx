@@ -22,6 +22,9 @@ function ReportInfo () {
   
     return (
       <div className="report-info-container">
+       <div className="search-container">
+      <input type="text" placeholder="Search" className="search-bar" />
+    </div> 
         <div className="report-header">
           <div className="grid grid-item1">
             <div className="dp-name box-shadows">

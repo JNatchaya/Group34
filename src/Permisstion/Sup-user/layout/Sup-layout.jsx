@@ -3,12 +3,14 @@ import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Department_Management from "../Department/department-mangement";
 import Report from "../../Super-user/Report/report";
 import Logout from "../../../assets/Log-out/logout"
+import MailPopup from "../../../assets/mail-popup/mail";
 
 function Sup_user_pages({ setToken }) {
   const [suptab, setSuptab] = useState("Department_Management"); // Default tab
   const userContainerRef = useRef(null);
   const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
+  const [showMailPopup, setShowMailPopup] = useState(false);
 
   const handleLeftClick = () => {
     setToggleLogout((prevState) => !prevState); 
@@ -39,7 +41,9 @@ function Sup_user_pages({ setToken }) {
         <header className="header">
           <div className="logo"></div>
           <div className="user-sec">
-            <span className="bi bi-envelope-fill"></span>
+          <span className="bi bi-envelope-fill mailbox"
+            onClick={() => setShowMailPopup(true)} 
+            ></span>
             <div
               className="user-container"
               ref={userContainerRef}
@@ -89,6 +93,7 @@ function Sup_user_pages({ setToken }) {
               <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
             </div>
           )}
+          <MailPopup trigger={showMailPopup} setTrigger={setShowMailPopup} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import Assignment from "../Assignment/assignment";
 import User from "../User/user";
 import Logout from "../../../assets/Log-out/logout"
+import MailPopup from "../../../assets/mail-popup/mail";
 import "./A-layout.css";
 
 function Admin_pages({ setToken}) {
@@ -12,6 +13,7 @@ function Admin_pages({ setToken}) {
   const userContainerRef = useRef(null);
   const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
+  const [showMailPopup, setShowMailPopup] = useState(false);
 
   const handleLeftClick = () => {
     setToggleLogout((prevState) => !prevState); 
@@ -41,7 +43,9 @@ function Admin_pages({ setToken}) {
       <header className="header">
         <div className="logo"></div>
         <div className="user-sec">
-          <span className="bi bi-envelope-fill"></span>
+          <span className="bi bi-envelope-fill mailbox"
+            onClick={() => setShowMailPopup(true)} 
+            ></span>
           <div
               className="user-container"
               ref={userContainerRef}
@@ -83,6 +87,7 @@ function Admin_pages({ setToken}) {
               <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
             </div>
           )}
+          <MailPopup trigger={showMailPopup} setTrigger={setShowMailPopup} />
     </div>
   );
 }

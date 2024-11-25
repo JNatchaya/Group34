@@ -6,6 +6,7 @@ import StaffManagement_tab from "../staff-management/staff-management";
 import KeyGen from "../Key-gen/key-gen";
 import Report from "../Report/report";
 import Logout from "../../../assets/Log-out/logout";
+import MailPopup from "../../../assets/mail-popup/mail";
 
 import "./Su-layout.css";
 
@@ -14,6 +15,7 @@ function Super_user_pages({ setToken }) {
   const userContainerRef = useRef(null);
   const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
+  const [showMailPopup, setShowMailPopup] = useState(false);
 
   const handleLeftClick = () => {
     setToggleLogout((prevState) => !prevState); 
@@ -44,7 +46,9 @@ function Super_user_pages({ setToken }) {
         <header className="header">
           <div className="logo"></div>
           <div className="user-sec">
-            <span className="bi bi-envelope-fill"></span>
+          <span className="bi bi-envelope-fill mailbox"
+            onClick={() => setShowMailPopup(true)} 
+            ></span>
             <div
               className="user-container"
               ref={userContainerRef}
@@ -111,6 +115,7 @@ function Super_user_pages({ setToken }) {
               <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
             </div>
           )}
+          <MailPopup trigger={showMailPopup} setTrigger={setShowMailPopup} />
       </div>
     </div>
   );
