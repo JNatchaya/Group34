@@ -1,4 +1,26 @@
 import React, { useState, useEffect } from "react";
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+// Register Chart.js components
+ChartJS.register(
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 import ReportInfo from "../../../assets/report-info/report-info";
 import "./staffmanage.css";
@@ -12,6 +34,7 @@ function StaffManagement() {
   const [currentPage, setCurrentPage] = useState("staff"); // Current page ("staff" or "details")
   const [userData, setUserData] = useState(null); // User data for selected staff
   const [serial, setserial] = useState(""); // Currently selected user
+  const [permission, setpermission] = useState("SuperAdmin"); // Currently selected permission]
   // Fetch staff data on component mount
   useEffect(() => {
     async function fetchData() {
@@ -33,6 +56,22 @@ function StaffManagement() {
     }
   }, [selectedStaffID]);
 
+  const behaviorChartData = userData?.Behavior[0]?.Month
+    ? {
+        labels: userData.Behavior[0].Month.map((month) => month.MonthName),
+        datasets: [
+          {
+              label: "Behavior Score",
+              data: userData.Behavior[0].Month.map((month) => month.BehaviorScore),
+              fill: false,
+              borderWidth: 2,
+              backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--point-color'),
+              borderColor: getComputedStyle(document.documentElement).getPropertyValue('--line-color'),
+          },
+      ]
+      }
+    : null;
+
   return (
     <div className="c-management-container">
       {/* Breadcrumb */}
@@ -44,6 +83,7 @@ function StaffManagement() {
             onClick={() => {
               setCurrentPage("staff");
               setSelectedStaffID(null);
+              setSelectedAssignment(null);
             }}
           >
             Staff /
@@ -100,10 +140,10 @@ function StaffManagement() {
                 <div className="user-name">{userData.Name}</div>
                 <div className="role">{userData.Role}</div>
                 <div className="contact-info bi bi-envelope">
-                  &nbsp;{userData.Mail}
+                 <span className="email">{userData.Mail}</span> 
                 </div>
                 <div className="contact-info bi bi-telephone">
-                  &nbsp;{userData.Tel}
+                  <span className="phone">{userData.Tel}</span>
                 </div>
               </div>
             </div>
@@ -145,36 +185,99 @@ function StaffManagement() {
                 <button className="edit-button">Edit</button>
               </div>
           </div>
-          <div className="behavior-container">
-            <div className="behavior-header">Behavior Score</div>
-            <div className="behavior-body">{userData.BehaviorScore}</div>
-          </div>
-
-          <div className="assignment-footprint-container">
-            <div className="assignment-footprint-header">
-              Assignment Footprint
+          
+  {permission === "SuperAdmin" && (
+    <>
+    <div className="behavior-container">
+      <div className="behavior-header">Behavior Score</div>
+      <div className="behavior-body box-shadows">
+      {behaviorChartData ? (
+              <Line
+                data={behaviorChartData}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "Monthly Behavior Scores",
+                    },
+                  },
+                  scales: {
+                    x: {
+                      title: {
+                        display: true,
+                        text: "Months",
+                      },
+                    },
+                    y: {
+                      title: {
+                        display: true,
+                        text: "Scores",
+                      },
+                      min: 0,
+                      max: 100,
+                    },
+                  },
+                }}
+              />
+            ) : (
+              <p>No behavior data available</p>
+            )}
+        {/* {userData.BehaviorScore} */}
+        </div>
+    </div>
+    <div className="assignment-footprint-container">
+    <div className="assignment-footprint-header">Assignment Footprint</div>
+    <div className="assignment-footprint box-shadows">
+      <div className="assignment-footprint-body">
+        {userData.AssignmentFootprint.map((assignment) => (
+          <div
+            className="assignment box-shadows"
+            key={assignment.AssignmentID}
+            onClick={() => {
+              setCurrentPage("Assignment");
+              setSelectedAssignment(assignment.AssignmentID);
+              setserial(assignment.serialNumber);
+            }}
+          >
+            <div className="assignment-left">
+              <p>
+                {assignment.Date} / {assignment.Task} / {assignment.Status}
+              </p>
             </div>
-            <div className="assignment-footprint box-shadows">
-              <div className="assignment-footprint-body">
-                {userData.AssignmentFootprint.map((assignment) => (
-                  <div className="assignment" key={assignment.AssignmentID}
-                  onClick={() => {
-                    setCurrentPage("Assignment");
-                    setSelectedAssignment(assignment.AssignmentID);
-                    setserial(assignment.serialNumber);
-                  }}
-                  >
-                    <div className="assignment-left">
-                      <p>
-                        {assignment.Date} / {assignment.Task} /{" "}
-                        {assignment.Status}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+    </>
+  )}
+  {permission === "Admin" && (
+    <div className="assignment-footprint-container-admin">
+    <div className="assignment-footprint-header-admin">Assignment Footprint</div>
+    <div className="assignment-footprint-admin box-shadows">
+      <div className="assignment-footprint-body-admin">
+        {userData.AssignmentFootprint.map((assignment) => (
+          <div
+            className="assignment-admin box-shadows"
+            key={assignment.AssignmentID}
+            onClick={() => {
+              setCurrentPage("Assignment");
+              setSelectedAssignment(assignment.AssignmentID);
+              setserial(assignment.serialNumber);
+            }}
+          >
+            <div className="assignment-left-admin">
+              <p>
+                {assignment.Date} / {assignment.Task} / {assignment.Status}
+              </p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  )}
         </div>
       )}
       {currentPage === "Assignment" && selectedAssignment && (

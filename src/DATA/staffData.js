@@ -32,7 +32,39 @@ export const Staff = [
                 "Weight": 75
             }
         ],
-        "BehaviorScore": 95,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 80
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 90
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 85
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 95
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 75 
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A001",
@@ -80,7 +112,39 @@ export const Staff = [
                 "Weight": 60
             }
         ],
-        "BehaviorScore": 88,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 80
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 95
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 50
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 70
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 75 
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A003",
@@ -128,7 +192,39 @@ export const Staff = [
                 "Weight": 45
             }
         ],
-        "BehaviorScore": 75,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 50
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 55
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 70
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 50
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 75 
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A005",
@@ -176,7 +272,39 @@ export const Staff = [
                 "Weight": 95
             }
         ],
-        "BehaviorScore": 92,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 80
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 90
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 85
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 95
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 75 
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A007",
@@ -224,7 +352,39 @@ export const Staff = [
                 "Weight": 55
             }
         ],
-        "BehaviorScore": 80,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 75
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 88
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 85
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 95
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 60
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A009",
@@ -273,7 +433,39 @@ export const Staff = [
             }
         ],
         "MechanicStatus": "Day Off",
-        "BehaviorScore": 90,
+        "Behavior": [
+            { 
+                "Month": [
+                    {
+                        "MonthID": "M001",
+                        "MonthName": "January",
+                        "BehaviorScore": 80
+                    },
+                    {
+                        "MonthID": "M002",
+                        "MonthName": "February",
+                        "BehaviorScore": 90
+                    },
+                    {
+                        "MonthID": "M003",
+                        "MonthName": "March",
+                        "BehaviorScore": 85
+                    },
+                    {
+                        "MonthID": "M004",
+                        "MonthName": "April",
+                        "BehaviorScore": 95
+                    },
+                    {
+                        "MonthID": "M005",
+                        "MonthName": "May",
+                        "BehaviorScore": 75 
+                    }
+                ]
+                
+            
+            }
+        ],
         "AssignmentFootprint": [
             {
                 "AssignmentID": "A011",
