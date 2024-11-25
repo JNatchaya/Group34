@@ -10,7 +10,9 @@ function MapContainer({ setSatab }) {
   const navigate = useNavigate();
   const location = useLocation();
   const departmentLocation = location.state?.location;
-  console.log(departmentLocation);
+
+
+
   function matchCompanyWithFireExtinguishers() {
     
     return CM.map((company) => {
@@ -60,7 +62,7 @@ function MapContainer({ setSatab }) {
         return
       </div>
       <div className="map-section">
-        <MapComponent />
+      <MapComponent departmentLocation={departmentLocation} />
       </div>
 
       <div className="summary-section">

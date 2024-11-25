@@ -55,19 +55,17 @@ function C_management_tab() {
     event.preventDefault(); // Prevent the default browser context menu
     setContextMenu({
       visible: true,
-      x: event.pageX -240,
-      y: event.pageY -120, 
+      x: event.pageX - 240,
+      y: event.pageY - 120,
       item: item,
-      type: type, 
+      type: type,
     });
   };
-  
 
   // Close context menu
   const handleCloseContextMenu = () => {
     setContextMenu({ visible: false, x: 0, y: 0, item: null, type: null });
   };
-  
 
   // Context menu actions
   const handleDelete = () => {
@@ -95,8 +93,6 @@ function C_management_tab() {
     handleCloseContextMenu();
     setSelectedDepartment(null); // Reset selection
   };
-  
-
 
   const handleEdit = () => {
     setEditingEntity({
@@ -106,7 +102,6 @@ function C_management_tab() {
     setShowEditPopup(true); // Show the Edit popup
     handleCloseContextMenu();
   };
-  
 
   // Popup controls
   const handleAddCompany = () => setShowAddCompanyPopup(true);
@@ -154,15 +149,16 @@ function C_management_tab() {
               <span className="BreadCrumb-child">Dashboard</span>
             </>
           )}
+          {currentPage !== "FireExtinguishers" && (
+            <div className="search-container">
+              <input type="text" placeholder="Search" className="search-bar" />
+            </div>
+          )}
         </div>
       </div>
-      
+
       {/* Conditionally render the search bar */}
-{currentPage !== "FireExtinguishers" && (
-  <div className="search-container">
-    <input type="text" placeholder="Search" className="search-bar" />
-  </div>
-)}
+
       {currentPage === "company" && (
         <div className="company-container">
           {combinedData.map((company, index) => (
@@ -247,43 +243,41 @@ function C_management_tab() {
       )}
 
       {/* Add Company Popup */}
-{showAddCompanyPopup && (
-  <div className="popup-overlay">
-    <div className="popup-container styled-popup">
-      <h3 className="popup-header">Add Company</h3>
-      <form>
-        <label className="form-label">Name</label>
-        <input
-          type="text"
-          className="form-input large-input"
-          placeholder="Enter company name"
-        />
+      {showAddCompanyPopup && (
+        <div className="popup-overlay">
+          <div className="popup-container styled-popup">
+            <h3 className="popup-header">Add Company</h3>
+            <form>
+              <label className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-input large-input"
+                placeholder="Enter company name"
+              />
 
-        <label className="form-label">Date of subscription</label>
-        <input type="date" className="form-input" />
+              <label className="form-label">Date of subscription</label>
+              <input type="date" className="form-input" />
 
-        <label className="form-label"></label>
-        <div className="custom-dropdown">
-          Membership Registration Format
-          <select className="custom-dropdown-select">
-            <option value="basic">1 Year</option>
-            <option value="premium">2 Year</option>
-            <option value="enterprise">3 Year</option>
-          </select>
+              <label className="form-label"></label>
+              <div className="custom-dropdown">
+                Membership Registration Format
+                <select className="custom-dropdown-select">
+                  <option value="basic">1 Year</option>
+                  <option value="premium">2 Year</option>
+                  <option value="enterprise">3 Year</option>
+                </select>
+              </div>
+
+              <button type="submit" className="form-submit-btn">
+                Confirm
+              </button>
+            </form>
+            <button className="close-popup-btn" onClick={closeCompanyPopup}>
+              ✕
+            </button>
+          </div>
         </div>
-
-        <button type="submit" className="form-submit-btn">
-          Confirm
-        </button>
-      </form>
-      <button className="close-popup-btn" onClick={closeCompanyPopup}>
-        ✕
-      </button>
-    </div>
-  </div>
-)}
-
-
+      )}
 
       {/* Add Department Popup */}
       {showAddDepartmentPopup && (
@@ -329,92 +323,90 @@ function C_management_tab() {
         </div>
       )}
 
-{/* Edit Popup */}
-{showEditPopup && (
-  <div className="popup-overlay">
-    <div className="popup-container">
-      <h3 className="popup-header">
-        Edit {editingEntity.type === "company" ? "Company" : "Department"}{" "}
-        Information
-      </h3>
-      <form>
-        <label className="form-label">
-          {editingEntity.type === "company"
-            ? "Company Name"
-            : "Department Name"}
-        </label>
-        <input
-          type="text"
-          className="form-input"
-          value={
-            editingEntity.data?.CMname || editingEntity.data?.DPName || ""
-          }
-          onChange={(e) =>
-            setEditingEntity({
-              ...editingEntity,
-              data: {
-                ...editingEntity.data,
-                [editingEntity.type === "company" ? "CMname" : "DPName"]:
-                  e.target.value,
-              },
-            })
-          }
-        />
+      {/* Edit Popup */}
+      {showEditPopup && (
+        <div className="popup-overlay">
+          <div className="popup-container">
+            <h3 className="popup-header">
+              Edit {editingEntity.type === "company" ? "Company" : "Department"}{" "}
+              Information
+            </h3>
+            <form>
+              <label className="form-label">
+                {editingEntity.type === "company"
+                  ? "Company Name"
+                  : "Department Name"}
+              </label>
+              <input
+                type="text"
+                className="form-input"
+                value={
+                  editingEntity.data?.CMname || editingEntity.data?.DPName || ""
+                }
+                onChange={(e) =>
+                  setEditingEntity({
+                    ...editingEntity,
+                    data: {
+                      ...editingEntity.data,
+                      [editingEntity.type === "company" ? "CMname" : "DPName"]:
+                        e.target.value,
+                    },
+                  })
+                }
+              />
 
-        {editingEntity.type === "department" && (
-          <>
-            <label className="form-label">Location</label>
-            <div className="map-placeholder">Choose New Location</div>
-          </>
-        )}
+              {editingEntity.type === "department" && (
+                <>
+                  <label className="form-label">Location</label>
+                  <div className="map-placeholder">Choose New Location</div>
+                </>
+              )}
 
-        {/* Action buttons */}
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {/* Action buttons */}
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={closeEditPopup}
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="edit-btn">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Context Menu */}
+      {contextMenu.visible && (
+        <div
+          className="context-menu"
+          style={{
+            position: "absolute",
+            top: `${contextMenu.y}px`,
+            left: `${contextMenu.x}px`,
+            zIndex: 1000, // Ensure it's above other elements
+            backgroundColor: "#fff",
+            border: "1px solid #ddd",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+        >
           <button
-            type="button"
-            className="cancel-btn"
-            onClick={closeEditPopup}
+            style={{ display: "block", marginBottom: "5px" }}
+            onClick={handleEdit}
           >
-            Cancel
+            Edit
           </button>
-          <button type="submit" className="edit-btn">
-            Save
+          <button style={{ display: "block" }} onClick={handleDelete}>
+            Delete
           </button>
         </div>
-      </form>
-    </div>
-  </div>
-)}
-
-
-{/* Context Menu */}
-{contextMenu.visible && (
-  <div
-    className="context-menu"
-    style={{
-      position: "absolute",
-      top: `${contextMenu.y}px`,
-      left: `${contextMenu.x}px`,
-      zIndex: 1000, // Ensure it's above other elements
-      backgroundColor: "#fff",
-      border: "1px solid #ddd",
-      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-      padding: "10px",
-      borderRadius: "5px",
-    }}
-  >
-    <button
-      style={{ display: "block", marginBottom: "5px" }}
-      onClick={handleEdit}
-    >
-      Edit
-    </button>
-    <button style={{ display: "block" }} onClick={handleDelete}>
-      Delete
-    </button>
-  </div>
-)}
-
+      )}
     </div>
   );
 }

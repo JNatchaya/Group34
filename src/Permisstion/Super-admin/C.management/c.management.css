@@ -388,7 +388,7 @@
 }
 
 .custom-dropdown-select option {
-  color: black; /* Text color in dropdown options */
+  color: black;
 }
 .search-container {
   display: flex;
@@ -408,7 +408,6 @@
   box-sizing: border-box;
   position: fixed;
   right: 3rem;
-  margin-bottom: 3rem;
 }
 
 .search-bar::placeholder {
