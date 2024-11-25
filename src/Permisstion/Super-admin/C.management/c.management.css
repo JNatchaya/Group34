@@ -388,7 +388,7 @@
 }
 
 .custom-dropdown-select option {
-  color: black; /* Text color in dropdown options */
+  color: black;
 }
 .search-container {
   display: flex;
