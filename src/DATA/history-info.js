@@ -6,6 +6,8 @@
             "type": "CO2",
             "status": "Completed",
             "date": "2024-10-01",
+            "taskHolder": "John Doe",
+            "addminHolder": "Alice Johnson",
             "pressureGuage": [
                 {   
                     "status": "Yellow",
@@ -56,6 +58,8 @@
             "type": "Dry Chemical",
             "status": "Pending",
             "date": "2024-11-15",
+            "taskHolder": "John Doe",
+            "addminHolder": "Emily Davis",
             "pressureGuage": [
                 {   
                     "status": "null",
@@ -106,6 +110,8 @@
             "type": "CO2",
             "status": "Completed",
             "date": "2024-11-10",
+            "taskHolder": "Jane Smith",
+            "addminHolder": "John Doe",
             "pressureGuage": [
                 {   
                     "status": "Green",
@@ -156,6 +162,8 @@
             "type": "CO2",
             "status": "In Progress",
             "date": "2024-11-10",
+            "taskHolder": "Jane Smith",
+            "addminHolder": "Alice Johnson",
             "pressureGuage": [
                 {   
                     "status": "null",
@@ -201,56 +209,4 @@
                 },
             ]
         },
-        {
-            "serialNumber": "SN777888",
-            "type": "CO2",
-            "status": "In Progress",
-            "date": "2024-11-10",
-            "pressureGuage": [
-                {   
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "pullPinAndTemperSeal": [
-                {
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "handle": [
-                {
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "hose": [
-                {
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "fireExtinguisherBody": [
-                {
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "fireExtinguisherExpire": [
-                {
-                    "status": "null",
-                    "details": "null"
-                },
-            ],
-            "comment": [
-                {
-                    "well": "false",
-                    "abitOfMaintains": "false",
-                    "requiredChange": "false",
-                    "other": "false"
-                },
-            ]
-        }
-
-
     ]

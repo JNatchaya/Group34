@@ -24,7 +24,7 @@ function MailPopup({ trigger, setTrigger }) {
           </span>
         </nav>
         <div className="mail-container">
-          <div className="card-container">
+          {/* <div className="card-container">
             {cardData.map((item) => (
               <div className="grid-container" key={item.id}>
                 <div className="item1 circle-container">
@@ -36,6 +36,23 @@ function MailPopup({ trigger, setTrigger }) {
                   </p>
                 </div>
                 <div className="item3 card-text-link">
+                  <a href="#">{item.linkText}</a>
+                </div>
+              </div>
+            ))}
+          </div> */}
+          <div className="card-mail">
+            {cardData.map((item) => (
+              <div className="mail-inner" key={item.id}>
+                <div className="mail1 circle-left">
+                  <div className="circle"></div>
+                </div>
+                <div className="mail2 text-role">
+                  <p>
+                    <b>{item.author} |</b>
+                  </p>
+                </div>
+                <div className="mail3 text-link">
                   <a href="#">{item.linkText}</a>
                 </div>
               </div>
