@@ -8,7 +8,7 @@ function StockManage() {
   const containerRef = useRef(null);
   const [tapState, setTapState] = useState("type_tap");
   const [type, setType] = useState("");
-  const [open, setOpen] = useState(null)
+  const [open, setOpen] = useState(null);
   const [list, setList] = useState("");
   const [detail, setDetail] = useState("");
 
@@ -21,8 +21,8 @@ function StockManage() {
     const type = event.currentTarget.getAttribute("data-type");
     setTapState("type_child");
     setType(type);
-    setList(""); 
-    setDetail(""); 
+    setList("");
+    setDetail("");
   };
 
   const listlick = (event) => {
@@ -31,34 +31,67 @@ function StockManage() {
     setDetail("toggle");
   };
 
-
   return (
     <div className="stock-container">
-      {open === 'open' && tapState === "type_tap"   &&(
-         <Add firstIn={"Add type"} SecIn={"Title"} TirdIn={"type"} fortIn={''} setOpen={setOpen}  />
-      )} 
-      {open === 'open' && tapState === "type_child"   &&(
-         <Add firstIn={"Add Fire Extinguisher"} SecIn={"Title"} TirdIn={"brand"} fortIn={'property'} setOpen={setOpen}  />
-      )} 
+      {open === "open" && tapState === "type_tap" && (
+        <Add
+          firstIn={"Add type"}
+          SecIn={"Title"}
+          TirdIn={"type"}
+          fortIn={""}
+          setOpen={setOpen}
+        />
+      )}
+      {open === "open" && tapState === "type_child" && (
+        <Add
+          firstIn={"Add Fire Extinguisher"}
+          SecIn={"Title"}
+          TirdIn={"brand"}
+          fortIn={"property"}
+          setOpen={setOpen}
+        />
+      )}
       <div className="container-top">
         <div className="Breadcrumb">
-            <span className="bi bi-folder-fill"></span>
-            <span className="BreadCrumb-child" onClick={() => setTapState('type_tap')}>Stock /</span>         
-            {tapState === "type_child" && (
-                <span className="BreadCrumb-child" onClick={()=>{setList(''); setDetail('')}}>{type} Type /</span>
-            )}
+          <span className="bi bi-folder-fill"></span>
+          <span
+            className="BreadCrumb-child"
+            onClick={() => setTapState("type_tap")}
+          >
+            Stock /
+          </span>
+          {tapState === "type_child" && (
+            <span
+              className="BreadCrumb-child"
+              onClick={() => {
+                setList("");
+                setDetail("");
+              }}
+            >
+              {type} Type /
+            </span>
+          )}
         </div>
 
-        {tapState === 'type_tap' &&(
+        {tapState === "type_tap" && (
           <div className="btn-input-container">
-           <div className="add-type box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle"></span> <span> Add type </span></div> 
-           <Input />
+            <div
+              className="add-type box-shadows"
+              onClick={() => {
+                setOpen("open");
+              }}
+            >
+              {" "}
+              <span className="bi bi-plus-circle"></span>{" "}
+              <span> Add type </span>
+            </div>
+            <div className="search-container">
+              <input type="text" placeholder="Search" className="search-bar" style={{margin:'0'}} />
+            </div>
           </div>
-              
-               
-            )} 
+        )}
       </div>
-           
+
       <div className="stock-sup-container">
         {tapState === "type_tap" && (
           <div
@@ -85,9 +118,7 @@ function StockManage() {
         {tapState === "type_child" && (
           <div className="inside-type-container">
             <div className="detail-side">
-                {detail === '' && (
-                    <h1>Choose the Model</h1>
-                )}
+              {detail === "" && <h1>Choose the Model</h1>}
               {detail === "toggle" &&
                 Stocks.filter((item) => item.type === type)
                   .flatMap((filteredItem) =>
@@ -97,7 +128,10 @@ function StockManage() {
                   )
                   .map((child) => (
                     <div className="detail-side-container">
-                      <aside className="detail-img box-shadows"> <img src={child.img} alt="" /></aside>
+                      <aside className="detail-img box-shadows">
+                        {" "}
+                        <img src={child.img} alt="" />
+                      </aside>
                       <aside className="detail-diss">
                         <div className="diss">
                           <h2>{child.model}</h2>
@@ -113,29 +147,38 @@ function StockManage() {
                             <div className="property-child box-shadows">
                               Class Rating
                               <span className="rate-container">
-                                {Array.from({ length:child.property.ClassRating}, (_, index) => (
-                                  <div key={index} className="bi bi-star-fill"></div>
-                                ))}
+                                {Array.from(
+                                  { length: child.property.ClassRating },
+                                  (_, index) => (
+                                    <div
+                                      key={index}
+                                      className="bi bi-star-fill"
+                                    ></div>
+                                  )
+                                )}
                               </span>
                             </div>
                             <div className="property-child box-shadows">
                               Capacity <span>{child.property.Capacity}</span>
                             </div>
                             <div className="property-child box-shadows">
-                            ULRating <span>{child.property.ULRating}</span>
+                              ULRating <span>{child.property.ULRating}</span>
                             </div>
                             <div className="property-child box-shadows">
-                              Discharge <span>{child.property.Discharge} S</span>{" "}
+                              Discharge{" "}
+                              <span>{child.property.Discharge} S</span>{" "}
                             </div>
                             <div className="property-child box-shadows">
-                              Operating Temperature Range <span>{child.property.OperatingTemperatureRange}</span>
+                              Operating Temperature Range{" "}
+                              <span>
+                                {child.property.OperatingTemperatureRange}
+                              </span>
                             </div>
                           </div>
                         </div>
                       </aside>
                     </div>
                   ))}
-                 
             </div>
 
             <div className="list-side left-shadows">
@@ -171,7 +214,19 @@ function StockManage() {
                   </div>
                 ))
               )}
-               <div className="add-Fire-Extinguisher box-shadows" onClick={()=>{setOpen('open')}}> <span className="bi bi-plus-circle" style={{marginRight:"1rem"}}></span> <span> Add Fire Extinguisher </span></div> 
+              <div
+                className="add-Fire-Extinguisher box-shadows"
+                onClick={() => {
+                  setOpen("open");
+                }}
+              >
+                {" "}
+                <span
+                  className="bi bi-plus-circle"
+                  style={{ marginRight: "1rem" }}
+                ></span>{" "}
+                <span> Add Fire Extinguisher </span>
+              </div>
             </div>
           </div>
         )}
