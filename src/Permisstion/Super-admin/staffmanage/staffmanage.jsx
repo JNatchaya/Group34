@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
+
+import ReportInfo from "../../../assets/report-info/report-info";
 import "./staffmanage.css";
-import "./userprofile.css";
+
 import { fetchStaffData, fetchStaffByID } from "../../../DATA/staffData";
 
 function StaffManagement() {
-  const [staffData, setStaffData] = useState(null); // All staff data
-  const [userData, setUserData] = useState(null); // Specific user data for details page
-  const [selectedStaffID, setSelectedStaffID] = useState(null); // Selected staff ID
-  const [currentPage, setCurrentPage] = useState("staff"); // Page state: "staff" or "details"
-
-  // Fetch all staff data on component mount
+  const [staffData, setStaffData] = useState(null); // Initialize staff data as null
+  const [selectedStaffID, setSelectedStaffID] = useState(null); // Currently selected staff ID
+  const [selectedAssignment, setSelectedAssignment] = useState(null); // Currently selected assignment
+  const [currentPage, setCurrentPage] = useState("staff"); // Current page ("staff" or "details")
+  const [userData, setUserData] = useState(null); // User data for selected staff
+  const [serial, setserial] = useState(""); // Currently selected user
+  // Fetch staff data on component mount
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchStaffData();
-        setStaffData(data); // Set all staff data
+        const data = await fetchStaffData(); // Simulate data fetching
+        setStaffData(data); // Set fetched data
       } catch (error) {
         console.error("Error fetching staff data:", error);
       }
@@ -22,19 +25,12 @@ function StaffManagement() {
     fetchData();
   }, []);
 
-  // Fetch specific staff details when a staff member is selected
+  // Fetch specific staff details when selectedStaffID changes
   useEffect(() => {
-    async function fetchUserDetails() {
-      if (selectedStaffID) {
-        try {
-          const data = await fetchStaffByID(selectedStaffID);
-          setUserData(data); // Set selected staff's user data
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      }
+    if (selectedStaffID) {
+      const data = fetchStaffByID(selectedStaffID);
+      setUserData(data); // Set user details for the selected staff
     }
-    fetchUserDetails();
   }, [selectedStaffID]);
 
   return (
@@ -48,7 +44,6 @@ function StaffManagement() {
             onClick={() => {
               setCurrentPage("staff");
               setSelectedStaffID(null);
-              setUserData(null);
             }}
           >
             Staff /
@@ -59,7 +54,7 @@ function StaffManagement() {
         </div>
       </div>
 
-      {/* Staff List Page */}
+      {/* Staff List Section */}
       {currentPage === "staff" && (
         <div className="staff-container">
           {staffData ? (
@@ -82,18 +77,18 @@ function StaffManagement() {
               </div>
             ))
           ) : (
-            <div>Loading staff data...</div>
+            <div>Loading staff data...</div> // Show loading state if staffData is null
           )}
         </div>
       )}
 
-      {/* Staff Details Page */}
+      {/* Staff Details Section */}
       {currentPage === "details" && userData && (
         <div className="staffmanage-container">
           <div className="information">
             <div className="user-info">
               <div className="profile-photo">
-                <img src={userData.Photo || ""} alt="User Photo" />
+                <img src="" alt="User Photo" />
               </div>
               <div className="user-details">
                 <div className="user-name">{userData.Name}</div>
@@ -109,7 +104,7 @@ function StaffManagement() {
             <div className="user-description-container">
               <div className="user-description-header">User Information</div>
               <div className="user-description-body">
-                {userData.UserInformation?.map((information) => (
+                {userData.UserInformation.map((information) => (
                   <div
                     className="information-body"
                     key={information.informationID}
@@ -117,11 +112,11 @@ function StaffManagement() {
                     <div className="information-left">
                       <p>Address: {information.Address}</p>
                       <div>
-                        {information.parents?.map((parent) => (
+                        {information.parents.map((parent) => (
                           <div className="parent" key={parent.ParentID}>
                             <p>
-                              Parent: {parent.ParentName} (
-                              {parent.Relationship})
+                              Parent: {parent.ParentName} ({parent.Relationship}
+                              )
                             </p>
                             <p>Contact: {parent.Tel}</p>
                           </div>
@@ -141,14 +136,12 @@ function StaffManagement() {
               </div>
             </div>
             <div className="edit-button-container">
-              <button className="edit-button">Edit</button>
-            </div>
+                <button className="edit-button">Edit</button>
+              </div>
           </div>
           <div className="behavior-container">
             <div className="behavior-header">Behavior Score</div>
-            <div className="behavior-body">
-              {userData.BehaviorScore || "N/A"}
-            </div>
+            <div className="behavior-body">{userData.BehaviorScore}</div>
           </div>
 
           <div className="assignment-footprint-container">
@@ -157,8 +150,14 @@ function StaffManagement() {
             </div>
             <div className="assignment-footprint box-shadows">
               <div className="assignment-footprint-body">
-                {userData.AssignmentFootprint?.map((assignment) => (
-                  <div className="assignment" key={assignment.AssignmentID}>
+                {userData.AssignmentFootprint.map((assignment) => (
+                  <div className="assignment" key={assignment.AssignmentID}
+                  onClick={() => {
+                    setCurrentPage("Assignment");
+                    setSelectedAssignment(assignment.AssignmentID);
+                    setserial(assignment.serialNumber);
+                  }}
+                  >
                     <div className="assignment-left">
                       <p>
                         {assignment.Date} / {assignment.Task} /{" "}
@@ -166,17 +165,20 @@ function StaffManagement() {
                       </p>
                     </div>
                   </div>
-                )) || <p>No assignments available.</p>}
+                ))}
               </div>
             </div>
           </div>
         </div>
+      )}
+      {currentPage === "Assignment" && selectedAssignment && (
+
+          <ReportInfo serial={serial}/>
       )}
     </div>
   );
 }
 
 export default StaffManagement;
-
 
 

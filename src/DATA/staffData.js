@@ -38,13 +38,15 @@ export const Staff = [
                 "AssignmentID": "A001",
                 "Task": "Manage Inventory",
                 "Date": "2024-11-01",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN123456"
             },
             {
                 "AssignmentID": "A002",
                 "Task": "Prepare Report",
                 "Date": "2024-11-15",
-                "AssignmentStatus": "Pending"
+                "AssignmentStatus": "Pending",
+                "serialNumber": "SN789012"
             }
         ]
     },
@@ -84,13 +86,15 @@ export const Staff = [
                 "AssignmentID": "A003",
                 "Task": "Repair Engine",
                 "Date": "2024-11-10",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN222333"
             },
             {
                 "AssignmentID": "A004",
                 "Task": "Conduct Maintenance",
                 "Date": "2024-11-20",
-                "AssignmentStatus": "In Progress"
+                "AssignmentStatus": "In Progress",
+                "serialNumber": "SN777888"
             }
         ]
     },
@@ -130,13 +134,15 @@ export const Staff = [
                 "AssignmentID": "A005",
                 "Task": "Schedule Meetings",
                 "Date": "2024-11-12",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN567890",
             },
             {
                 "AssignmentID": "A006",
                 "Task": "Organize Documents",
                 "Date": "2024-11-18",
-                "AssignmentStatus": "Pending"
+                "AssignmentStatus": "Pending",
+                "serialNumber": "SN111222"
             }
         ]
     },
@@ -176,13 +182,15 @@ export const Staff = [
                 "AssignmentID": "A007",
                 "Task": "Inspect Vehicles",
                 "Date": "2024-11-05",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN444777"
             },
             {
                 "AssignmentID": "A008",
                 "Task": "Replace Tires",
                 "Date": "2024-11-19",
-                "AssignmentStatus": "In Progress"
+                "AssignmentStatus": "In Progress",
+                "serialNumber": "SN555888"
             }
         ]
     },
@@ -222,13 +230,15 @@ export const Staff = [
                 "AssignmentID": "A009",
                 "Task": "Update Database",
                 "Date": "2024-11-08",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN999000"
             },
             {
                 "AssignmentID": "A010",
                 "Task": "Perform Audit",
                 "Date": "2024-11-22",
-                "AssignmentStatus": "Pending"
+                "AssignmentStatus": "Pending",
+                 "serialNumber": "SN444555"
             }
         ]
     },
@@ -269,13 +279,15 @@ export const Staff = [
                 "AssignmentID": "A011",
                 "Task": "Maintain Equipment",
                 "Date": "2024-11-07",
-                "AssignmentStatus": "Completed"
+                "AssignmentStatus": "Completed",
+                "serialNumber": "SN333444"
             },
             {
                 "AssignmentID": "A012",
                 "Task": "Perform Inspection",
                 "Date": "2024-11-21",
-                "AssignmentStatus": "In Progress"
+                "AssignmentStatus": "In Progress",
+                "serialNumber": "SN456789"
             }
         ]
     }

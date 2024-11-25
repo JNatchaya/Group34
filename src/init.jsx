@@ -11,7 +11,7 @@ import "./init.css";
 
 function Init() {
   const storedToken = localStorage.getItem('token');
-  const [token, setToken] = useState(storedToken || 'SupUser');  
+  const [token, setToken] = useState(storedToken || 'SuperAdmin');  
   localStorage.setItem('token', '');
  
   // clearToken()
