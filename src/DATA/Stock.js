@@ -20,7 +20,7 @@ export const Stocks = [
             },
             {
                 model: "Water Model B",
-                brand: "AquaBrand", // Same brand as Model A
+                brand: "AquaBrand", 
                 img: "water_model_b.png",
                 Publisher: "CompanyB",
                 type: "Water",

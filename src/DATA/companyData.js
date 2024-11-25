@@ -6,9 +6,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Alpha_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7563, lng: 100.5018 },
@@ -17,9 +17,9 @@ export const CM = [
         },
         {
           DPName: "Beta_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7367, lng: 100.5231 },
@@ -35,9 +35,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Gamma_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7461, lng: 100.5375 },
@@ -46,9 +46,9 @@ export const CM = [
         },
         {
           DPName: "Delta_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7661, lng: 100.5445 },
@@ -64,9 +64,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Zeta_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.8154, lng: 100.4820 },
@@ -75,9 +75,9 @@ export const CM = [
         },
         {
           DPName: "Eta_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.8142, lng: 100.4835 },
@@ -93,9 +93,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Theta_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7649, lng: 100.5031 },
@@ -104,9 +104,9 @@ export const CM = [
         },
         {
           DPName: "Iota_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7655, lng: 100.5073 },
@@ -122,9 +122,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Kappa_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7554, lng: 100.5022 },
@@ -133,9 +133,9 @@ export const CM = [
         },
         {
           DPName: "Lambda_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7561, lng: 100.5035 },
@@ -144,9 +144,9 @@ export const CM = [
         },
         {
           DPName: "Mu_Department_03",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7581, lng: 100.5001 },
@@ -162,9 +162,9 @@ export const CM = [
       DPCH: [
         {
           DPName: "Nu_Department_01",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7236, lng: 100.5293 },
@@ -173,9 +173,9 @@ export const CM = [
         },
         {
           DPName: "Xi_Department_02",
-          CheckRoundCircular: "22/05/2023",
+          CheckRoundCircular: "2",
           NextCheckRoundDate: "22/05/2023",
-          PreviousCheckRoundDate: "22/05/2023",
+          PreviousCheckRoundDate: "22/07/2023",
           DPMemDate: "01-10-2023",
           DPMemExp: "01-10-2024",
           DPLocation: { lat: 13.7232, lng: 100.5305 },
