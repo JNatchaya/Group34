@@ -130,7 +130,7 @@ function DepartmentManagement() {
         <div className="company-container">
           <SaDashBord
             selectedDepartment={selectedDepartment}
-            permiss={"SuperAdmin"}
+            permiss={""}
           />
         </div>
       )}
