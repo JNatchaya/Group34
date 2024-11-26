@@ -8,11 +8,13 @@ import "./sa-dashbord.css";
 
 function SaDashBord({ selectedDepartment, permiss }) {
   const navigate = useNavigate();
-  
+
   const handleViewLocation = () => {
     // Ensure the selectedDepartment has a valid DPLocation
     if (selectedDepartment?.DPLocation) {
-      navigate("../map", { state: { location: selectedDepartment.DPLocation } });
+      navigate("../map", {
+        state: { location: selectedDepartment.DPLocation },
+      });
     } else {
       console.error("No location data available for the selected department.");
     }
@@ -76,7 +78,12 @@ function SaDashBord({ selectedDepartment, permiss }) {
 
   return (
     <div className="Sa-dashbord-container">
-      {toggle && <FireAdd setToggle={setToggle} selectedDepartment={selectedDepartment}/>}
+      {toggle && (
+        <FireAdd
+          setToggle={setToggle}
+          selectedDepartment={selectedDepartment}
+        />
+      )}
       {open && (
         <Add
           firstIn={"Request"}
@@ -89,10 +96,7 @@ function SaDashBord({ selectedDepartment, permiss }) {
       <div className="container-bottom">
         <div className="bottom-left">
           <div className="department-container">
-            <div
-              className="dp-name box-shadows"
-              onClick={() => setMore(!more)}
-            >
+            <div className="dp-name box-shadows" onClick={() => setMore(!more)}>
               {isEditing ? (
                 <input
                   type="text"
@@ -129,20 +133,27 @@ function SaDashBord({ selectedDepartment, permiss }) {
                     {selectedDepartment?.DPMemExp || "N/A"}
                   </span>
                 </div>
-                <div className="more-child">
-          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            Location
-          </span>
-          <span style={{ fontSize: "1rem" }}>
-            {selectedDepartment?.DPlocatename || "N/A"}
-          </span>
-          <span
-            style={{ color: "blue", fontSize: "1rem", cursor: "pointer" }}
-            onClick={handleViewLocation}
-          >
-            <br />View Location
-          </span>
-        </div>
+                {permiss === "SuperAdmin" && (
+                  <div className="more-child">
+                    <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Location
+                    </span>
+                    <span style={{ fontSize: "1rem" }}>
+                      {selectedDepartment?.DPlocatename || "N/A"}
+                    </span>
+                    <span
+                      style={{
+                        color: "blue",
+                        fontSize: "1rem",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleViewLocation}
+                    >
+                      <br />
+                      View Location
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
             <button
@@ -220,7 +231,9 @@ function SaDashBord({ selectedDepartment, permiss }) {
                     fireData.map((fire, index) => (
                       <div className="dp-child" key={index}>
                         <span>Serial Number: {fire.serialNumber}</span>
-                        <span style={{ marginLeft: "auto" }}>Location: {fire.location}</span>
+                        <span style={{ marginLeft: "auto" }}>
+                          Location: {fire.location}
+                        </span>
                         <div className="info">
                           <span style={{ fontSize: "0.8rem" }}>
                             {fire.lastMaintenanceDate}
@@ -283,8 +296,7 @@ function SaDashBord({ selectedDepartment, permiss }) {
                           <span
                             style={{
                               fontSize: "0.8rem",
-                              color:
-                                fire.status === "Active" ? "green" : "red",
+                              color: fire.status === "Active" ? "green" : "red",
                             }}
                           >
                             {fire.status}

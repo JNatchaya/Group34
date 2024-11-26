@@ -29,14 +29,14 @@ import "./staffmanage.css";
 import { fetchStaffData, fetchStaffByID } from "../../../DATA/staffData";
 
 function StaffManagement() {
-  const [staffData, setStaffData] = useState(null); // Initialize staff data as null
-  const [selectedStaffID, setSelectedStaffID] = useState(null); // Currently selected staff ID
-  const [selectedAssignment, setSelectedAssignment] = useState(null); // Currently selected assignment
-  const [currentPage, setCurrentPage] = useState("staff"); // Current page ("staff" or "details")
-  const [userData, setUserData] = useState(null); // User data for selected staff
-  const [serial, setserial] = useState(""); // Currently selected user
-  const [permission, setpermission] = useState("SuperAdmin"); // Currently selected permission]
-  // Fetch staff data on component mount
+  const [staffData, setStaffData] = useState(null);
+  const [selectedStaffID, setSelectedStaffID] = useState(null); 
+  const [selectedAssignment, setSelectedAssignment] = useState(null); 
+  const [currentPage, setCurrentPage] = useState("staff"); 
+  const [userData, setUserData] = useState(null); 
+  const [serial, setserial] = useState(""); 
+  const [permission, setpermission] = useState("SuperAdmin"); 
+ 
   useEffect(() => {
     async function fetchData() {
       try {

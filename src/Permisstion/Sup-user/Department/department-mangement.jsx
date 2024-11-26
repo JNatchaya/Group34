@@ -14,7 +14,7 @@ function Department_Management() {
         <div className="company-container">
           <SaDashBord
             selectedDepartment={firstDepartment}
-            permiss={"SuperAdmin"}
+            permiss={""}
           />
         </div>
       ) : (
