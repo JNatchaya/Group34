@@ -52,7 +52,7 @@
                 "other": "false"
             },
             ],
-            "reportI,mage": [
+            "reportImage": [
                 {
                     
                 }
