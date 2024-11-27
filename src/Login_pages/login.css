@@ -24,9 +24,12 @@
     position: absolute;
     bottom: 15px; left: 3%;
 }
-.info-text h2 {
+.info-text .h {
     padding-bottom: 5px;
     border-bottom: 1px solid black;
+    color: var(--bold-org);
+    font-size: 2rem;
+    font-weight: bolder;
 }
 .login-space{
     padding: 15% 0;

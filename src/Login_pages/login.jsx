@@ -18,7 +18,7 @@ function Login({ token, setToken }) {
       <aside className="info-space">
         <div className="Logo"></div>
         <div className="info-text">
-          <h2>Lorem ipsum dolor sit.</h2>
+          <span className="h">More About Us</span>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Necessitatibus praesentium labore ex, quae tempore architecto sunt!
