@@ -36,6 +36,7 @@ function StaffManagement() {
   const [userData, setUserData] = useState(null); 
   const [serial, setserial] = useState(""); 
   const [permission, setpermission] = useState("SuperAdmin"); 
+  
  
   useEffect(() => {
     async function fetchData() {
@@ -102,8 +103,13 @@ function StaffManagement() {
   )}
   {currentPage === "Assignment" && selectedAssignment && (
     <span className="BreadCrumb-child">Assignment</span>
+    
   )}
+  
 </div>
+<div className="search-container">
+              <input type="text" placeholder="Search" className="search-bar" />
+            </div>
       </div>
       
 
@@ -249,7 +255,7 @@ function StaffManagement() {
           >
             <div className="assignment-left">
               <p>
-                {assignment.Date} / {assignment.Task} / {assignment.Status}
+               {assignment.serialNumber} / {assignment.Task} / {assignment.Date} 
               </p>
             </div>
           </div>
@@ -289,7 +295,10 @@ function StaffManagement() {
       )}
       {currentPage === "Assignment" && selectedAssignment && (
 
-          <ReportInfo serial={serial}/>
+          <ReportInfo 
+            serial={serial}
+            permissions={"SuperAdmin"}
+          />
       )}
     </div>
   );

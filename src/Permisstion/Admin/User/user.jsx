@@ -84,7 +84,9 @@ function User() {
     <span className="BreadCrumb-child">Assignment</span>
   )}
 </div>
-
+<div className="search-container">
+              <input type="text" placeholder="Search" className="search-bar" />
+            </div>
       </div>
 
       {/* Staff Section */}
@@ -273,7 +275,10 @@ function User() {
 
       {/* Assignment Details */}
       {currentPage === "Assignment" && selectedAssignment && (
-        <ReportInfo serial={serial} />
+        <ReportInfo 
+          serial={serial} 
+          permissions={"Admin_done"}
+        />
       )}
     </div>
   );

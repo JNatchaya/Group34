@@ -46,9 +46,7 @@ function Super_user_pages({ setToken }) {
         <header className="header">
           <div className="logo"></div>
           <div className="user-sec">
-          <span className="bi bi-envelope-fill mailbox"
-            onClick={() => setShowMailPopup(true)} 
-            ></span>
+          
             <div
               className="user-container"
               ref={userContainerRef}

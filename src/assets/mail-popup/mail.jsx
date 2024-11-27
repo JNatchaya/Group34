@@ -8,8 +8,10 @@ function MailPopup({ trigger, setTrigger }) {
       <div className="popup-inner">
         <header className="header mail-header">
           <div className="logo"></div>
-          <button className="close-btn bi bi-x-circle" onClick={() => setTrigger(false)}>
-          </button>
+          <button
+            className="close-btn-1 bi bi-x-circle"
+            onClick={() => setTrigger(false)}
+          ></button>
         </header>
         <nav className="mail-nav">
           <span>
@@ -23,49 +25,40 @@ function MailPopup({ trigger, setTrigger }) {
             </a>
           </span>
         </nav>
+
         <div className="mail-container">
-          {/* <div className="card-container">
-            {cardData.map((item) => (
-              <div className="grid-container" key={item.id}>
-                <div className="item1 circle-container">
-                  <div className="circle"></div>
+          {cardData.map((item, index) => (
+            <div key={index} className="card-mail">
+              <div className="img-mail-container">
+                <div className="circle"></div>
+              </div>
+              <div className="detail-mail-container">
+                <div className="detail-mail-header">
+                  {item.from === "Report"
+                    ? "Admin | "
+                    : "Client | "}
                 </div>
-                <div className="item2 card-text-role">
-                  <p>
-                    <b>{item.author} |</b>
-                  </p>
-                </div>
-                <div className="item3 card-text-link">
-                  <a href="#">{item.linkText}</a>
+                <div className="detail-mail-body">
+                  <span>{item.detail}</span>
+                  {item.image && (
+                    <div className="imag">
+                      <img src={item.image} alt="Attached" />
+                    </div>
+                  )}
+                  <span className="link">More</span>
                 </div>
               </div>
-            ))}
-          </div> */}
-          <div className="card-mail">
-            {cardData.map((item) => (
-              <div className="mail-inner" key={item.id}>
-                <div className="mail1 circle-left">
-                  <div className="circle"></div>
-                </div>
-                <div className="mail2 text-role">
-                  <p>
-                    <b>{item.author} |</b>
-                  </p>
-                </div>
-                <div className="mail3 text-link">
-                  <a href="#">{item.linkText}</a>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="show-more-button">Show More</button>
+            </div>
+          ))}
         </div>
+        <button className="show-more-button">Show More</button>
       </div>
     </div>
-  ) : null; // Return null if not triggered
+  ) : null;
 }
 
 export default MailPopup;
+
 // .popup-inner .close-btn {
 //   position: absolute;
 //   top: 10px;
