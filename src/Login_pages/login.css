@@ -24,9 +24,12 @@
     position: absolute;
     bottom: 15px; left: 3%;
 }
-.info-text h2 {
+.info-text .h {
     padding-bottom: 5px;
     border-bottom: 1px solid black;
+    color: var(--bold-org);
+    font-size: 2rem;
+    font-weight: bolder;
 }
 .login-space{
     padding: 15% 0;
@@ -174,7 +177,9 @@
     font-size: 35px;
     top: 50%; left: 15%; translate: -50% -50%;
 }
-
+.Losing p{
+    color: white;
+}
 
 @media screen and (width: 440px) and (height: 956px) {
     .info-text {
@@ -267,53 +272,51 @@
     
     .form__label .bi {
         margin-right: 5px;
+        color: #4a3b76;
     }
       
-    .btn-sec {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        height: 100%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .button {
-        padding: 10px;
-        margin-bottom: 20px;
-        font-size: 16px;
+    .btn-sec .button {
+        padding: 5px;
+        margin-bottom: 15px;
+        font-size: 14px;
         border: none;
-        border-radius: 10px;
+        border-radius: 15px;
+        width: 70%; 
+        height: 50px; 
     }
-    
+
     .btn-login {
-        background-color: #473366;
-        color: #fff;
+        font-size: 16px;
+        height: 35px; 
     }
-    
+
     .btn-line {
+        font-size: 14px; 
+        height: 35px; 
         background-color: #32c832;
         color: #fff;
     }
-
     .sup-login {
         position: absolute;
-        margin-top: 425px;
+        margin-top: 950px;
+        margin-right: 245px; ;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 50px;
         margin-bottom: 20px;
-    }
-    
-    .Stay,
-    .Losing {
-        font-size: 14px;
-        color: white;
     }
     
     .Losing label {
         text-decoration: underline;
+        color: #FF5733; 
+    }
+
+    .Losing p {
+        color: #473366;
+    }
+
+    .Losing .bi {
+        color: #4a3b76;
     }
 }
