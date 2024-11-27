@@ -34,6 +34,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 0;
 }
+.fe-dp-name h3{
+  font-size: 1.5rem;
+  color: black;
+}
 
 
 .fe-bottom{
@@ -49,7 +53,7 @@
 .fe-bt-left{
   /* border: solid 2px green; */
   display: grid;
-  grid-template-rows: 1.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 3.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
 }
 .fe-image{
   width: 90%;
@@ -90,27 +94,33 @@
   font-size: small;
 }
 
-.fe-bt-right{
-  /* border: solid 2px blue; */
-  display: grid;
-  grid-template-rows: 1fr 10fr;
-}
+
 
 .fe-history{
   width: 112%;
+  height: 100%;
   background-color: #fd6d2b6b;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 0.5fr 5fr;
 }
+.fe-history-text {
+  /* border: solid 2px black; */
+  align-self: flex-start;
+  margin-left: 12px;
+  margin-top: 10px;
+  text-align: left; 
+  padding-left: 10px; 
+}
+
 
 .fe-task-card{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px;
+  margin-top: 5px;
+  margin-left: 20px;
   background-color: var(--primary-white)  ;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
