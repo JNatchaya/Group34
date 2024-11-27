@@ -63,7 +63,7 @@ function Login({ token, setToken }) {
           
           <div className="Losing">
             <label style={{ textDecoration: "underline", color:'white'}}>
-              Losing The Key? <span className="bi bi-key-fill"></span>
+             <p> Losing The Key? <span className="bi bi-key-fill"></span></p>
             </label>
           </div>
         </div>

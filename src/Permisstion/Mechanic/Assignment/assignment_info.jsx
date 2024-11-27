@@ -4,8 +4,9 @@ import "../Assignment/assignment_info.css";
 function AssignmentInfo({ onReturn }) {
   const [evidence, setEvidence] = useState([]);
   const [checkedItems, setCheckedItems] = useState(Array(6).fill(false));
+  const [dropdowns, setDropdowns] = useState(Array(6).fill(false));
   const [showPopup, setShowPopup] = useState(false);
-  const [dropdowns, setDropdowns] = useState(Array(6).fill(false)); 
+  const [reportDropdownOpen, setReportDropdownOpen] = useState(false); // State for m-report-details dropdown
 
   const handleAddEvidence = (event) => {
     const files = Array.from(event.target.files);
@@ -27,8 +28,12 @@ function AssignmentInfo({ onReturn }) {
 
   const toggleDropdown = (index) => {
     const newDropdowns = [...dropdowns];
-    newDropdowns[index] = !newDropdowns[index]; 
+    newDropdowns[index] = !newDropdowns[index];
     setDropdowns(newDropdowns);
+  };
+
+  const toggleReportDropdown = () => {
+    setReportDropdownOpen((prevState) => !prevState);
   };
 
   const handleSubmit = () => {
@@ -66,18 +71,39 @@ function AssignmentInfo({ onReturn }) {
               <div className="info-report">
                 <h4>Report Details</h4>
               </div>
-              <div className="M-report-image">Reported image</div>
-            </div>
-            <div className="i-location">
-              <div className="M-Location">
-                <h4>Location</h4>
-              </div>
-              <div className="M-location-details">
-                <span>
-                  <i class="bi bi-pin-map-fill"></i> &nbsp;Map
+              <div className="M-report-details">
+                <span onClick={toggleReportDropdown}>
+                Reported details &nbsp;
+                  <i
+                    className={`bi ${
+                      reportDropdownOpen
+                        ? "bi-caret-up-fill"
+                        : "bi-caret-down-fill"
+                    }`}
+                  ></i>{" "}
+                  
                 </span>
+                {reportDropdownOpen && (
+                  <div className="report-dropdown-box">
+                    <p>
+                      Details about the report............
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
+            {!reportDropdownOpen && (
+              <div className="i-location">
+                <div className="M-Location">
+                  <h4>Location</h4>
+                </div>
+                <div className="M-location-details">
+                  <span>
+                    <i className="bi bi-pin-map-fill"></i> &nbsp;Map
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="info-section-bottom">
@@ -112,7 +138,7 @@ function AssignmentInfo({ onReturn }) {
                     </div>
                   </div>
                   {dropdowns[index] && (
-                    <div className="dropdown-box">
+                    <div className="checklist-dropdown-box">
                       <p>Additional details for {item}</p>
                     </div>
                   )}
