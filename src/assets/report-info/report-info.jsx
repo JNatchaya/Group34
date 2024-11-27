@@ -3,7 +3,7 @@ import React,{ useState } from "react";
 import"./report-info.css";
 
 function ReportInfo () {
-    const [permission, setPermission] = useState("SuperAdmin");
+    const [permission, setPermission] = useState("Admin_undone");
     const [expandedSection, setExpandedSection] = useState(null);
   
     const sections = [
@@ -22,14 +22,11 @@ function ReportInfo () {
   
     return (
       <div className="report-info-container">
-       <div className="search-container">
-      <input type="text" placeholder="Search" className="search-bar" />
-    </div> 
         <div className="report-header">
           <div className="grid grid-item1">
-            <div className="dp-name box-shadows">
-
-            </div>
+            <div
+              className="dp-name box-shadows"
+            ></div>
           </div>
           <div className="grid grid-item2">
             {permission === "SuperAdmin" && (
@@ -55,7 +52,7 @@ function ReportInfo () {
             )}
           </div>
         </div>
-        <div className="report-body">
+        <div className="report-body-user">
           <div className="grid grid-item3">
             <div className="report-image-title">Report Image</div>
             <div className="report-image-inner box-shadows">

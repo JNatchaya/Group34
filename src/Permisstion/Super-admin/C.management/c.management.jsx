@@ -33,6 +33,7 @@ function C_management_tab() {
   const combinedData = useCombinedData();
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [selectedSerialNumber, setSelectedSerialNumber] = useState('');
   const [currentPage, setCurrentPage] = useState("company");
   const [editingEntity, setEditingEntity] = useState(null);
   const [showAddCompanyPopup, setShowAddCompanyPopup] = useState(false);
@@ -188,7 +189,21 @@ function C_management_tab() {
           {selectedDepartment && (
             <>
               <span> / </span>
-              <span className="BreadCrumb-child">Dashboard</span>
+              <span className="BreadCrumb-child"
+              onClick={() => {
+                setSelectedSerialNumber('')
+              }}
+              >Dashboard</span>
+            </>
+          )}
+          {selectedSerialNumber && (
+            <>
+              <span> / </span>
+              <span className="BreadCrumb-child"
+              onClick={() => {
+                setSelectedSerialNumber('')
+              }}
+              >{selectedSerialNumber}</span>
             </>
           )}
           {currentPage !== "FireExtinguishers" && (
@@ -291,6 +306,7 @@ function C_management_tab() {
           <SaDashBord
             selectedDepartment={selectedDepartment}
             permiss={"SuperAdmin"}
+            selectedSerialNumber={selectedSerialNumber} setSelectedSerialNumber={setSelectedSerialNumber}
           />
         </div>
       )}

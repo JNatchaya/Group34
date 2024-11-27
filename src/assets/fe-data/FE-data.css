@@ -1,0 +1,125 @@
+.fe-container {
+  /* border: 4px solid #FD6E2B; */
+  position: absolute;
+  display: grid;
+  grid-template-rows: auto 4fr;
+  padding: 20px;
+  top: 0; left: 4px;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-white);
+  z-index: 100;
+  margin-top: 45px;
+}
+
+.fe-top{
+  margin-left: 15px;
+  /* border: solid 2px red; */
+}
+.fe-dp-name{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    background-color: var(--bold-org);
+    width: 380px; height: 70px;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+}
+
+
+.fe-bottom{
+  margin-left: 15px;
+  margin-top: 20px;
+  /* border: solid 2px violet; */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 90%;
+  height: 70%;
+}
+
+.fe-bt-left{
+  /* border: solid 2px green; */
+  display: grid;
+  grid-template-rows: 1.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+}
+.fe-image{
+  width: 90%;
+  background-color: #fd6d2b6b;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.fe-detail{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 90%;
+  background-color: #fd6d2b6b;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fe-detail h6{
+  margin-left: 10px;
+  margin-right: 15px;
+  align-self: center;
+}
+
+.status-group{
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.status-group h6{
+  margin: 0;
+  font-size: small;
+}
+
+.fe-bt-right{
+  /* border: solid 2px blue; */
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+}
+
+.fe-history{
+  width: 112%;
+  background-color: #fd6d2b6b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fe-task-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+  background-color: var(--primary-white)  ;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 95%;
+  height: 50px;
+}
+
+.fe-task-card h6{
+  margin-left: 15px;
+  margin-right: 15px;
+  align-self: center;
+}

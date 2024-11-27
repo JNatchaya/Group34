@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+
 import { Line } from "react-chartjs-2";
 
 // Register Chart.js components
@@ -76,27 +77,33 @@ function StaffManagement() {
     <div className="c-management-container">
       {/* Breadcrumb */}
       <div className="container-top">
-        <div className="Breadcrumb">
-          <span className="bi bi-folder-fill"></span>
-          <span
-            className="BreadCrumb-child"
-            onClick={() => {
-              setCurrentPage("staff");
-              setSelectedStaffID(null);
-              setSelectedAssignment(null);
-            }}
-          >
-            Staff /
-          </span>
-          {currentPage === "details" && userData && (
-            <span className="BreadCrumb-child">{userData.Name} /</span>
-          )}
-        </div>
-        {currentPage === "staff" && (
-    <div className="search-container">
-      <input type="text" placeholder="Search" className="search-bar" />
-    </div>
+      <div className="Breadcrumb">
+  <span className="bi bi-folder-fill"></span>
+  <span
+    className="BreadCrumb-child"
+    onClick={() => {
+      setCurrentPage("staff");
+      setSelectedStaffID(null);
+      setSelectedAssignment(null);
+    }}
+  >
+    Staff /
+  </span>
+  {currentPage !== "staff" && userData && (
+    <span
+      className="BreadCrumb-child"
+      onClick={() => {
+        setCurrentPage("details");
+        setSelectedAssignment(null);
+      }}
+    >
+      {userData.Name} /
+    </span>
   )}
+  {currentPage === "Assignment" && selectedAssignment && (
+    <span className="BreadCrumb-child">Assignment</span>
+  )}
+</div>
       </div>
       
 
