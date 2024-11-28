@@ -175,8 +175,25 @@ justify-content: center;
 
 .mailbox {
     cursor: pointer;
+    position: relative;
 }
 
 .mailbox:hover{
     color: var(--bold-org);
+}
+
+.mail-count {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    color: black;
+    top: 0;
+    right: 0;
+    translate: 85% 0;
 }

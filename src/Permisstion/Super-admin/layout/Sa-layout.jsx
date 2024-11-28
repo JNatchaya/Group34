@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 
 import StaffManagement_tab from "../staffmanage/staffmanage";
@@ -8,18 +8,20 @@ import Keygen from "../key-gen/key-gen";
 import Stock from "../stock/stock-manage";
 import Logout from "../../../assets/Log-out/logout";
 import MailPopup from "../../../assets/mail-popup/mail";
+import cardData from "../../../assets/mail-popup/data";
 
 import "./Sa-layout.css";
 
 function SuperAdmin_pages({ setToken }) {
-  const [satab, setSatab] = useState("C_management"); 
+  const [satab, setSatab] = useState("C_management");
   const userContainerRef = useRef(null);
   const logoutRef = useRef(null);
   const [toggleLogout, setToggleLogout] = useState(false);
   const [showMailPopup, setShowMailPopup] = useState(false);
+  const [count, setCount] = useState(cardData.length); // Updated to use state
 
   const handleLeftClick = () => {
-    setToggleLogout((prevState) => !prevState); 
+    setToggleLogout((prevState) => !prevState);
   };
 
   const handleClickOutside = (event) => {
@@ -30,7 +32,7 @@ function SuperAdmin_pages({ setToken }) {
       userContainerRef.current &&
       !userContainerRef.current.contains(event.target)
     ) {
-      setToggleLogout(false); 
+      setToggleLogout(false);
     }
   };
 
@@ -40,19 +42,28 @@ function SuperAdmin_pages({ setToken }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [toggleLogout]);
+
+  // Update count if cardData changes
+  useEffect(() => {
+    setCount(cardData.length);
+  }, [cardData]);
+
   return (
     <div className="Sa-pages-container starter">
       <header className="header">
         <div className="logo"></div>
         <div className="user-sec">
-          <span className="bi bi-envelope-fill mailbox"
-            onClick={() => setShowMailPopup(true)} 
-            ></span>
+          <span
+            className="bi bi-envelope-fill mailbox"
+            onClick={() => setShowMailPopup(true)}
+          >
+            <div className="mail-count">{count}</div>
+          </span>
           <div
-              className="user-container"
-              ref={userContainerRef}
-              onClick={handleLeftClick} 
-            >
+            className="user-container"
+            ref={userContainerRef}
+            onClick={handleLeftClick}
+          >
             <label className="username">Superadmin</label>
             <div className="pofile-picture"></div>
           </div>
@@ -60,14 +71,12 @@ function SuperAdmin_pages({ setToken }) {
       </header>
       <main className="body">
         <div className="sidebar">
-          {/* Dynamic tab links with NavLink */}
           <NavLink
             to="C_management"
             className={`Child ${satab === "C_management" ? "active" : ""}`}
             onClick={() => setSatab("C_management")}
           >
-            Client management{" "}
-            <span className="bi bi-caret-right-fill"></span>
+            Client management <span className="bi bi-caret-right-fill"></span>
           </NavLink>
           <NavLink
             to="staff-management"
@@ -98,9 +107,7 @@ function SuperAdmin_pages({ setToken }) {
             Map <span className="bi bi-caret-right-fill"></span>
           </NavLink>
         </div>
-
         <div className="container-box">
-          {/* Default redirect route */}
           <Routes>
             <Route path="/" element={<Navigate to="C_management" />} />
             <Route path="C_management" element={<C_management_tab />} />
@@ -112,13 +119,14 @@ function SuperAdmin_pages({ setToken }) {
         </div>
       </main>
       {toggleLogout && (
-            <div ref={logoutRef}>
-              <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
-            </div>
-          )}
-       <MailPopup trigger={showMailPopup} setTrigger={setShowMailPopup} />
+        <div ref={logoutRef}>
+          <Logout setToggleLogout={setToggleLogout} setToken={setToken} />
+        </div>
+      )}
+      <MailPopup trigger={showMailPopup} setTrigger={setShowMailPopup} />
     </div>
   );
 }
 
 export default SuperAdmin_pages;
+

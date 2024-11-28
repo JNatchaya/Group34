@@ -27,7 +27,7 @@ function GDashboard({ onReturnToMechanic }) {
                   <span>
                     <i className="bi bi-circle-fill"></i>
                   </span>
-                  <h5>Department name</h5>
+                  <h5>Alpha Department </h5>
                 </div>
                 <div className="d-fire-img">
                   <h8>Fire extinguisher image</h8>

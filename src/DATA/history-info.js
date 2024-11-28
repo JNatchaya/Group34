@@ -1,8 +1,9 @@
     // array detail == serialNumber type status date
 
-    const History_info = [
+    export const History_info = [
         {
             "serialNumber": "SN123456",
+            "DPName": "Alpha_Department_01",
             "type": "CO2",
             "status": "Completed",
             "date": "2024-10-01",
@@ -46,12 +47,21 @@
             ],
             "comment": [
                 {
-                "well": "false",
-                "abitOfMaintains": "true",
-                "requiredChange": "false",
-                "other": "false"
-            },
+                    "date-sub": "2024-10-01",
+                    "well": false,
+                    "abitOfMaintains": true,
+                    "requiredChange": false,
+                    "other": false
+                },
+                {
+                    "date-sub": "2024-06-01",
+                    "well": true,
+                    "abitOfMaintains": true,
+                    "requiredChange": true,
+                    "other": false
+                },
             ],
+            "reportDetails": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore voluptate vero blanditiis, a est.",
             "reportImage": [
                 {
                     
@@ -60,9 +70,10 @@
         },
         {
             "serialNumber": "SN789012",
+            "DPName": "Alpha_Department_01",
             "type": "Dry Chemical",
             "status": "Pending",
-            "date": "2024-11-15",
+            "date": "2024-08-15", 
             "taskHolder": "John Doe",
             "addminHolder": "Emily Davis",
             "pressureGuage": [
@@ -102,16 +113,24 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-08-15",
                     "well": "false",
                     "abitOfMaintains": "true",
                     "requiredChange": "false",
                     "other": "false"
                 },
+            ],
+            "reportDetails": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore voluptate vero blanditiis, a est.",
+            "reportImage": [
+                {
+                    
+                }
             ]
         },
         {
-            "serialNumber": "SN22233",
+            "serialNumber": "SN222333",
+            "DPName": "Beta_Department_02",
             "type": "CO2",
             "status": "Completed",
             "date": "2024-11-10",
@@ -154,16 +173,24 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-11-10",
                     "well": "false",
                     "abitOfMaintains": "false",
                     "requiredChange": "false",
                     "other": "false"
                 },
+            ],
+            "reportDetails": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore voluptate vero blanditiis, a est.",
+            "reportImage": [
+                {
+                    
+                }
             ]
         },
         {
             "serialNumber": "SN777888",
+            "DPName": "Gamma_Department_01",
             "type": "CO2",
             "status": "In Progress",
             "date": "2024-11-10",
@@ -206,12 +233,61 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-11-10",
                     "well": "false",
                     "abitOfMaintains": "false",
                     "requiredChange": "false",
                     "other": "false"
                 },
+            ],
+            "reportDetails": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore voluptate vero blanditiis, a est.",
+            "reportImage": [
+                {
+                    
+                }
             ]
         },
     ]
+
+    export const createSectionsFromHistory = (selectedSerialNumber) => {
+        // Find the specific history item based on the serial number
+        const item = History_info.find((item) => item.serialNumber === selectedSerialNumber);
+      
+        // Return an empty array if no matching item is found
+        if (!item) return [];
+      
+        // Create and return the sections
+        return [
+          {
+            title: "Pressure Gauge",
+            status: `${item.pressureGuage[0]?.status || "N/A"}`,
+            content: `Details: ${item.pressureGuage[0]?.details || "N/A"}`,
+          },
+          {
+            title: "Pull Pin and Temper Seal",
+            status: `${item.pullPinAndTemperSeal[0]?.status || "N/A"}`,
+            content: `Details: ${item.pullPinAndTemperSeal[0]?.details || "N/A"}`,
+          },
+          {
+            title: "Handle",
+            status: `${item.handle[0]?.status || "N/A"}`,
+            content: `Details: ${item.handle[0]?.details || "N/A"}`,
+          },
+          {
+            title: "Hose",
+            status: `${item.hose[0]?.status || "N/A"}`,
+            content: `Details: ${item.hose[0]?.details || "N/A"}`,
+          },
+          {
+            title: "Fire Extinguisher Body",
+            status: `${item.fireExtinguisherBody[0]?.status || "N/A"}`,
+            content: `Details: ${item.fireExtinguisherBody[0]?.details || "N/A"}`,
+          },
+          {
+            title: "Fire Extinguisher Expire",
+            status: `${item.fireExtinguisherExpire[0]?.status || "N/A"}`,
+            content: `Details: ${item.fireExtinguisherExpire[0]?.details || "N/A"}`,
+          },
+        ];
+      };
