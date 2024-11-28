@@ -3,7 +3,7 @@
     export const History_info = [
         {
             "serialNumber": "SN123456",
-            "DPName": "Zeta_Department_01",
+            "DPName": "Alpha_Department_01",
             "type": "CO2",
             "status": "Completed",
             "date": "2024-10-01",
@@ -47,11 +47,19 @@
             ],
             "comment": [
                 {
-                "well": false,
-                "abitOfMaintains": true,
-                "requiredChange": false,
-                "other": false
-            },
+                    "date-sub": "2024-10-01",
+                    "well": false,
+                    "abitOfMaintains": true,
+                    "requiredChange": false,
+                    "other": false
+                },
+                {
+                    "date-sub": "2024-06-01",
+                    "well": true,
+                    "abitOfMaintains": true,
+                    "requiredChange": true,
+                    "other": false
+                },
             ],
             "reportDetails": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore voluptate vero blanditiis, a est.",
             "reportImage": [
@@ -65,7 +73,7 @@
             "DPName": "Alpha_Department_01",
             "type": "Dry Chemical",
             "status": "Pending",
-            "date": "2024-11-15",
+            "date": "2024-08-15", 
             "taskHolder": "John Doe",
             "addminHolder": "Emily Davis",
             "pressureGuage": [
@@ -105,7 +113,8 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-08-15",
                     "well": "false",
                     "abitOfMaintains": "true",
                     "requiredChange": "false",
@@ -164,7 +173,8 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-11-10",
                     "well": "false",
                     "abitOfMaintains": "false",
                     "requiredChange": "false",
@@ -223,7 +233,8 @@
                 },
             ],
             "comment": [
-                {
+                {   
+                    "date-sub": "2024-11-10",
                     "well": "false",
                     "abitOfMaintains": "false",
                     "requiredChange": "false",
