@@ -8,7 +8,7 @@ function Assignment() {
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [currentPage, setCurrentPage] = useState("company");
     const [selectedAssignment, setSelectedAssignment] = useState(null);
-    const [serial, setSerial] = useState(null);
+    const [serial, setSerial] = useState("SN777888");
 
     return (
         <div className="c-management-container">
@@ -28,7 +28,7 @@ function Assignment() {
                     </span>
                     {currentPage === "details" && selectedCompany && (
                         <span className="BreadCrumb-child">
-                            {selectedCompany.CMname} /
+                            {selectedCompany.CMname} / {serial}
                         </span>
                     )}
                     {currentPage === "Assignments" && selectedAssignment && (
@@ -86,7 +86,7 @@ function Assignment() {
             {/* Assignment Section */}
             {currentPage === "details" && selectedCompany && (
              <ReportInfo 
-                
+                serial={serial}
                 permissions={"Admin_undone"}
             /> 
             )}
