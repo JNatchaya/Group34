@@ -6,14 +6,21 @@ import Add from "../../../assets/add/add";
 import { useCombinedData } from "../../../DATA/CombinedDataContext";
 import "./sa-dashbord.css";
 import FEdata from "../../../assets/fe-data/FE-data";
+import ReportInfo from "../../../assets/report-info/report-info";
 
-function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSelectedSerialNumber}) {
+function SaDashBord({
+  selectedDepartment,
+  permiss,
+  selectedSerialNumber,
+  setSelectedSerialNumber,
+}) {
   const navigate = useNavigate();
-  
+  selectedSerialNumber = ""; 
   const handleViewLocation = () => {
-    // Ensure the selectedDepartment has a valid DPLocation
     if (selectedDepartment?.DPLocation) {
-      navigate("../map", { state: { location: selectedDepartment.DPLocation } });
+      navigate("../map", {
+        state: { location: selectedDepartment.DPLocation },
+      });
     } else {
       console.error("No location data available for the selected department.");
     }
@@ -25,7 +32,7 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
   const [more, setMore] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // For DPName
   const [isEditingRounds, setIsEditingRounds] = useState(false); // For round-child
- 
+
   const [editableData, setEditableData] = useState({
     DPName: selectedDepartment?.DPName || "Department",
     rounds: [
@@ -37,7 +44,7 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
   const handleFire = (event) => {
     const serial = event.currentTarget.getAttribute("data-type");
     setSelectedSerialNumber(serial);
-  }
+  };
   // Toggles the department name edit state
   const handleEditToggle = () => setIsEditing((prev) => !prev);
 
@@ -56,6 +63,11 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
       setEditableData((prev) => ({ ...prev, rounds: updatedRounds }));
     }
   };
+
+  const handdlehistory = ()=>{
+    const type = event.currentTarget.getAttribute("data-type");
+    console.log(type)
+  }
 
   // Renders the input fields or display spans for round values
   const renderRoundInput = (index, label) => (
@@ -80,7 +92,12 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
 
   return (
     <div className="Sa-dashbord-container">
-      {toggle && <FireAdd setToggle={setToggle} selectedDepartment={selectedDepartment}/>}
+      {toggle && (
+        <FireAdd
+          setToggle={setToggle}
+          selectedDepartment={selectedDepartment}
+        />
+      )}
       {open && (
         <Add
           firstIn={"Request"}
@@ -90,15 +107,17 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
           setOpen={setOpen}
         />
       )}
-      {selectedSerialNumber != '' && (  <FEdata  selectedSerialNumber={selectedSerialNumber} setSelectedSerialNumber={setSelectedSerialNumber}/>)} 
-    
+      {selectedSerialNumber != "" && (
+        <FEdata
+          selectedSerialNumber={selectedSerialNumber}
+          setSelectedSerialNumber={setSelectedSerialNumber}
+        />
+      )}
+
       <div className="container-bottom">
         <div className="bottom-left">
           <div className="department-container">
-            <div
-              className="dp-name box-shadows"
-              onClick={() => setMore(!more)}
-            >
+            <div className="dp-name box-shadows" onClick={() => setMore(!more)}>
               {isEditing ? (
                 <input
                   type="text"
@@ -131,24 +150,32 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
                   <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
                     Date of Expiry
                   </span>
+
                   <span style={{ fontSize: "1rem" }}>
                     {selectedDepartment?.DPMemExp || "N/A"}
                   </span>
                 </div>
-                <div className="more-child">
-          <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
-            Location
-          </span>
-          <span style={{ fontSize: "1rem" }}>
-            {selectedDepartment?.DPlocatename || "N/A"}
-          </span>
-          <span
-            style={{ color: "blue", fontSize: "1rem", cursor: "pointer" }}
-            onClick={handleViewLocation}
-          >
-            <br />View Location
-          </span>
-        </div>
+                {permiss === "SuperAdmin" && (
+                  <div className="more-child">
+                    <span style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+                      Location
+                    </span>
+                    <span style={{ fontSize: "1rem" }}>
+                      {selectedDepartment?.DPlocatename || "N/A"}
+                    </span>
+                    <span
+                      style={{
+                        color: "blue",
+                        fontSize: "1rem",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleViewLocation}
+                    >
+                      <br />
+                      View Location
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
             <button
@@ -186,7 +213,12 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
               <div className="dp-container-bottom">
                 {fireData.length ? (
                   fireData.map((fire, index) => (
-                    <div className="dp-child" key={index} data-type={fire.serialNumber} onClick={handleFire}>
+                    <div
+                      className="dp-child"
+                      key={index}
+                      data-type={fire.serialNumber}
+                      onClick={handleFire}
+                    >
                       <div>
                         <span>Serial Number: {fire.serialNumber}</span>
                       </div>
@@ -224,9 +256,14 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
                 <div className="dp-container-bottom">
                   {fireData?.length ? (
                     fireData.map((fire, index) => (
-                      <div className="dp-child" key={index}>
+                      <div className="dp-child" key={index} data-type={fire.serialNumber}
+                      onClick={()=>{
+                        
+                      }}>
                         <span>Serial Number: {fire.serialNumber}</span>
-                        <span style={{ marginLeft: "auto" }}>Location: {fire.location}</span>
+                        <span style={{ marginLeft: "auto" }}>
+                          Location: {fire.location}
+                        </span>
                         <div className="info">
                           <span style={{ fontSize: "0.8rem" }}>
                             {fire.lastMaintenanceDate}
@@ -289,8 +326,7 @@ function SaDashBord({ selectedDepartment, permiss ,selectedSerialNumber ,setSele
                           <span
                             style={{
                               fontSize: "0.8rem",
-                              color:
-                                fire.status === "Active" ? "green" : "red",
+                              color: fire.status === "Active" ? "green" : "red",
                             }}
                           >
                             {fire.status}
