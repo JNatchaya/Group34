@@ -8,7 +8,11 @@ import "./report-info.css";
 function ReportInfo({ permissions, serial }) {
   const [expandedSection, setExpandedSection] = useState(null);
   const matchInfo = History_info.find((item) => item.serialNumber === serial);
+  if (!matchInfo) {
+    matchInfo = [];
+  }
   console.log(matchInfo)
+
   // Assuming History_info is imported
   const selectedHistoryItem = serial;
   const sections = createSectionsFromHistory(selectedHistoryItem);
@@ -16,15 +20,6 @@ function ReportInfo({ permissions, serial }) {
   const toggleSection = (index) => {
     setExpandedSection(expandedSection === index ? null : index);
   };
-
-  // const sections = [
-  //   { title: "Pressure Gauge", content: "Details about the pressure gauge..." },
-  //   { title: "Pull Pin and Temper Seal", content: "Details about the pull pin..." },
-  //   { title: "Handle", content: "Details about the handle..." },
-  //   { title: "Hose", content: "Details about the hose..." },
-  //   { title: "Fire Extinguisher Body", content: "Details about the extinguisher body..." },
-  //   { title: "Fire Extinguisher Expire", content: "Details about expiration..." },
-  // ];
 
   return (
     <div className="report-info-container">
@@ -52,7 +47,7 @@ function ReportInfo({ permissions, serial }) {
           {permissions === "Admin_done" && (
             <div className="report-status-title-admin-done">
               <div className="report-item5 box-shadows">
-                Task Holder Task Holder :<span>{matchInfo.taskHolder}</span>{" "}
+                Task Holder:<span>{matchInfo.taskHolder}</span>{" "}
               </div>
               <div className="report-item6 box-shadows">
                 Admin Holder: <span>{matchInfo.addminHolder}</span>
@@ -62,7 +57,7 @@ function ReportInfo({ permissions, serial }) {
           {permissions === "Admin_undone" && (
             <div className="report-status-title-admin-undone">
               <div className="report-item7 box-shadows">
-                Task Holder Task Holder :<span>{matchInfo.taskHolder}</span>
+                Task Holder:<span>{matchInfo.taskHolder}</span>
               </div>
               <div className="report-item8 box-shadows">Approve</div>
               <div className="report-item9 box-shadows">Reject</div>
@@ -103,6 +98,7 @@ function ReportInfo({ permissions, serial }) {
                         {expandedSection === index ? "▲" : "▼"}
                       </span>
                       <input
+                        className="checkbox"
                         type="checkbox"
                         disabled
                         checked={section.status === "Green"}
