@@ -2,7 +2,7 @@
   "name": "project-fire",
   "private": true,
   "version": "0.0.0",
-  "Homepages": "",
+  "Homepages": "https://github.com/JNatchaya/Group34.git",
   "type": "module",
   "scripts": {
     "dev": "vite",
